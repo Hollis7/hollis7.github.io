@@ -21,18 +21,6 @@
       </tags>
   </entry>
   <entry>
-    <title>test.md</title>
-    <url>/2024/01/15/test-md/</url>
-    <content><![CDATA[<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">java</span><br><span class="line">python</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>教程</category>
-      </categories>
-      <tags>
-        <tag>centos 5.3</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>c++ 代码</title>
     <url>/2024/01/15/%E4%BB%A3%E7%A0%81/</url>
     <content><![CDATA[<h4 id="引入构造函数"><a href="#引入构造函数" class="headerlink" title="引入构造函数"></a>引入构造函数</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">引入构造函数</span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DEFAULT_BUF_SIZE 64</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">CString</span> &#123;</span><br><span class="line">	<span class="type">char</span>* buf;</span><br><span class="line">	<span class="type">int</span> size;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="type">bool</span> <span class="title">copy</span><span class="params">(<span class="type">char</span>* str)</span></span>;</span><br><span class="line">	<span class="function"><span class="type">char</span>* <span class="title">get</span><span class="params">()</span></span>;</span><br><span class="line">	<span class="built_in">CString</span>();</span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">deinit</span><span class="params">()</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line">CString::<span class="built_in">CString</span>() &#123;</span><br><span class="line">	size = DEFAULT_BUF_SIZE;</span><br><span class="line">	buf = <span class="keyword">new</span> <span class="type">char</span>[size];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">CString::copy</span><span class="params">(<span class="type">char</span>* str)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (str == <span class="literal">NULL</span>)</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">	<span class="keyword">if</span> ((<span class="built_in">strlen</span>(str) + <span class="number">1</span>) &gt; size)</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">	<span class="built_in">strcpy_s</span>(buf, <span class="built_in">strlen</span>(str) + <span class="number">1</span>, str);</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">char</span>* <span class="title">CString::get</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> buf; &#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">CString::deinit</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (buf != <span class="literal">NULL</span>)</span><br><span class="line">		<span class="keyword">delete</span>[]buf;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	CString aStr;</span><br><span class="line">	<span class="type">char</span> character1[] = <span class="string">&quot;hello&quot;</span>;</span><br><span class="line">	aStr.<span class="built_in">copy</span>(character1);</span><br><span class="line">	<span class="type">char</span>* p = aStr.<span class="built_in">get</span>();</span><br><span class="line">	<span class="keyword">if</span> (p == <span class="literal">NULL</span>)</span><br><span class="line">		cout &lt;&lt; <span class="string">&quot;str is NULL&quot;</span> &lt;&lt; endl;</span><br><span class="line">	<span class="keyword">else</span> cout &lt;&lt; <span class="string">&quot;str is :&quot;</span> &lt;&lt; character1&lt;&lt;endl&lt;&lt; aStr.<span class="built_in">get</span>() &lt;&lt; endl;</span><br><span class="line">	aStr.<span class="built_in">deinit</span>();</span><br><span class="line">	<span class="built_in">system</span>(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -102,6 +90,18 @@
       </categories>
       <tags>
         <tag>test</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>test.md</title>
+    <url>/2024/01/15/test-md/</url>
+    <content><![CDATA[<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">java</span><br><span class="line">python</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
+      <tags>
+        <tag>centos 5.3</tag>
       </tags>
   </entry>
 </search>
