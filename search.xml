@@ -1588,7 +1588,9 @@ org.springframework.boot.SpringApplicationRunListener=com.hdb.core.listener.MyAp
   <entry>
     <title>代码随想录2二叉树</title>
     <url>/2024/01/16/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%952%E4%BA%8C%E5%8F%89%E6%A0%91/</url>
-    <content><![CDATA[<p><meta name="referrer" content="no-referrer"/></p>
+    <content><![CDATA[<meta name="referrer" content="no-referrer"/>
+
+
 <h2 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h2><p><strong>本节包括：</strong></p>
 <ul>
 <li>二叉树（部分）</li>
@@ -1664,7 +1666,8 @@ m a x ( l , r ) + 1</script><h2 id="111-二叉树的最小深度"><a href="#111-
   <entry>
     <title>代码随想录1</title>
     <url>/2024/01/16/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95%E6%95%B0%E7%BB%841/</url>
-    <content><![CDATA[<p><meta name="referrer" content="no-referrer"/></p>
+    <content><![CDATA[<meta name="referrer" content="no-referrer"/>
+
 <h2 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h2><p><strong>本节包含：</strong></p>
 <ul>
 <li><strong>数组</strong></li>
