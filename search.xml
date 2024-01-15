@@ -825,7 +825,9 @@
   <entry>
     <title>springboot3 场景整合</title>
     <url>/2024/01/15/springboot3/springboot3_%E5%9C%BA%E6%99%AF%E6%95%B4%E5%90%88/</url>
-    <content><![CDATA[<h2 id="springboot3笔记资料地址"><a href="#springboot3笔记资料地址" class="headerlink" title="springboot3笔记资料地址"></a>springboot3笔记资料地址</h2><p><a href="https://www.yuque.com/leifengyang/springboot3">springboot3-notes</a></p>
+    <content><![CDATA[<meta name="referrer" content="no-referrer"/>
+
+<h2 id="springboot3笔记资料地址"><a href="#springboot3笔记资料地址" class="headerlink" title="springboot3笔记资料地址"></a>springboot3笔记资料地址</h2><p><a href="https://www.yuque.com/leifengyang/springboot3">springboot3-notes</a></p>
 <h1 id="NoSQL"><a href="#NoSQL" class="headerlink" title="NoSQL"></a>NoSQL</h1><h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><h3 id="安装docker"><a href="#安装docker" class="headerlink" title="安装docker"></a>安装docker</h3><ul>
 <li>准备prometheus.yml，docker-compose.yml</li>
 <li>启动环境</li>
