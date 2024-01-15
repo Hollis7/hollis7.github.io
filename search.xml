@@ -148,7 +148,7 @@
       </tags>
   </entry>
   <entry>
-    <title>Hello World</title>
+    <title>spirng6知识小点</title>
     <url>/2024/01/15/spring6/spring6_1/</url>
     <content><![CDATA[<h2 id="启用Log4j2日志框架"><a href="#启用Log4j2日志框架" class="headerlink" title="启用Log4j2日志框架"></a>启用Log4j2日志框架</h2><p><strong>（1）日志信息的优先级</strong>，日志信息的优先级从高到低有<strong>TRACE &lt; DEBUG &lt; INFO &lt; WARN &lt; ERROR &lt; FATAL</strong><br>                TRACE：追踪，是最低的日志级别，相当于追踪程序的执行<br>                DEBUG：调试，一般在开发中，都将其设置为最低的日志级别<br>                INFO：信息，输出重要的信息，使用较多<br>                WARN：警告，输出警告的信息<br>                ERROR：错误，输出错误信息<br>                FATAL：严重错误</p>
 <p>这些级别分别用来指定这条日志信息的重要程度；级别高的会自动屏蔽级别低的日志，也就是说，设置了WARN的日志，则INFO、DEBUG的日志级别的日志不会显示</p>
