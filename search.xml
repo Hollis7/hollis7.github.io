@@ -22,7 +22,12 @@
     <title>test.md</title>
     <url>/2024/01/15/test-md/</url>
     <content><![CDATA[<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">java</span><br><span class="line">python</span><br></pre></td></tr></table></figure>
-
 ]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
+      <tags>
+        <tag>centos 5.3</tag>
+      </tags>
   </entry>
 </search>
