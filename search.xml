@@ -167,7 +167,9 @@
   <entry>
     <title>springboot3 web开发</title>
     <url>/2024/01/15/springboot3/springboot3_web%E5%BC%80%E5%8F%91/</url>
-    <content><![CDATA[<h2 id="springboot3笔记资料地址"><a href="#springboot3笔记资料地址" class="headerlink" title="springboot3笔记资料地址"></a>springboot3笔记资料地址</h2><p><a href="https://www.yuque.com/leifengyang/springboot3">springboot3-notes</a></p>
+    <content><![CDATA[<meta name="referrer" content="no-referrer"/>
+
+<h2 id="springboot3笔记资料地址"><a href="#springboot3笔记资料地址" class="headerlink" title="springboot3笔记资料地址"></a>springboot3笔记资料地址</h2><p><a href="https://www.yuque.com/leifengyang/springboot3">springboot3-notes</a></p>
 <h2 id="xmind文件打开网址"><a href="#xmind文件打开网址" class="headerlink" title="xmind文件打开网址"></a>xmind文件打开网址</h2><p><a href="https://mubu.com/app/edit/home/1IVQRB_zQ2b#m">幕布</a></p>
 <h2 id="关闭占用端口的程序"><a href="#关闭占用端口的程序" class="headerlink" title="关闭占用端口的程序"></a>关闭占用端口的程序</h2><p>查看占用端口的程序</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">netstat -ano | findstr 8080</span><br></pre></td></tr></table></figure>
@@ -754,7 +756,9 @@
   <entry>
     <title>springboot3 基础特性</title>
     <url>/2024/01/15/springboot3/springboot3_%E5%9F%BA%E7%A1%80%E7%89%B9%E6%80%A7/</url>
-    <content><![CDATA[<h2 id="自定义-banner"><a href="#自定义-banner" class="headerlink" title="自定义 banner"></a>自定义 banner</h2><ol>
+    <content><![CDATA[<meta name="referrer" content="no-referrer"/>
+
+<h2 id="自定义-banner"><a href="#自定义-banner" class="headerlink" title="自定义 banner"></a>自定义 banner</h2><ol>
 <li>类路径添加banner.txt或设置spring.banner.location就可以定制 banner</li>
 <li>推荐网站：<a href="https://www.bootschool.net/ascii">Spring Boot banner 在线生成工具，制作下载英文 banner.txt，修改替换 banner.txt 文字实现自定义，个性化启动 banner-bootschool.net</a></li>
 </ol>
@@ -996,7 +1000,9 @@
   <entry>
     <title>springboot3 数据访问</title>
     <url>/2024/01/15/springboot3/springboot3_%E6%95%B0%E6%8D%AE%E8%AE%BF%E9%97%AE/</url>
-    <content><![CDATA[<h2 id="springboot3笔记资料地址"><a href="#springboot3笔记资料地址" class="headerlink" title="springboot3笔记资料地址"></a>springboot3笔记资料地址</h2><p><a href="https://www.yuque.com/leifengyang/springboot3">springboot3-notes-尚硅谷</a></p>
+    <content><![CDATA[<meta name="referrer" content="no-referrer"/>
+
+<h2 id="springboot3笔记资料地址"><a href="#springboot3笔记资料地址" class="headerlink" title="springboot3笔记资料地址"></a>springboot3笔记资料地址</h2><p><a href="https://www.yuque.com/leifengyang/springboot3">springboot3-notes-尚硅谷</a></p>
 <h2 id="mysql"><a href="#mysql" class="headerlink" title="mysql"></a>mysql</h2><h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mysql -u root -p</span><br></pre></td></tr></table></figure>
 
 <h3 id="密码"><a href="#密码" class="headerlink" title="密码"></a>密码</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hdb2205</span><br></pre></td></tr></table></figure>
@@ -1044,7 +1050,9 @@
   <entry>
     <title>springboot3 核心原理</title>
     <url>/2024/01/15/springboot3/springboot3_%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86/</url>
-    <content><![CDATA[<h2 id="springboot3笔记资料地址"><a href="#springboot3笔记资料地址" class="headerlink" title="springboot3笔记资料地址"></a>springboot3笔记资料地址</h2><p><a href="https://www.yuque.com/leifengyang/springboot3">springboot3-notes</a></p>
+    <content><![CDATA[<meta name="referrer" content="no-referrer"/>
+
+<h2 id="springboot3笔记资料地址"><a href="#springboot3笔记资料地址" class="headerlink" title="springboot3笔记资料地址"></a>springboot3笔记资料地址</h2><p><a href="https://www.yuque.com/leifengyang/springboot3">springboot3-notes</a></p>
 <h2 id="事件和监听器"><a href="#事件和监听器" class="headerlink" title="事件和监听器"></a>事件和监听器</h2><ol>
 <li><p>自定义<code>SpringApplicationRunListener</code>来<strong>监听事件</strong>；</p>
 </li>
