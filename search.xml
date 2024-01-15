@@ -1989,4 +1989,325 @@ org.springframework.boot.SpringApplicationRunListener=com.hdb.core.listener.MyAp
         <tag>springboot3</tag>
       </tags>
   </entry>
+  <entry>
+    <title>git学习</title>
+    <url>/2024/01/16/git%E5%AD%A6%E4%B9%A0/git_notes/</url>
+    <content><![CDATA[<meta name="referrer" content="no-referrer"/>
+
+<h2 id="初始化设置"><a href="#初始化设置" class="headerlink" title="初始化设置"></a>初始化设置</h2><p>配置⽤户名</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global user.name <span class="string">&quot;hollis7&quot;</span></span><br></pre></td></tr></table></figure>
+<p>配置邮箱</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global user.email <span class="string">&quot;herryhollis@163.com&quot;</span></span><br></pre></td></tr></table></figure>
+<p>查看配置信息</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global --list</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>user.name=hollis<br>user.email=herryhollis@163.com<br>http.proxy=<a href="http://127.0.0.1:7890">http://127.0.0.1:7890</a><br>https.proxy=<a href="https://127.0.0.1:7890">https://127.0.0.1:7890</a></p>
+</blockquote>
+<h2 id="创建仓库"><a href="#创建仓库" class="headerlink" title="创建仓库"></a>创建仓库</h2><p>创建⼀个新的本地仓库</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
+<p>当前目录下指定一个仓库</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git init my-repo</span><br></pre></td></tr></table></figure>
+<p>查看.git信息</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">ls</span> -altr</span><br><span class="line"><span class="built_in">ls</span> -al</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">total 8</span><br><span class="line">drwxr-xr-x 1 hdb22 197610 0 Nov 29 16:58 ../</span><br><span class="line">drwxr-xr-x 1 hdb22 197610 0 Nov 29 16:58 ./</span><br><span class="line">drwxr-xr-x 1 hdb22 197610 0 Nov 29 16:58 .git/</span><br></pre></td></tr></table></figure>
+<p>克隆⼀个远程仓库</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> &lt;url&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="四个区域"><a href="#四个区域" class="headerlink" title="四个区域"></a>四个区域</h2><p><strong>工作区(Working Directory)</strong><br>就是你在电脑里能实际看到的目录。</p>
+<p><strong>暂存区（Stage/Index）</strong><br>暂存区也叫索引? ⽤来临时存放未提交的内容。 ⼀般在.git⽬录下的index中。</p>
+<p><strong>本地仓库(Repository)</strong><br>Git在本地的版本库，仓库信息存储在.git这个隐藏目录中。</p>
+<p><strong>远程仓库(Remote Repository)</strong><br>托管在远程服务器上的仓库。常用的有GitHub、GitLab、Gitee。</p>
+<h2 id="添加和提交"><a href="#添加和提交" class="headerlink" title="添加和提交"></a>添加和提交</h2><p>提交以.txt结尾的文件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git add *.txt</span><br></pre></td></tr></table></figure>
+<p>提交记录</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git <span class="built_in">log</span></span><br><span class="line">commit 965946e2d53df2d211bb4fa9ff357007815f9c3e (HEAD -&gt; master)</span><br><span class="line">Author: hollis &lt;herryhollis@163.com&gt;</span><br><span class="line">Date:   Wed Nov 29 17:20:58 2023 +0800</span><br><span class="line"></span><br><span class="line">    second commit</span><br><span class="line"></span><br><span class="line">commit fccd50cb2e25533a639b4bc6ef4fa0d6c4225de6</span><br><span class="line">Author: hollis &lt;herryhollis@163.com&gt;</span><br><span class="line">Date:   Wed Nov 29 17:14:23 2023 +0800</span><br><span class="line"></span><br><span class="line">    first commit</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>简洁日志</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">log</span> --oneline</span><br></pre></td></tr></table></figure>
+<h2 id="git-reset"><a href="#git-reset" class="headerlink" title="git reset"></a>git reset</h2><p><img src="C:\data\mysoftware\Typora\typoraPicture\image-20231129172540607.png" alt="image-20231129172540607" style="zoom: 25%;" /></p>
+<h3 id="soft"><a href="#soft" class="headerlink" title="soft"></a>soft</h3><p>查看版本id</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">log</span> --oneline</span><br><span class="line">837739d (HEAD -&gt; master) 3</span><br><span class="line">e4b3f38 2</span><br><span class="line">8ef07df 1</span><br></pre></td></tr></table></figure>
+<p>回退到指定版本id：<code>e4b3f38</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git reset --soft e4b3f38</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git <span class="built_in">log</span> --oneline</span><br><span class="line">e4b3f38 (HEAD -&gt; master) 2</span><br><span class="line">8ef07df 1</span><br></pre></td></tr></table></figure>
+<p>查看暂存区的内容，<code>file3.txt</code>仍在</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git ls-files</span><br><span class="line">file1.txt</span><br><span class="line">file2.txt</span><br><span class="line">file3.txt</span><br></pre></td></tr></table></figure>
+<h3 id="hard"><a href="#hard" class="headerlink" title="hard"></a>hard</h3><p>回退到上一个版本</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git reset --hard HEAD^</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>工作区和暂存区的file3.txt均不存在</p>
+</blockquote>
+<ul>
+<li>[ ] 工作区</li>
+<li>[ ] 暂存区</li>
+</ul>
+<h3 id="mixed"><a href="#mixed" class="headerlink" title="mixed"></a>mixed</h3><p>回退到上一个版本</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git reset HEAD^</span><br></pre></td></tr></table></figure>
+<ul>
+<li>[x] 工作区</li>
+<li>[ ] 暂存区</li>
+</ul>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git reset --soft <span class="built_in">id</span></span><br><span class="line">git reset --hard HEAD^</span><br><span class="line">git reset HEAD^</span><br></pre></td></tr></table></figure>
+<p>常用<code>git reset HEAD^</code>和<code>git reset --soft id</code></p>
+<p>:anger:慎用<code>git reset --hard HEAD^</code></p>
+<h2 id="误操作"><a href="#误操作" class="headerlink" title="误操作"></a>误操作</h2><p>查看操作，回退到误操作之前：837739d</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git reflog</span><br><span class="line">e4b3f38 (HEAD -&gt; master) HEAD@&#123;0&#125;: reset: moving to HEAD^</span><br><span class="line">837739d HEAD@&#123;1&#125;: commit: 3</span><br><span class="line">e4b3f38 (HEAD -&gt; master) HEAD@&#123;2&#125;: commit: 2</span><br><span class="line">8ef07df HEAD@&#123;3&#125;: commit (initial): 1</span><br></pre></td></tr></table></figure>
+<p>回退</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git reset 837739d</span><br></pre></td></tr></table></figure>
+<h2 id="查看差异"><a href="#查看差异" class="headerlink" title="查看差异"></a>查看差异</h2><ol>
+<li>查看工作区和暂存区的差异</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git diff</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/hollis7/pictures/raw/master/2023/11/29/93054_image-20231129201440960.png" alt="image-20231129201440960"></p>
+<p>这里add一下，工作区和暂存区保持一致</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git add .</span><br></pre></td></tr></table></figure>
+<ol>
+<li>比较工作区和版本库之间的差异</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git diff <span class="built_in">head</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/hollis7/pictures/raw/master/2023/11/29/67476_image-20231129202024642.png" alt="image-20231129202024642"></p>
+<ol>
+<li>比较暂存区和版本库之间的差异</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git diff --cached</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/hollis7/pictures/raw/master/2023/11/29/55545_image-20231129202403474.png" alt="image-20231129202403474"></p>
+<ol>
+<li>比较两个版本内容</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git diff 837739d e4b3f38</span><br><span class="line">git diff <span class="built_in">head</span> 837739d</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/hollis7/pictures/raw/master/2023/11/29/13924_image-20231129203139207.png" alt="image-20231129203139207"></p>
+<ol>
+<li>最新两个版本之间</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git diff <span class="built_in">head</span>~ <span class="built_in">head</span></span><br></pre></td></tr></table></figure>
+<p><code>head~</code>表示最新版本的上一版本，<code>head^</code>同理</p>
+<p><code>head~2</code>表示head之前的2个版本</p>
+<ol>
+<li>查看指定文件版本之间的差异</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git diff <span class="built_in">head</span>~ <span class="built_in">head</span> file3.txt</span><br></pre></td></tr></table></figure>
+<h2 id="git-rm删除文件"><a href="#git-rm删除文件" class="headerlink" title="git rm删除文件"></a>git rm删除文件</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">rm</span> file1.txt</span><br></pre></td></tr></table></figure>
+<p>暂存区中的内容没有被删掉</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git ls-files</span><br><span class="line">file1.txt</span><br><span class="line">file2.txt</span><br><span class="line">file3.txt</span><br></pre></td></tr></table></figure>
+<p>需要add 和commit</p>
+<h3 id="git-rm"><a href="#git-rm" class="headerlink" title="git rm"></a>git rm</h3><p>直接删除工作区和暂存区中的文件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">rm</span> file2.txt</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>最后还是要提交，否则删除的文件还是在版本库中</p>
+</blockquote>
+<h3 id="附加"><a href="#附加" class="headerlink" title="附加"></a>附加</h3><p>递归删除某个目录下的所有子目录和文件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">rm</span> -r *</span><br></pre></td></tr></table></figure>
+<h2 id="学习-gitigonore"><a href="#学习-gitigonore" class="headerlink" title="学习.gitigonore"></a>学习.gitigonore</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;some log&quot;</span> &gt; access.log</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;other log &quot;</span> &gt; other.log</span><br></pre></td></tr></table></figure>
+<p>将access.log放入<code>.gitigonore</code>文件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> access.log &gt; .gitignore</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/hollis7/pictures/raw/master/2023/11/29/13517_image-20231129205548067.png" alt="image-20231129205548067"></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">&quot;ignore and other files&quot;</span></span><br></pre></td></tr></table></figure>
+<h3 id="忽略所有日志文件"><a href="#忽略所有日志文件" class="headerlink" title="忽略所有日志文件"></a>忽略所有日志文件</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vim .gitignore</span><br><span class="line">*.<span class="built_in">log</span></span><br></pre></td></tr></table></figure>
+<p>输入：<code>*.log</code>然后<code>wq</code>保存</p>
+<h3 id="测试效果"><a href="#测试效果" class="headerlink" title="测试效果"></a>测试效果</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> hello &gt; hello.log</span><br><span class="line">git status</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/hollis7/pictures/raw/master/2023/11/29/38701_image-20231129210211915.png" alt="image-20231129210211915"></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git commit -am <span class="string">&quot;test ignore log&quot;</span></span><br><span class="line">git ls-files</span><br></pre></td></tr></table></figure>
+<p>没有 <code>hello.log</code></p>
+<h3 id="测试已经提交的other-log"><a href="#测试已经提交的other-log" class="headerlink" title="测试已经提交的other.log"></a>测试已经提交的other.log</h3><p>追加</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot; modified&quot;</span> &gt;&gt; other.log</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line">Changes not staged <span class="keyword">for</span> commit:</span><br><span class="line">  (use <span class="string">&quot;git add &lt;file&gt;...&quot;</span> to update what will be committed)</span><br><span class="line">  (use <span class="string">&quot;git restore &lt;file&gt;...&quot;</span> to discard changes <span class="keyword">in</span> working directory)</span><br><span class="line">        modified:   other.log</span><br></pre></td></tr></table></figure>
+<p><code>.gitigonore</code>对已经添加的不能起作用</p>
+<h3 id="删除暂存区的other-log"><a href="#删除暂存区的other-log" class="headerlink" title="删除暂存区的other.log"></a>删除暂存区的other.log</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">rm</span> --cached other.log</span><br></pre></td></tr></table></figure>
+<ul>
+<li>[ ] 暂存区</li>
+<li>[x] 本地</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git commit -am <span class="string">&quot;delete other.log&quot;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>git commit -am &quot;delete other.log&quot;</code> 这个命令的作用是将所有已跟踪的文件的修改提交到版本库，并且使用 “delete other.log” 作为提交的消息。</p>
+<p>需要注意的是，这种方式只适用于已经被 Git 跟踪的文件。对于新添加的文件，还是需要使用 <code>git add</code> 将其添加到暂存区，然后再使用 <code>git commit -m &quot;message&quot;</code> 提交。</p>
+</blockquote>
+<h3 id="忽略文件夹"><a href="#忽略文件夹" class="headerlink" title="忽略文件夹"></a>忽略文件夹</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;hello&quot;</span> &gt; temp/hello.txt</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vim .gitignore</span><br><span class="line">//追加temp/</span><br><span class="line">temp/</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"> git add .</span><br><span class="line"> git commit -m <span class="string">&quot;test ignore fold&quot;</span></span><br><span class="line"> git ls-files</span><br><span class="line"> </span><br><span class="line"> $ git ls-files</span><br><span class="line">.gitignore</span><br><span class="line">file3.txt</span><br></pre></td></tr></table></figure>
+<h2 id="关联本地仓库和远程仓库"><a href="#关联本地仓库和远程仓库" class="headerlink" title="关联本地仓库和远程仓库"></a>关联本地仓库和远程仓库</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git remote add origin git@github.com:Hollis7/git_testrepo.git</span><br><span class="line">git branch -M main</span><br><span class="line">git push -u origin main</span><br></pre></td></tr></table></figure>
+<p>在GitHub上添加readme文件</p>
+<p>本地仓库拉取远程仓库的修改</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git pull</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git remote add &lt;remote-name&gt; &lt;remote-url&gt;</span><br><span class="line">//添加远程仓库</span><br><span class="line">git remote -v</span><br><span class="line">//查看远程仓库?</span><br></pre></td></tr></table></figure>
+<h2 id="⽂件状态"><a href="#⽂件状态" class="headerlink" title="⽂件状态"></a>⽂件状态</h2><ul>
+<li>main/master 默认主分⽀</li>
+<li>Origin 默认远程仓库</li>
+<li>HEAD 指向当前分⽀的指针</li>
+<li>HEAD^ 上⼀个版本</li>
+<li>HEAD~ 上四个版本</li>
+</ul>
+<h2 id="vscode中使用git"><a href="#vscode中使用git" class="headerlink" title="vscode中使用git"></a>vscode中使用git</h2><p>在git中打开vscode</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">code .</span><br></pre></td></tr></table></figure>
+<h2 id="分支简介和基本操作"><a href="#分支简介和基本操作" class="headerlink" title="分支简介和基本操作"></a>分支简介和基本操作</h2><h3 id="查看分支"><a href="#查看分支" class="headerlink" title="查看分支"></a>查看分支</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git branch</span><br></pre></td></tr></table></figure>
+<h3 id="创建新的分支"><a href="#创建新的分支" class="headerlink" title="创建新的分支"></a>创建新的分支</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git branch dev</span><br></pre></td></tr></table></figure>
+<p>查看分支，默认分支仍然为<code>master</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"> git branch</span><br><span class="line">  dev</span><br><span class="line">* master</span><br></pre></td></tr></table></figure>
+<h3 id="切换分支"><a href="#切换分支" class="headerlink" title="切换分支"></a>切换分支</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git checkout dev（不建议，存在歧义）</span><br><span class="line">git switch master（建议）</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git checkout dev</span><br><span class="line">Switched to branch <span class="string">&#x27;dev&#x27;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git switch master</span><br><span class="line">Switched to branch <span class="string">&#x27;master&#x27;</span></span><br></pre></td></tr></table></figure>
+<h2 id="merge合并"><a href="#merge合并" class="headerlink" title="merge合并"></a>merge合并</h2><p>在<code>dev</code>分支下创建<code>dev1.txt dev2.txt</code>，并提交，在<code>master</code>分支下查看，并没有<code>dev1.txt dev2.txt</code></p>
+<p>在创建main4.txt和main5.txt看到明显的分叉</p>
+<p>:memo:合并分支,将<code>dev</code>分支合并到<code>master</code>（当前）分支</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hdb22@hollis7 MINGW64 /c/individualproject/git-learn/branch-demo (master)</span><br><span class="line">$ git merge dev</span><br></pre></td></tr></table></figure>
+<p>查看分支图</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">log</span> --graph --oneline --decorate --all</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git <span class="built_in">log</span> --graph --oneline --decorate --all</span><br><span class="line">*   554c860 (HEAD -&gt; master) Merge branch <span class="string">&#x27;dev&#x27;</span></span><br><span class="line">|\</span><br><span class="line">| * 01f908c (dev) dev:2</span><br><span class="line">| * 0db7fa1 dev:1</span><br><span class="line">* | 7e18db1 main:5</span><br><span class="line">* | 5d73401 main:4</span><br><span class="line">|/</span><br><span class="line">* 185b91e main:3</span><br><span class="line">* 823dd12 main:2</span><br><span class="line">* 262a6df main:1</span><br></pre></td></tr></table></figure>
+<h3 id="删除分支"><a href="#删除分支" class="headerlink" title="删除分支"></a>删除分支</h3><p>合并后分支仍然存在，可以删除</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git branch -d dev</span><br></pre></td></tr></table></figure>
+<p><code>-d</code>表示删除已经合并的分支</p>
+<p><code>-D</code>表示强制删除</p>
+<h2 id="合并分支解决冲突"><a href="#合并分支解决冲突" class="headerlink" title="合并分支解决冲突"></a>合并分支解决冲突</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git branch feat</span><br><span class="line">git swich feat</span><br><span class="line">vim main1.txt</span><br></pre></td></tr></table></figure>
+<p>在<code>feat</code>分支下提交修改的main1.txt</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git commit -a -m <span class="string">&quot;feat:1&quot;</span></span><br></pre></td></tr></table></figure>
+<p>切回<code>master</code>分支，<code>main1.txt</code>的内容不变</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git switch master</span><br><span class="line"><span class="built_in">cat</span> main1.txt</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>main1</p>
+</blockquote>
+<p>修改<code>main1.txt</code>并保存</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vim main1.txt</span><br><span class="line">git commit -am <span class="string">&quot;main:6&quot;</span></span><br></pre></td></tr></table></figure>
+<p>:memo:<strong>直接合并出现冲突</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git merge feat</span><br><span class="line">Auto-merging main1.txt</span><br><span class="line">CONFLICT (content): Merge conflict <span class="keyword">in</span> main1.txt</span><br><span class="line">Automatic merge failed;fix conflicts and <span class="keyword">then</span> commit the result.</span><br></pre></td></tr></table></figure>
+<p>使用<code>git diff</code>查看冲突内容</p>
+<p><img src="https://gitee.com/hollis7/pictures/raw/master/2023/12/01/66112_image-20231201153625765.png" alt="image-20231201153625765"></p>
+<p><strong>手动修改main.txt文件，然后提交</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vim main1.txt</span><br><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">&quot;merge conflict&quot;</span></span><br></pre></td></tr></table></figure>
+<p>提交之前中断合并可以使用</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git merge --absort</span><br></pre></td></tr></table></figure>
+<h2 id="rebase"><a href="#rebase" class="headerlink" title="rebase"></a>rebase</h2><ol>
+<li>为了便于演示，先删除feat分支</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git branch -d feat</span><br></pre></td></tr></table></figure>
+<ol>
+<li>恢复dev分支</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git checkout -b dev 01f908c</span><br></pre></td></tr></table></figure>
+<p><code>01f908c</code>是提交dev2.txt的id</p>
+<ol>
+<li>切回master，并reset到状态提交<code>main.5</code>的状态</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git swtich master</span><br><span class="line">git reset --hard 7e18db1</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/hollis7/pictures/raw/master/2023/12/01/64965_image-20231201155844275.png" alt="image-20231201155844275" style="zoom:67%;" /></p>
+<p><img src="https://gitee.com/hollis7/pictures/raw/master/2024/01/16/10240_image-20231201160041852.png" alt="image-20231201160041852" style="zoom: 67%;" /></p>
+<ol>
+<li><strong>回退目录，copy两次branch-demo分别演示</strong></li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cp</span> -rf branch-demo rebase1</span><br><span class="line"><span class="built_in">cp</span> -rf branch-demo rebase2</span><br></pre></td></tr></table></figure>
+<ol>
+<li>rebase1文件夹下，切换到<code>dev</code>分支进行<code>rebase</code>，dev变基到master</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git switch dev</span><br><span class="line">git rebase master</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/hollis7/pictures/raw/master/2023/12/01/84395_image-20231201160653932.png" alt="image-20231201160653932" style="zoom: 67%;" /></p>
+<ol>
+<li>rebase2文件夹下，切换到<code>master</code>分支进行<code>rebase</code>，master变基到dev</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git rebase dev</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/hollis7/pictures/raw/master/2023/12/01/70958_image-20231201161355387.png" alt="image-20231201161355387" style="zoom:67%;" /></p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>只是想要merge，不关系历史采用rebase（个人开发，清晰明了）</p>
+<p>共享分支采用merge，不然会给别人带来困扰</p>
+<h2 id="alias"><a href="#alias" class="headerlink" title="alias"></a>alias</h2><p>定义命令别名</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">alias</span> graph=<span class="string">&quot;git log --oneline --graph --decorate --all&quot;</span></span><br></pre></td></tr></table></figure>
+<p>输入<code>graph</code>直接查看图像和提交记录</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ graph</span><br><span class="line">*   9d6c599 (master) merge conflict</span><br><span class="line">|\</span><br><span class="line">| * 55416ce feat:1</span><br><span class="line">* | 5b8f4ef main:6</span><br><span class="line">|/</span><br><span class="line">*   554c860 Merge branch <span class="string">&#x27;dev&#x27;</span></span><br><span class="line">|\</span><br><span class="line">| * 01f908c (HEAD -&gt; dev) dev:2</span><br><span class="line">| * 0db7fa1 dev:1</span><br><span class="line">* | 7e18db1 main:5</span><br><span class="line">* | 5d73401 main:4</span><br><span class="line">|/</span><br><span class="line">* 185b91e main:3</span><br><span class="line">* 823dd12 main:2</span><br><span class="line">* 262a6df main:1</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>git</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>博客图片显示</title>
+    <url>/2024/01/16/tips/blogs/</url>
+    <content><![CDATA[<meta name="referrer" content="no-referrer"/>
+
+<p>只需要输入命令：<code>&lt;meta name=&quot;referrer&quot; content=&quot;no-referrer&quot;/&gt;</code></p>
+]]></content>
+      <categories>
+        <category>博客搭建</category>
+      </categories>
+      <tags>
+        <tag>markdown</tag>
+        <tag>picture</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>git小技巧</title>
+    <url>/2024/01/16/tips/git/</url>
+    <content><![CDATA[<meta name="referrer" content="no-referrer"/>
+
+<h2 id="git设置代理"><a href="#git设置代理" class="headerlink" title="git设置代理"></a>git设置代理</h2><h3 id="git中设置代理"><a href="#git中设置代理" class="headerlink" title="git中设置代理"></a>git中设置代理</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global http.proxy http://127.0.0.1:7890</span><br><span class="line">git config --global https.proxy http://127.0.0.1:7890</span><br></pre></td></tr></table></figure>
+<h3 id="git取消代理"><a href="#git取消代理" class="headerlink" title="git取消代理"></a>git取消代理</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global --<span class="built_in">unset</span> http.proxy</span><br><span class="line">git config --global --<span class="built_in">unset</span> https.proxy</span><br></pre></td></tr></table></figure>
+<h3 id="查询是否使用"><a href="#查询是否使用" class="headerlink" title="查询是否使用"></a>查询是否使用</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global http.proxy </span><br><span class="line">git config --global https.proxy </span><br></pre></td></tr></table></figure>
+<h3 id="idea中配置代理（可选？）"><a href="#idea中配置代理（可选？）" class="headerlink" title="idea中配置代理（可选？）"></a>idea中配置代理（可选？）</h3><p><img src="https://gitee.com/hollis7/pictures/raw/master/2023/11/27/42136_image-20231127202015854.png" alt="image-20231127202015854" style="zoom: 67%;" /></p>
+<p>7890是clash的端口</p>
+]]></content>
+      <categories>
+        <category>git</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>screen小技巧</title>
+    <url>/2024/01/16/tips/screen/</url>
+    <content><![CDATA[<p><meta name="referrer" content="no-referrer"/><br><strong>新建一个screen会话</strong></p>
+<p>screen -S &lt;名字&gt;</p>
+<p><strong>退出当前screen会话</strong></p>
+<p>键盘点击ctrl+a , 然后按d</p>
+<p><strong>查看所有screen会话</strong></p>
+<p>screen -ls</p>
+<p><strong>进入（恢复）某一screen会话</strong></p>
+<p>screen -r &lt;会话序列号&gt;</p>
+<p><strong>关闭screen会话</strong></p>
+<p>screen -X -S &lt;序列号&gt; quit</p>
+]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>screen</tag>
+        <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>clion小技巧</title>
+    <url>/2024/01/16/tips/clion/</url>
+    <content><![CDATA[<meta name="referrer" content="no-referrer"/>
+
+<h2 id="How-to-link-ws2-32-in-Clion"><a href="#How-to-link-ws2-32-in-Clion" class="headerlink" title="How to link ws2_32 in Clion"></a>How to link ws2_32 in Clion</h2><p>The following CMakeLists.txt compiled error-less. Only 1 line is really required: <code>link_libraries(ws2_32 wsock32)</code></p>
+]]></content>
+      <categories>
+        <category>clion</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+        <tag>continuing</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>pycharm小技巧</title>
+    <url>/2024/01/16/tips/pycharm/</url>
+    <content><![CDATA[<meta name="referrer" content="no-referrer"/>
+
+<h2 id="开启show-comand-queue-gt-gt-gt"><a href="#开启show-comand-queue-gt-gt-gt" class="headerlink" title="开启show comand queue(&gt;&gt;&gt;)"></a>开启show comand queue(&gt;&gt;&gt;)</h2><p><img src="https://gitee.com/hollis7/pictures/raw/master/2023/10/23/43666_image-20231023163651677.png" alt="image-20231023163651677"></p>
+<h2 id="查看模型结构"><a href="#查看模型结构" class="headerlink" title="查看模型结构"></a>查看模型结构</h2><p>法一：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="built_in">print</span>(model)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">      (11): RobertaLayer(</span><br><span class="line">        (attention): RobertaAttention(</span><br><span class="line">          (self): RobertaSelfAttention(</span><br><span class="line">            (query): Linear(in_features=768, out_features=768, bias=True)</span><br><span class="line">            (key): Linear(in_features=768, out_features=768, bias=True)</span><br><span class="line">            (value): Linear(in_features=768, out_features=768, bias=True)</span><br><span class="line">            (dropout): Dropout(p=0.1, inplace=False)</span><br><span class="line">          )</span><br><span class="line">          (output): RobertaSelfOutput(</span><br><span class="line">            (dense): Linear(in_features=768, out_features=768, bias=True)</span><br><span class="line">            (LayerNorm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)</span><br><span class="line">            (dropout): Dropout(p=0.1, inplace=False)</span><br><span class="line">          )</span><br><span class="line">        )</span><br><span class="line">        (intermediate): RobertaIntermediate(</span><br><span class="line">          (dense): Linear(in_features=768, out_features=3072, bias=True)</span><br><span class="line">          (intermediate_act_fn): GELUActivation()</span><br><span class="line">        )</span><br><span class="line">        (output): RobertaOutput(</span><br><span class="line">          (dense): Linear(in_features=3072, out_features=768, bias=True)</span><br><span class="line">          (LayerNorm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)</span><br><span class="line">          (dropout): Dropout(p=0.1, inplace=False)</span><br><span class="line">        )</span><br><span class="line">      )</span><br><span class="line">    )</span><br><span class="line">  )</span><br><span class="line">  (pooler): RobertaPooler(</span><br><span class="line">    (dense): Linear(in_features=768, out_features=768, bias=True)</span><br><span class="line">    (activation): Tanh()</span><br><span class="line">  )</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>法二：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> name, parameters <span class="keyword">in</span> model.named_parameters():</span><br><span class="line">    <span class="built_in">print</span>(name, <span class="string">&#x27;:&#x27;</span>, parameters.size())</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">encoder.layer.11.attention.self.query.bias : torch.Size([768])</span><br><span class="line">encoder.layer.11.attention.self.key.weight : torch.Size([768, 768])</span><br><span class="line">encoder.layer.11.attention.self.key.bias : torch.Size([768])</span><br><span class="line">encoder.layer.11.attention.self.value.weight : torch.Size([768, 768])</span><br><span class="line">encoder.layer.11.attention.self.value.bias : torch.Size([768])</span><br><span class="line">encoder.layer.11.attention.output.dense.weight : torch.Size([768, 768])</span><br><span class="line">encoder.layer.11.attention.output.dense.bias : torch.Size([768])</span><br><span class="line">encoder.layer.11.attention.output.LayerNorm.weight : torch.Size([768])</span><br><span class="line">encoder.layer.11.attention.output.LayerNorm.bias : torch.Size([768])</span><br><span class="line">encoder.layer.11.intermediate.dense.weight : torch.Size([3072, 768])</span><br><span class="line">encoder.layer.11.intermediate.dense.bias : torch.Size([3072])</span><br><span class="line">encoder.layer.11.output.dense.weight : torch.Size([768, 3072])</span><br><span class="line">encoder.layer.11.output.dense.bias : torch.Size([768])</span><br><span class="line">encoder.layer.11.output.LayerNorm.weight : torch.Size([768])</span><br><span class="line">encoder.layer.11.output.LayerNorm.bias : torch.Size([768])</span><br><span class="line">pooler.dense.weight : torch.Size([768, 768])</span><br><span class="line">pooler.dense.bias : torch.Size([768])</span><br></pre></td></tr></table></figure>
+<h2 id="关闭占用端口的程序"><a href="#关闭占用端口的程序" class="headerlink" title="关闭占用端口的程序"></a>关闭占用端口的程序</h2><p>查看占用端口的程序</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">netstat -ano | findstr 8080</span><br></pre></td></tr></table></figure>
+<p>使用命令关闭</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">taskkill -PID 进程号 -F</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>pycharm</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
 </search>
