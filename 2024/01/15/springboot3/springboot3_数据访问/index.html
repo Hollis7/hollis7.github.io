@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="springboot3笔记资料地址springboot3-notes-尚硅谷 mysql启动1mysql -u root -p 密码1hdb2205 新建module 整合SSM场景 创建SSM整合项目 配置数据源  12345spring.datasource.driver-class-name&#x3D;com.mysql.cj.jdbc.Driverspring.datasource.type&#x3D;c">
+  <meta name="description" content="springboot3笔记资料地址springboot3-notes-尚硅谷 mysql启动1mysql -u root -p  密码1hdb2205  新建module 整合SSM场景 创建SSM整合项目 配置数据源  12345spring.datasource.driver-class-name&#x3D;com.mysql.cj.jdbc.Driverspring.datasource.type">
 <meta property="og:type" content="article">
 <meta property="og:title" content="springboot3 数据访问">
 <meta property="og:url" content="http://example.com/2024/01/15/springboot3/springboot3_%E6%95%B0%E6%8D%AE%E8%AE%BF%E9%97%AE/index.html">
 <meta property="og:site_name" content="hollis7">
-<meta property="og:description" content="springboot3笔记资料地址springboot3-notes-尚硅谷 mysql启动1mysql -u root -p 密码1hdb2205 新建module 整合SSM场景 创建SSM整合项目 配置数据源  12345spring.datasource.driver-class-name&#x3D;com.mysql.cj.jdbc.Driverspring.datasource.type&#x3D;c">
+<meta property="og:description" content="springboot3笔记资料地址springboot3-notes-尚硅谷 mysql启动1mysql -u root -p  密码1hdb2205  新建module 整合SSM场景 创建SSM整合项目 配置数据源  12345spring.datasource.driver-class-name&#x3D;com.mysql.cj.jdbc.Driverspring.datasource.type">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://gitee.com/hollis7/pictures/raw/master/2024/01/03/61239_image-20240103152054170.png">
 <meta property="article:published_time" content="2024-01-15T15:31:22.785Z">
@@ -124,7 +124,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">8</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">9</span></a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -233,24 +233,33 @@
 
 <h2 id="springboot3笔记资料地址"><a href="#springboot3笔记资料地址" class="headerlink" title="springboot3笔记资料地址"></a>springboot3笔记资料地址</h2><p><a target="_blank" rel="noopener" href="https://www.yuque.com/leifengyang/springboot3">springboot3-notes-尚硅谷</a></p>
 <h2 id="mysql"><a href="#mysql" class="headerlink" title="mysql"></a>mysql</h2><h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p</span><br></pre></td></tr></table></figure>
+
 <h3 id="密码"><a href="#密码" class="headerlink" title="密码"></a>密码</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hdb2205</span><br></pre></td></tr></table></figure>
+
 <h2 id="新建module"><a href="#新建module" class="headerlink" title="新建module"></a>新建module</h2><p><img src="https://gitee.com/hollis7/pictures/raw/master/2024/01/03/61239_image-20240103152054170.png" alt="image-20240103152054170"></p>
 <h2 id="整合SSM场景"><a href="#整合SSM场景" class="headerlink" title="整合SSM场景"></a>整合SSM场景</h2><ol>
 <li>创建SSM整合项目</li>
 <li>配置数据源</li>
 </ol>
 <figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring.datasource.driver-class-name</span>=<span class="string">com.mysql.cj.jdbc.Driver</span></span><br><span class="line"><span class="attr">spring.datasource.type</span>=<span class="string">com.zaxxer.hikari.HikariDataSource</span></span><br><span class="line"><span class="attr">spring.datasource.url</span>=<span class="string">jdbc:mysql://localhost:3306/test</span></span><br><span class="line"><span class="attr">spring.datasource.username</span>=<span class="string">root</span></span><br><span class="line"><span class="attr">spring.datasource.password</span>=<span class="string">hdb2205</span></span><br></pre></td></tr></table></figure>
+
 <p>安装MyBatisX 插件，帮我们生成Mapper接口的xml文件即可</p>
-<ol>
+<ol start="3">
 <li><code>Boot305SsmApplication</code>加入<code>@MapperScan</code>注释</li>
 </ol>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@MapperScan(basePackages = &quot;com/hdb/boot/boot3/ssm/mapper&quot;)</span></span><br></pre></td></tr></table></figure>
+
 <figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 2、配置整合MyBatis</span></span><br><span class="line"><span class="attr">mybatis.mapper-locations</span>=<span class="string">classpath:/mapper/*.xml</span></span><br><span class="line"><span class="comment"># 打开驼峰命名规则，mysql和java中的变量名字命名规则不同</span></span><br><span class="line"><span class="attr">mybatis.configuration.map-underscore-to-camel-case</span>=<span class="string">true</span></span><br></pre></td></tr></table></figure>
+
 <h2 id="自动配置原理"><a href="#自动配置原理" class="headerlink" title="自动配置原理"></a>自动配置原理</h2><ol>
-<li><strong>导入</strong> <code>mybatis-spring-boot-starter</code></li>
-<li>配置<strong>数据源</strong>信息</li>
-<li>配置mybatis的<code>**mapper接口扫描**</code>与<code>**xml映射文件扫描**</code></li>
-<li>编写bean，mapper，生成xml，编写sql 进行crud。<strong>事务等操作依然和Spring中用法一样</strong></li>
+<li><p><strong>导入</strong> <code>mybatis-spring-boot-starter</code></p>
+</li>
+<li><p>配置<strong>数据源</strong>信息</p>
+</li>
+<li><p>配置mybatis的<code>**mapper接口扫描**</code>与<code>**xml映射文件扫描**</code></p>
+</li>
+<li><p>编写bean，mapper，生成xml，编写sql 进行crud。<strong>事务等操作依然和Spring中用法一样</strong></p>
+</li>
 <li><p>效果：</p>
 </li>
 <li><ol>
@@ -373,18 +382,18 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">9</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
