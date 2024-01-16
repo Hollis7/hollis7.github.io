@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/web3232.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/web1616.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="springboot3笔记资料地址springboot3-notes">
+<meta property="og:type" content="article">
+<meta property="og:title" content="springboot3 核心原理">
+<meta property="og:url" content="http://example.com/2024/01/15/springboot3/springboot3_%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86/index.html">
+<meta property="og:site_name" content="hollis7">
+<meta property="og:description" content="springboot3笔记资料地址springboot3-notes">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/hollis7/pictures/raw/master/2024/01/04/28084_image-1704377032144-1.png">
+<meta property="og:image" content="https://gitee.com/hollis7/pictures/raw/master/2024/01/05/68286_image-1704437922998-1.png">
+<meta property="og:image" content="https://gitee.com/hollis7/pictures/raw/master/2024/01/05/52391_image%202.png">
+<meta property="og:image" content="https://gitee.com/hollis7/pictures/raw/master/2024/01/05/31052_image3.png">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/svg/1613913/1682569555020-b6cbc750-3171-44c6-810f-1c59e590b792.svg">
+<meta property="og:image" content="https://gitee.com/hollis7/pictures/raw/master/2024/01/08/22745_image-20240108195339109.png">
+<meta property="og:image" content="https://gitee.com/hollis7/pictures/raw/master/2024/01/08/32500_image-20240108200942226.png">
+<meta property="article:published_time" content="2024-01-15T15:31:22.786Z">
+<meta property="article:modified_time" content="2024-01-16T07:00:52.859Z">
+<meta property="article:author" content="hollis7">
+<meta property="article:tag" content="springboot3">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/hollis7/pictures/raw/master/2024/01/04/28084_image-1704377032144-1.png">
+
+<link rel="canonical" href="http://example.com/2024/01/15/springboot3/springboot3_%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>springboot3 核心原理 | hollis7</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">hollis7</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">personal-blogs</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>标签<span class="badge">17</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>分类<span class="badge">8</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档<span class="badge">17</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/01/15/springboot3/springboot3_%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/person.jpg">
+      <meta itemprop="name" content="hollis7">
+      <meta itemprop="description" content="some learning blogs">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="hollis7">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          springboot3 核心原理
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2024-01-15 23:31:22" itemprop="dateCreated datePublished" datetime="2024-01-15T23:31:22+08:00">2024-01-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-01-16 15:00:52" itemprop="dateModified" datetime="2024-01-16T15:00:52+08:00">2024-01-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/springboot3/" itemprop="url" rel="index"><span itemprop="name">springboot3</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <meta name="referrer" content="no-referrer"/>
+
+<h2 id="springboot3笔记资料地址"><a href="#springboot3笔记资料地址" class="headerlink" title="springboot3笔记资料地址"></a>springboot3笔记资料地址</h2><p><a target="_blank" rel="noopener" href="https://www.yuque.com/leifengyang/springboot3">springboot3-notes</a></p>
+<span id="more"></span>
+<h2 id="事件和监听器"><a href="#事件和监听器" class="headerlink" title="事件和监听器"></a>事件和监听器</h2><ol>
+<li><p>自定义<code>SpringApplicationRunListener</code>来<strong>监听事件</strong>；</p>
+</li>
+<li><ol>
+<li>编写<code>SpringApplicationRunListener</code> <strong>实现类</strong></li>
+<li>在 <code>META-INF/spring.factories</code> 中配置 <code>org.springframework.boot.SpringApplicationRunListener=自己的Listener</code>，还可以指定一个<strong>有参构造器</strong>，接受两个参数<code>(SpringApplication application, String[] args)</code></li>
+</ol>
+</li>
+<li><pre><code class="lang-properties"># spring.factories
+org.springframework.boot.SpringApplicationRunListener=com.hdb.core.listener.MyAppListener
+</code></pre>
+</li>
+<li><ol>
+<li>springboot 在<code>spring-boot.jar</code>中配置了默认的 事件监听器</li>
+</ol>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Listener 先要从 META-INF/spring.factories 读到</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * 1、引导： 利用 BootstrapContext 引导整个项目启动</span></span><br><span class="line"><span class="comment"> *      starting：              应用开始，SpringApplication的run方法一调用，只要有了 BootstrapContext 就执行</span></span><br><span class="line"><span class="comment"> *      environmentPrepared：   环境准备好（把启动参数等绑定到环境变量中），但是ioc还没有创建；【调一次】</span></span><br><span class="line"><span class="comment"> * 2、启动：</span></span><br><span class="line"><span class="comment"> *      contextPrepared：       ioc容器创建并准备好，但是sources（主配置类）没加载。并关闭引导上下文；组件都没创建  【调一次】</span></span><br><span class="line"><span class="comment"> *      contextLoaded：         ioc容器加载。主配置类加载进去了。但是ioc容器还没刷新（我们的bean没创建）。</span></span><br><span class="line"><span class="comment"> *      =======截止以前，ioc容器里面还没造bean呢=======</span></span><br><span class="line"><span class="comment"> *      started：               ioc容器刷新了（所有bean造好了），但是 runner 没调用。</span></span><br><span class="line"><span class="comment"> *      ready:                  ioc容器刷新了（所有bean造好了），所有runner调用完了。</span></span><br><span class="line"><span class="comment"> * 3、运行</span></span><br><span class="line"><span class="comment"> *     以前步骤都正确执行，代表容器running。</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+<h3 id="生命周期全流程"><a href="#生命周期全流程" class="headerlink" title="生命周期全流程"></a>生命周期全流程</h3><p><img src="https://gitee.com/hollis7/pictures/raw/master/2024/01/04/28084_image-1704377032144-1.png" alt="image"></p>
+<h2 id="事件触发时机"><a href="#事件触发时机" class="headerlink" title="事件触发时机"></a>事件触发时机</h2><ul>
+<li><p><strong>ApplicationListener：    感知全阶段：基于事件机制，感知事件。 一旦到了哪个阶段可以做别的事</strong></p>
+</li>
+<li><ul>
+<li><code>@Bean</code>或<code>@EventListener</code>： <code>事件驱动</code></li>
+<li><code>SpringApplication.addListeners(…)</code>或 <code>SpringApplicationBuilder.listeners(…)</code></li>
+<li><code>META-INF/spring.factories</code></li>
+</ul>
+</li>
+<li><p><img src="https://gitee.com/hollis7/pictures/raw/master/2024/01/05/68286_image-1704437922998-1.png" alt="image"></p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyListener</span> <span class="keyword">implements</span> <span class="title class_">ApplicationListener</span>&lt;ApplicationEvent&gt; &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onApplicationEvent</span><span class="params">(ApplicationEvent event)</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;=====事件====到达====&quot;</span>+event);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">org.springframework.context.ApplicationListener</span>=<span class="string">com.hdb.core.listener.MyListener</span></span><br></pre></td></tr></table></figure>
+<p>应用事件发送顺序如下：</p>
+<p><img src="https://gitee.com/hollis7/pictures/raw/master/2024/01/05/52391_image 2.png" alt="image 2"></p>
+<h2 id="SpringBoot-事件驱动开发"><a href="#SpringBoot-事件驱动开发" class="headerlink" title="SpringBoot 事件驱动开发"></a>SpringBoot 事件驱动开发</h2><p><img src="https://gitee.com/hollis7/pictures/raw/master/2024/01/05/31052_image3.png" alt="image3"></p>
+<h3 id="事件发布者"><a href="#事件发布者" class="headerlink" title="事件发布者"></a>事件发布者</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">EventPublisher</span> <span class="keyword">implements</span> <span class="title class_">ApplicationEventPublisherAware</span> &#123;</span><br><span class="line">    ApplicationEventPublisher applicationEventPublisher;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 所有事件都可以发</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> event</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">sendEvent</span><span class="params">(ApplicationEvent event)</span> &#123;</span><br><span class="line">        <span class="comment">//调用底层API发送事件</span></span><br><span class="line">        applicationEventPublisher.publishEvent(event);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 会被自动调用，把真正发事件的底层组组件给我们注入进来</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> applicationEventPublisher event publisher to be used by this object</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setApplicationEventPublisher</span><span class="params">(ApplicationEventPublisher applicationEventPublisher)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.applicationEventPublisher = applicationEventPublisher;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="登录成功事件"><a href="#登录成功事件" class="headerlink" title="登录成功事件"></a>登录成功事件</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 登录成功事件。所有事件都推荐继承 ApplicationEvent</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">LoginSuccessEvent</span> <span class="keyword">extends</span> <span class="title class_">ApplicationEvent</span> &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     *  代表是谁登录成了</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> source</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">LoginSuccessEvent</span><span class="params">(UserEntity source)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>(source);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="service监听"><a href="#service监听" class="headerlink" title="service监听"></a>service监听</h3><p>方法一实现ApplicationListener接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">AccountService</span>  <span class="keyword">implements</span> <span class="title class_">ApplicationListener</span>&lt;LoginSuccessEvent&gt;&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">addAccountScore</span><span class="params">(String username)</span>&#123;</span><br><span class="line">        System.out.println(username +<span class="string">&quot; 加了1分&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onApplicationEvent</span><span class="params">(LoginSuccessEvent event)</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;=====  AccountService  收到事件 =====&quot;</span>);</span><br><span class="line">        <span class="type">UserEntity</span> <span class="variable">source</span> <span class="operator">=</span> (UserEntity) event.getSource();</span><br><span class="line">        addAccountScore(source.getUsername());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>方法二，<code>@EventListener</code>注解</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">CouponService</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@EventListener</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onEvent</span><span class="params">(LoginSuccessEvent loginSuccessEvent)</span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;===== CouponService ====感知到事件&quot;</span>+loginSuccessEvent);</span><br><span class="line">        <span class="type">UserEntity</span> <span class="variable">source</span> <span class="operator">=</span> (UserEntity) loginSuccessEvent.getSource();</span><br><span class="line">        sendCoupon(source.getUsername());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">sendCoupon</span><span class="params">(String username)</span>&#123;</span><br><span class="line">        System.out.println(username + <span class="string">&quot; 随机得到了一张优惠券&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="LoginController"><a href="#LoginController" class="headerlink" title="LoginController"></a>LoginController</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">LoginController</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    AccountService accountService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    CouponService couponService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    SysService sysService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    EventPublisher eventPublisher;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping(&quot;/login&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">login</span><span class="params">(<span class="meta">@RequestParam(&quot;username&quot;)</span> String username,</span></span><br><span class="line"><span class="params">                        <span class="meta">@RequestParam(&quot;passwd&quot;)</span>String passwd)</span>&#123;</span><br><span class="line">        <span class="comment">//业务处理登录</span></span><br><span class="line">        System.out.println(<span class="string">&quot;业务处理登录完成....&quot;</span>);</span><br><span class="line">        <span class="comment">//TODO 发送事件.</span></span><br><span class="line">        <span class="comment">//1、创建事件信息</span></span><br><span class="line">        <span class="type">LoginSuccessEvent</span> <span class="variable">event</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">LoginSuccessEvent</span>(<span class="keyword">new</span> <span class="title class_">UserEntity</span>(username, passwd));</span><br><span class="line">        <span class="comment">//2、发送事件</span></span><br><span class="line">        eventPublisher.sendEvent(event);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> username+<span class="string">&quot;登录成功&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="SPI机制"><a href="#SPI机制" class="headerlink" title="SPI机制"></a>SPI机制</h2><p>在Java中，<strong>SPI</strong>的实现方式是通过在<code>META-INF/services</code>目录下创建一个以服务接口全限定名为名字的文件，文件中包含实现该服务接口的类的全限定名。当应用程序启动时，Java的SPI机制会自动扫描classpath中的这些文件，并根据文件中指定的类名来加载实现类。</p>
+<p>在SpringBoot中，<code>META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports</code></p>
+<h2 id="功能开关"><a href="#功能开关" class="headerlink" title="功能开关"></a>功能开关</h2><ul>
+<li><p>自动配置：全部都配置好，什么都不用管。   自动批量导入</p>
+</li>
+<li><ul>
+<li>项目一启动，spi文件中指定的所有都加载。</li>
+</ul>
+</li>
+<li><p><code>@EnableXxxx</code>：手动控制哪些功能的开启； 手动导入。</p>
+</li>
+<li><ul>
+<li>开启xxx功能</li>
+<li>都是利用 @Import 把此功能要用的组件导入进去</li>
+</ul>
+</li>
+</ul>
+<h2 id="理解-SpringBootApplication"><a href="#理解-SpringBootApplication" class="headerlink" title="理解@SpringBootApplication"></a>理解@SpringBootApplication</h2><p><code>@SpringBootConfiguration</code></p>
+<p>就是： @Configuration ，容器中的组件，配置类。spring ioc启动就会加载创建这个类对象</p>
+<p><code>@AutoConfigurationPackage</code>：扫描主程序包：加载自己的组件</p>
+<blockquote>
+<ul>
+<li>利用 <code>@Import(AutoConfigurationPackages.Registrar.class)</code> 想要给容器中导入组件。</li>
+<li>把主程序所在的<strong>包</strong>的所有组件导入进来。</li>
+</ul>
+</blockquote>
+<p><code>@Import(AutoConfigurationImportSelector.class)</code>：加载所有自动配置类：加载starter导入的组件</p>
+<p><code>@ComponentScan</code><br>组件扫描：排除一些组件（哪些不要）<br>排除前面已经扫描进来的配置类、和自动配置类。</p>
+<h2 id="完整启动加载流程"><a href="#完整启动加载流程" class="headerlink" title="完整启动加载流程"></a>完整启动加载流程</h2><p><img src="https://cdn.nlark.com/yuque/0/2023/svg/1613913/1682569555020-b6cbc750-3171-44c6-810f-1c59e590b792.svg" alt="自动配置进阶原理.svg"></p>
+<h2 id="自定义starter"><a href="#自定义starter" class="headerlink" title="自定义starter"></a>自定义starter</h2><h3 id="1-配置处理器（省略）"><a href="#1-配置处理器（省略）" class="headerlink" title="1. 配置处理器（省略）"></a>1. 配置处理器（省略）</h3><p>导入配置处理器，配置文件自定义的properties配置都会有提示</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&lt;dependency&gt;</span></span><br><span class="line">            <span class="attr">&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span></span><br><span class="line">            <span class="attr">&lt;artifactId&gt;spring-boot-configuration-processor&lt;/artifactId&gt;</span></span><br><span class="line">            <span class="attr">&lt;optional&gt;true&lt;/optional&gt;</span></span><br><span class="line"><span class="attr">&lt;/dependency&gt;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>2023版默认已经有提示了</p>
+</blockquote>
+<h3 id="2-业务代码"><a href="#2-业务代码" class="headerlink" title="2. 业务代码"></a>2. 业务代码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ConfigurationProperties(prefix = &quot;robot&quot;)</span>  <span class="comment">//此属性类和配置文件指定前缀绑定</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RobotProperties</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> String age;</span><br><span class="line">    <span class="keyword">private</span> String email;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="3-1-基本抽取"><a href="#3-1-基本抽取" class="headerlink" title="3.1 基本抽取"></a>3.1 基本抽取</h3><ul>
+<li>创建starter项目，把公共代码需要的所有依赖导入</li>
+</ul>
+<p><img src="https://gitee.com/hollis7/pictures/raw/master/2024/01/08/22745_image-20240108195339109.png" alt="image-20240108195339109" style="zoom:67%;" /></p>
+<ul>
+<li>把公共代码复制进来</li>
+<li><p>自己写一个 <code>RobotAutoConfiguration</code>，给容器中导入这个场景需要的所有组件</p>
+</li>
+<li><ul>
+<li>为什么这些组件默认不会扫描进去？</li>
+<li><strong>starter所在的包和引入它的项目的主程序所在的包不是父子层级</strong></li>
+</ul>
+</li>
+<li><p>别人引用这个<code>starter</code>，直接导入这个 <code>RobotAutoConfiguration</code>,就能把这个场景的组件导入进来</p>
+</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">&lt;!--        自定义starter --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.hdb<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>boot3-08-robot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.0.1-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><code>RobotAutoConfiguration</code>用<code>Import</code>导入了相关的组件，Boot306FeaturesApplication通过<code>Import</code>导入了<code>RobotAutoConfiguration</code>就可以使用robot相关服务了</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@Import</span>导入了(&#123;RobotController.class, RobotProperties.class, RobotService.class&#125;)</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RobotAutoConfiguration</span> &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Import(RobotAutoConfiguration.class)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Boot306FeaturesApplication</span>&#123;...&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="3-2-使用-EnableXxx机制"><a href="#3-2-使用-EnableXxx机制" class="headerlink" title="3.2 使用@EnableXxx机制"></a>3.2 使用@EnableXxx机制</h3><p>在robot-starter的包里再写一个申明接口，模仿<code>EnableWebMvc</code>写法，在Boot306FeaturesApplication上添加注释<code>@EnableRobot</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Retention(RetentionPolicy.RUNTIME)</span></span><br><span class="line"><span class="meta">@Target(&#123;ElementType.TYPE&#125;)</span></span><br><span class="line"><span class="meta">@Documented</span></span><br><span class="line"><span class="meta">@Import(&#123;RobotAutoConfiguration.class&#125;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> EnableRobot &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/hollis7/pictures/raw/master/2024/01/08/32500_image-20240108200942226.png" alt="image-20240108200942226" style="zoom:67%;" /></p>
+<h3 id="3-3-完全自动配置"><a href="#3-3-完全自动配置" class="headerlink" title="3.3 完全自动配置"></a>3.3 完全自动配置</h3><ul>
+<li>依赖SpringBoot的SPI机制</li>
+<li>META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports 文件中编写好我们自动配置类的全类名即可</li>
+</ul>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># org.springframework.boot.autoconfigure.AutoConfiguration.imports </span></span><br><span class="line"><span class="attr">com.hdb.boot3.starter.robot.RobotAutoConfiguration</span></span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>hollis7
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://example.com/2024/01/15/springboot3/springboot3_%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86/" title="springboot3 核心原理">http://example.com/2024/01/15/springboot3/springboot3_核心原理/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/springboot3/" rel="tag"># springboot3</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/01/15/springboot3/springboot3_%E6%95%B0%E6%8D%AE%E8%AE%BF%E9%97%AE/" rel="prev" title="springboot3 数据访问">
+      <i class="fa fa-chevron-left"></i> springboot3 数据访问
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2024/01/16/springMVC/spinngMVC/" rel="next" title="springMVC学习笔记">
+      springMVC学习笔记 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#springboot3%E7%AC%94%E8%AE%B0%E8%B5%84%E6%96%99%E5%9C%B0%E5%9D%80"><span class="nav-number">1.</span> <span class="nav-text">springboot3笔记资料地址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8B%E4%BB%B6%E5%92%8C%E7%9B%91%E5%90%AC%E5%99%A8"><span class="nav-number">2.</span> <span class="nav-text">事件和监听器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%85%A8%E6%B5%81%E7%A8%8B"><span class="nav-number">2.1.</span> <span class="nav-text">生命周期全流程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8B%E4%BB%B6%E8%A7%A6%E5%8F%91%E6%97%B6%E6%9C%BA"><span class="nav-number">3.</span> <span class="nav-text">事件触发时机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SpringBoot-%E4%BA%8B%E4%BB%B6%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91"><span class="nav-number">4.</span> <span class="nav-text">SpringBoot 事件驱动开发</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8B%E4%BB%B6%E5%8F%91%E5%B8%83%E8%80%85"><span class="nav-number">4.1.</span> <span class="nav-text">事件发布者</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%99%BB%E5%BD%95%E6%88%90%E5%8A%9F%E4%BA%8B%E4%BB%B6"><span class="nav-number">4.2.</span> <span class="nav-text">登录成功事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#service%E7%9B%91%E5%90%AC"><span class="nav-number">4.3.</span> <span class="nav-text">service监听</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LoginController"><span class="nav-number">4.4.</span> <span class="nav-text">LoginController</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SPI%E6%9C%BA%E5%88%B6"><span class="nav-number">5.</span> <span class="nav-text">SPI机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%9F%E8%83%BD%E5%BC%80%E5%85%B3"><span class="nav-number">6.</span> <span class="nav-text">功能开关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%90%86%E8%A7%A3-SpringBootApplication"><span class="nav-number">7.</span> <span class="nav-text">理解@SpringBootApplication</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%8C%E6%95%B4%E5%90%AF%E5%8A%A8%E5%8A%A0%E8%BD%BD%E6%B5%81%E7%A8%8B"><span class="nav-number">8.</span> <span class="nav-text">完整启动加载流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89starter"><span class="nav-number">9.</span> <span class="nav-text">自定义starter</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E9%85%8D%E7%BD%AE%E5%A4%84%E7%90%86%E5%99%A8%EF%BC%88%E7%9C%81%E7%95%A5%EF%BC%89"><span class="nav-number">9.1.</span> <span class="nav-text">1. 配置处理器（省略）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E4%B8%9A%E5%8A%A1%E4%BB%A3%E7%A0%81"><span class="nav-number">9.2.</span> <span class="nav-text">2. 业务代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-%E5%9F%BA%E6%9C%AC%E6%8A%BD%E5%8F%96"><span class="nav-number">9.3.</span> <span class="nav-text">3.1 基本抽取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-%E4%BD%BF%E7%94%A8-EnableXxx%E6%9C%BA%E5%88%B6"><span class="nav-number">9.4.</span> <span class="nav-text">3.2 使用@EnableXxx机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-%E5%AE%8C%E5%85%A8%E8%87%AA%E5%8A%A8%E9%85%8D%E7%BD%AE"><span class="nav-number">9.5.</span> <span class="nav-text">3.3 完全自动配置</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="hollis7"
+      src="/images/person.jpg">
+  <p class="site-author-name" itemprop="name">hollis7</p>
+  <div class="site-description" itemprop="description">some learning blogs</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hollis7" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hollis7" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://gitee.com/hollis7" title="Gitee → https:&#x2F;&#x2F;gitee.com&#x2F;hollis7" rel="noopener" target="_blank"><i class="fab fa-github-alt fa-fw"></i>Gitee</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">hollis7</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
