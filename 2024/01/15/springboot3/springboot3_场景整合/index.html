@@ -33,7 +33,7 @@
 <meta property="og:image" content="https://gitee.com/hollis7/pictures/raw/master/2024/01/09/12022_image-20240109203533200.png">
 <meta property="og:image" content="https://gitee.com/hollis7/pictures/raw/master/2024/01/09/86312_image-20240109213939272.png">
 <meta property="article:published_time" content="2024-01-15T15:31:22.782Z">
-<meta property="article:modified_time" content="2024-01-15T15:43:56.985Z">
+<meta property="article:modified_time" content="2024-01-16T01:23:53.703Z">
 <meta property="article:author" content="hollis7">
 <meta property="article:tag" content="springboot3">
 <meta name="twitter:card" content="summary">
@@ -208,10 +208,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2024-01-15 23:31:22 / 修改时间：23:43:56" itemprop="dateCreated datePublished" datetime="2024-01-15T23:31:22+08:00">2024-01-15</time>
+              <time title="创建时间：2024-01-15 23:31:22" itemprop="dateCreated datePublished" datetime="2024-01-15T23:31:22+08:00">2024-01-15</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-01-16 09:23:53" itemprop="dateModified" datetime="2024-01-16T09:23:53+08:00">2024-01-16</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -247,7 +253,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker-compose -f docker-compose.yml start</span><br></pre></td></tr></table></figure>
 <p>关闭通过 Docker Compose 启动的服务</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker-compose -f docker-compose.yml down</span><br></pre></td></tr></table></figure>
-<h2 id="Redis整合"><a href="#Redis整合" class="headerlink" title="Redis整合"></a>Redis整合</h2><h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring.data.redis.host</span>=<span class="string">121.48.161.4</span></span><br><span class="line"><span class="attr">spring.data.redis.port</span>=<span class="string">6379</span></span><br></pre></td></tr></table></figure>
+<h2 id="Redis整合"><a href="#Redis整合" class="headerlink" title="Redis整合"></a>Redis整合</h2><h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring.data.redis.host</span>=<span class="string">server ip</span></span><br><span class="line"><span class="attr">spring.data.redis.port</span>=<span class="string">6379</span></span><br></pre></td></tr></table></figure>
 <h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    * set:     集合:       redisTemplate.opsForSet()</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="meta">@Test</span></span><br><span class="line">   <span class="keyword">void</span> <span class="title function_">testSet</span><span class="params">()</span>&#123;</span><br><span class="line"></span><br><span class="line">       <span class="type">String</span> <span class="variable">setName</span> <span class="operator">=</span> <span class="string">&quot;settest&quot;</span>;</span><br><span class="line">       <span class="comment">//1、给集合中添加元素</span></span><br><span class="line">       redisTemplate.opsForSet().add(setName,<span class="string">&quot;1&quot;</span>,<span class="string">&quot;2&quot;</span>,<span class="string">&quot;3&quot;</span>,<span class="string">&quot;3&quot;</span>);</span><br><span class="line"></span><br><span class="line">       <span class="type">Boolean</span> <span class="variable">aBoolean</span> <span class="operator">=</span> redisTemplate.opsForSet().isMember(setName, <span class="string">&quot;2&quot;</span>);</span><br><span class="line">       Assertions.assertTrue(aBoolean);</span><br><span class="line"></span><br><span class="line">       <span class="type">Boolean</span> <span class="variable">aBoolean1</span> <span class="operator">=</span> redisTemplate.opsForSet().isMember(setName, <span class="string">&quot;5&quot;</span>);</span><br><span class="line">       Assertions.assertFalse(aBoolean1);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
 <h2 id="RedisTemplate定制化"><a href="#RedisTemplate定制化" class="headerlink" title="RedisTemplate定制化"></a>RedisTemplate定制化</h2><p>模仿官方的RedisTemplate进行改写默认序列化，在<code>RedisAutoConfiguration</code>中有<br>找到<code>RedisSerializer</code>接口，定位实现类（ctr+H），发现<code>GenericJackson2JsonRedisSerializer</code></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">AppRedisConfiguration</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> RedisTemplate&lt;Object, Object&gt; <span class="title function_">redisTemplate</span><span class="params">(RedisConnectionFactory redisConnectionFactory)</span> &#123;</span><br><span class="line">        RedisTemplate&lt;Object, Object&gt; template = <span class="keyword">new</span> <span class="title class_">RedisTemplate</span>&lt;&gt;();</span><br><span class="line">        template.setConnectionFactory(redisConnectionFactory);</span><br><span class="line">        <span class="comment">//把对象转为json字符串的序列化工具</span></span><br><span class="line">        template.setDefaultSerializer(<span class="keyword">new</span> <span class="title class_">GenericJackson2JsonRedisSerializer</span>());</span><br><span class="line">        <span class="keyword">return</span> template;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -349,7 +355,7 @@
 <ol>
 <li>配置kafka服务器</li>
 </ol>
-<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring.kafka.bootstrap-servers</span>=<span class="string">121.48.161.4:9092</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring.kafka.bootstrap-servers</span>=<span class="string">server_ip:9092</span></span><br></pre></td></tr></table></figure>
 <ol>
 <li>在测试主程序中编写程序，需要修改hosts文件，文件地址：</li>
 </ol>
