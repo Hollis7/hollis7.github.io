@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>Hello World</title>
-    <url>/2024/01/15/README/</url>
+    <url>/2024/01/16/README/</url>
     <content><![CDATA[<p>大家好，这是hollis7的个人博客，用于记录学习的过程与心得。</p>
 ]]></content>
       <categories>
@@ -16,7 +16,7 @@
   </entry>
   <entry>
     <title>MyBatis</title>
-    <url>/2024/01/15/MyBatis/MyBatis/</url>
+    <url>/2024/01/16/MyBatis/MyBatis/</url>
     <content><![CDATA[<meta name="referrer" content="no-referrer"/>
 
 <h2 id="MyBaits中文网"><a href="#MyBaits中文网" class="headerlink" title="MyBaits中文网"></a>MyBaits中文网</h2><p><a href="https://mybatis.net.cn/">MyBatis</a></p>
@@ -148,6 +148,254 @@
       <tags>
         <tag>java</tag>
         <tag>mybatis</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>spirng6知识小点</title>
+    <url>/2024/01/16/spring6/spring6_1/</url>
+    <content><![CDATA[<meta name="referrer" content="no-referrer"/>
+
+<h2 id="启用Log4j2日志框架"><a href="#启用Log4j2日志框架" class="headerlink" title="启用Log4j2日志框架"></a>启用Log4j2日志框架</h2><p><strong>（1）日志信息的优先级</strong>，日志信息的优先级从高到低有<strong>TRACE &lt; DEBUG &lt; INFO &lt; WARN &lt; ERROR &lt; FATAL</strong><br>                TRACE：追踪，是最低的日志级别，相当于追踪程序的执行<br>                DEBUG：调试，一般在开发中，都将其设置为最低的日志级别<br>                INFO：信息，输出重要的信息，使用较多<br>                WARN：警告，输出警告的信息<br>                ERROR：错误，输出错误信息<br>                FATAL：严重错误</p>
+<span id="more"></span>
+<p>这些级别分别用来指定这条日志信息的重要程度；级别高的会自动屏蔽级别低的日志，也就是说，设置了WARN的日志，则INFO、DEBUG的日志级别的日志不会显示</p>
+<p><strong>（2）日志信息的输出目的地</strong>，日志信息的输出目的地指定了日志将打印到<strong>控制台</strong>还是<strong>文件中</strong>；</p>
+<p><strong>（3）日志信息的输出格式</strong>，而输出格式则控制了日志信息的显示内容。</p>
+<p>CryptoNets: Applying Neural Networks to Encrypted Data with High Throughput and Accuracy</p>
+<h2 id="AOP概念及相关术语"><a href="#AOP概念及相关术语" class="headerlink" title="AOP概念及相关术语"></a>AOP概念及相关术语</h2><p>AOP（Aspect Oriented Programming）是一种设计思想，是软件设计领域中的面向切面编程，它是面向对象编程的一种补充和完善<strong>，它以通过预编译方式和运行期动态代理方式实现，在不修改源代码的情况下，给程序动态统一添加额外功能的一种技术</strong>。</p>
+]]></content>
+      <categories>
+        <category>spring6</category>
+      </categories>
+      <tags>
+        <tag>spring6</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>git学习</title>
+    <url>/2024/01/16/git%E5%AD%A6%E4%B9%A0/git_notes/</url>
+    <content><![CDATA[<meta name="referrer" content="no-referrer"/>
+
+<h2 id="初始化设置"><a href="#初始化设置" class="headerlink" title="初始化设置"></a>初始化设置</h2><p>配置⽤户名</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global user.name <span class="string">&quot;hollis7&quot;</span></span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<p>配置邮箱</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global user.email <span class="string">&quot;herryhollis@163.com&quot;</span></span><br></pre></td></tr></table></figure>
+<p>查看配置信息</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global --list</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>user.name=hollis<br>user.email=herryhollis@163.com<br>http.proxy=<a href="http://127.0.0.1:7890">http://127.0.0.1:7890</a><br>https.proxy=<a href="https://127.0.0.1:7890">https://127.0.0.1:7890</a></p>
+</blockquote>
+<h2 id="创建仓库"><a href="#创建仓库" class="headerlink" title="创建仓库"></a>创建仓库</h2><p>创建⼀个新的本地仓库</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
+<p>当前目录下指定一个仓库</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git init my-repo</span><br></pre></td></tr></table></figure>
+<p>查看.git信息</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">ls</span> -altr</span><br><span class="line"><span class="built_in">ls</span> -al</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">total 8</span><br><span class="line">drwxr-xr-x 1 hdb22 197610 0 Nov 29 16:58 ../</span><br><span class="line">drwxr-xr-x 1 hdb22 197610 0 Nov 29 16:58 ./</span><br><span class="line">drwxr-xr-x 1 hdb22 197610 0 Nov 29 16:58 .git/</span><br></pre></td></tr></table></figure>
+<p>克隆⼀个远程仓库</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> &lt;url&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="四个区域"><a href="#四个区域" class="headerlink" title="四个区域"></a>四个区域</h2><p><strong>工作区(Working Directory)</strong><br>就是你在电脑里能实际看到的目录。</p>
+<p><strong>暂存区（Stage/Index）</strong><br>暂存区也叫索引? ⽤来临时存放未提交的内容。 ⼀般在.git⽬录下的index中。</p>
+<p><strong>本地仓库(Repository)</strong><br>Git在本地的版本库，仓库信息存储在.git这个隐藏目录中。</p>
+<p><strong>远程仓库(Remote Repository)</strong><br>托管在远程服务器上的仓库。常用的有GitHub、GitLab、Gitee。</p>
+<h2 id="添加和提交"><a href="#添加和提交" class="headerlink" title="添加和提交"></a>添加和提交</h2><p>提交以.txt结尾的文件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git add *.txt</span><br></pre></td></tr></table></figure>
+<p>提交记录</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git <span class="built_in">log</span></span><br><span class="line">commit 965946e2d53df2d211bb4fa9ff357007815f9c3e (HEAD -&gt; master)</span><br><span class="line">Author: hollis &lt;herryhollis@163.com&gt;</span><br><span class="line">Date:   Wed Nov 29 17:20:58 2023 +0800</span><br><span class="line"></span><br><span class="line">    second commit</span><br><span class="line"></span><br><span class="line">commit fccd50cb2e25533a639b4bc6ef4fa0d6c4225de6</span><br><span class="line">Author: hollis &lt;herryhollis@163.com&gt;</span><br><span class="line">Date:   Wed Nov 29 17:14:23 2023 +0800</span><br><span class="line"></span><br><span class="line">    first commit</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>简洁日志</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">log</span> --oneline</span><br></pre></td></tr></table></figure>
+<h2 id="git-reset"><a href="#git-reset" class="headerlink" title="git reset"></a>git reset</h2><p><img src="C:\data\mysoftware\Typora\typoraPicture\image-20231129172540607.png" alt="image-20231129172540607" style="zoom: 25%;" /></p>
+<h3 id="soft"><a href="#soft" class="headerlink" title="soft"></a>soft</h3><p>查看版本id</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">log</span> --oneline</span><br><span class="line">837739d (HEAD -&gt; master) 3</span><br><span class="line">e4b3f38 2</span><br><span class="line">8ef07df 1</span><br></pre></td></tr></table></figure>
+<p>回退到指定版本id：<code>e4b3f38</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git reset --soft e4b3f38</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git <span class="built_in">log</span> --oneline</span><br><span class="line">e4b3f38 (HEAD -&gt; master) 2</span><br><span class="line">8ef07df 1</span><br></pre></td></tr></table></figure>
+<p>查看暂存区的内容，<code>file3.txt</code>仍在</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git ls-files</span><br><span class="line">file1.txt</span><br><span class="line">file2.txt</span><br><span class="line">file3.txt</span><br></pre></td></tr></table></figure>
+<h3 id="hard"><a href="#hard" class="headerlink" title="hard"></a>hard</h3><p>回退到上一个版本</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git reset --hard HEAD^</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>工作区和暂存区的file3.txt均不存在</p>
+</blockquote>
+<ul>
+<li>[ ] 工作区</li>
+<li>[ ] 暂存区</li>
+</ul>
+<h3 id="mixed"><a href="#mixed" class="headerlink" title="mixed"></a>mixed</h3><p>回退到上一个版本</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git reset HEAD^</span><br></pre></td></tr></table></figure>
+<ul>
+<li>[x] 工作区</li>
+<li>[ ] 暂存区</li>
+</ul>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git reset --soft <span class="built_in">id</span></span><br><span class="line">git reset --hard HEAD^</span><br><span class="line">git reset HEAD^</span><br></pre></td></tr></table></figure>
+<p>常用<code>git reset HEAD^</code>和<code>git reset --soft id</code></p>
+<p>:anger:慎用<code>git reset --hard HEAD^</code></p>
+<h2 id="误操作"><a href="#误操作" class="headerlink" title="误操作"></a>误操作</h2><p>查看操作，回退到误操作之前：837739d</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git reflog</span><br><span class="line">e4b3f38 (HEAD -&gt; master) HEAD@&#123;0&#125;: reset: moving to HEAD^</span><br><span class="line">837739d HEAD@&#123;1&#125;: commit: 3</span><br><span class="line">e4b3f38 (HEAD -&gt; master) HEAD@&#123;2&#125;: commit: 2</span><br><span class="line">8ef07df HEAD@&#123;3&#125;: commit (initial): 1</span><br></pre></td></tr></table></figure>
+<p>回退</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git reset 837739d</span><br></pre></td></tr></table></figure>
+<h2 id="查看差异"><a href="#查看差异" class="headerlink" title="查看差异"></a>查看差异</h2><ol>
+<li>查看工作区和暂存区的差异</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git diff</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/hollis7/pictures/raw/master/2023/11/29/93054_image-20231129201440960.png" alt="image-20231129201440960"></p>
+<p>这里add一下，工作区和暂存区保持一致</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git add .</span><br></pre></td></tr></table></figure>
+<ol>
+<li>比较工作区和版本库之间的差异</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git diff <span class="built_in">head</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/hollis7/pictures/raw/master/2023/11/29/67476_image-20231129202024642.png" alt="image-20231129202024642"></p>
+<ol>
+<li>比较暂存区和版本库之间的差异</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git diff --cached</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/hollis7/pictures/raw/master/2023/11/29/55545_image-20231129202403474.png" alt="image-20231129202403474"></p>
+<ol>
+<li>比较两个版本内容</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git diff 837739d e4b3f38</span><br><span class="line">git diff <span class="built_in">head</span> 837739d</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/hollis7/pictures/raw/master/2023/11/29/13924_image-20231129203139207.png" alt="image-20231129203139207"></p>
+<ol>
+<li>最新两个版本之间</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git diff <span class="built_in">head</span>~ <span class="built_in">head</span></span><br></pre></td></tr></table></figure>
+<p><code>head~</code>表示最新版本的上一版本，<code>head^</code>同理</p>
+<p><code>head~2</code>表示head之前的2个版本</p>
+<ol>
+<li>查看指定文件版本之间的差异</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git diff <span class="built_in">head</span>~ <span class="built_in">head</span> file3.txt</span><br></pre></td></tr></table></figure>
+<h2 id="git-rm删除文件"><a href="#git-rm删除文件" class="headerlink" title="git rm删除文件"></a>git rm删除文件</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">rm</span> file1.txt</span><br></pre></td></tr></table></figure>
+<p>暂存区中的内容没有被删掉</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git ls-files</span><br><span class="line">file1.txt</span><br><span class="line">file2.txt</span><br><span class="line">file3.txt</span><br></pre></td></tr></table></figure>
+<p>需要add 和commit</p>
+<h3 id="git-rm"><a href="#git-rm" class="headerlink" title="git rm"></a>git rm</h3><p>直接删除工作区和暂存区中的文件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">rm</span> file2.txt</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>最后还是要提交，否则删除的文件还是在版本库中</p>
+</blockquote>
+<h3 id="附加"><a href="#附加" class="headerlink" title="附加"></a>附加</h3><p>递归删除某个目录下的所有子目录和文件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">rm</span> -r *</span><br></pre></td></tr></table></figure>
+<h2 id="学习-gitigonore"><a href="#学习-gitigonore" class="headerlink" title="学习.gitigonore"></a>学习.gitigonore</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;some log&quot;</span> &gt; access.log</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;other log &quot;</span> &gt; other.log</span><br></pre></td></tr></table></figure>
+<p>将access.log放入<code>.gitigonore</code>文件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> access.log &gt; .gitignore</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/hollis7/pictures/raw/master/2023/11/29/13517_image-20231129205548067.png" alt="image-20231129205548067"></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">&quot;ignore and other files&quot;</span></span><br></pre></td></tr></table></figure>
+<h3 id="忽略所有日志文件"><a href="#忽略所有日志文件" class="headerlink" title="忽略所有日志文件"></a>忽略所有日志文件</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vim .gitignore</span><br><span class="line">*.<span class="built_in">log</span></span><br></pre></td></tr></table></figure>
+<p>输入：<code>*.log</code>然后<code>wq</code>保存</p>
+<h3 id="测试效果"><a href="#测试效果" class="headerlink" title="测试效果"></a>测试效果</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> hello &gt; hello.log</span><br><span class="line">git status</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/hollis7/pictures/raw/master/2023/11/29/38701_image-20231129210211915.png" alt="image-20231129210211915"></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git commit -am <span class="string">&quot;test ignore log&quot;</span></span><br><span class="line">git ls-files</span><br></pre></td></tr></table></figure>
+<p>没有 <code>hello.log</code></p>
+<h3 id="测试已经提交的other-log"><a href="#测试已经提交的other-log" class="headerlink" title="测试已经提交的other.log"></a>测试已经提交的other.log</h3><p>追加</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot; modified&quot;</span> &gt;&gt; other.log</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line">Changes not staged <span class="keyword">for</span> commit:</span><br><span class="line">  (use <span class="string">&quot;git add &lt;file&gt;...&quot;</span> to update what will be committed)</span><br><span class="line">  (use <span class="string">&quot;git restore &lt;file&gt;...&quot;</span> to discard changes <span class="keyword">in</span> working directory)</span><br><span class="line">        modified:   other.log</span><br></pre></td></tr></table></figure>
+<p><code>.gitigonore</code>对已经添加的不能起作用</p>
+<h3 id="删除暂存区的other-log"><a href="#删除暂存区的other-log" class="headerlink" title="删除暂存区的other.log"></a>删除暂存区的other.log</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">rm</span> --cached other.log</span><br></pre></td></tr></table></figure>
+<ul>
+<li>[ ] 暂存区</li>
+<li>[x] 本地</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git commit -am <span class="string">&quot;delete other.log&quot;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>git commit -am &quot;delete other.log&quot;</code> 这个命令的作用是将所有已跟踪的文件的修改提交到版本库，并且使用 “delete other.log” 作为提交的消息。</p>
+<p>需要注意的是，这种方式只适用于已经被 Git 跟踪的文件。对于新添加的文件，还是需要使用 <code>git add</code> 将其添加到暂存区，然后再使用 <code>git commit -m &quot;message&quot;</code> 提交。</p>
+</blockquote>
+<h3 id="忽略文件夹"><a href="#忽略文件夹" class="headerlink" title="忽略文件夹"></a>忽略文件夹</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;hello&quot;</span> &gt; temp/hello.txt</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vim .gitignore</span><br><span class="line">//追加temp/</span><br><span class="line">temp/</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"> git add .</span><br><span class="line"> git commit -m <span class="string">&quot;test ignore fold&quot;</span></span><br><span class="line"> git ls-files</span><br><span class="line"> </span><br><span class="line"> $ git ls-files</span><br><span class="line">.gitignore</span><br><span class="line">file3.txt</span><br></pre></td></tr></table></figure>
+<h2 id="关联本地仓库和远程仓库"><a href="#关联本地仓库和远程仓库" class="headerlink" title="关联本地仓库和远程仓库"></a>关联本地仓库和远程仓库</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git remote add origin git@github.com:Hollis7/git_testrepo.git</span><br><span class="line">git branch -M main</span><br><span class="line">git push -u origin main</span><br></pre></td></tr></table></figure>
+<p>在GitHub上添加readme文件</p>
+<p>本地仓库拉取远程仓库的修改</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git pull</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git remote add &lt;remote-name&gt; &lt;remote-url&gt;</span><br><span class="line">//添加远程仓库</span><br><span class="line">git remote -v</span><br><span class="line">//查看远程仓库?</span><br></pre></td></tr></table></figure>
+<h2 id="⽂件状态"><a href="#⽂件状态" class="headerlink" title="⽂件状态"></a>⽂件状态</h2><ul>
+<li>main/master 默认主分⽀</li>
+<li>Origin 默认远程仓库</li>
+<li>HEAD 指向当前分⽀的指针</li>
+<li>HEAD^ 上⼀个版本</li>
+<li>HEAD~ 上四个版本</li>
+</ul>
+<h2 id="vscode中使用git"><a href="#vscode中使用git" class="headerlink" title="vscode中使用git"></a>vscode中使用git</h2><p>在git中打开vscode</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">code .</span><br></pre></td></tr></table></figure>
+<h2 id="分支简介和基本操作"><a href="#分支简介和基本操作" class="headerlink" title="分支简介和基本操作"></a>分支简介和基本操作</h2><h3 id="查看分支"><a href="#查看分支" class="headerlink" title="查看分支"></a>查看分支</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git branch</span><br></pre></td></tr></table></figure>
+<h3 id="创建新的分支"><a href="#创建新的分支" class="headerlink" title="创建新的分支"></a>创建新的分支</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git branch dev</span><br></pre></td></tr></table></figure>
+<p>查看分支，默认分支仍然为<code>master</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"> git branch</span><br><span class="line">  dev</span><br><span class="line">* master</span><br></pre></td></tr></table></figure>
+<h3 id="切换分支"><a href="#切换分支" class="headerlink" title="切换分支"></a>切换分支</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git checkout dev（不建议，存在歧义）</span><br><span class="line">git switch master（建议）</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git checkout dev</span><br><span class="line">Switched to branch <span class="string">&#x27;dev&#x27;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git switch master</span><br><span class="line">Switched to branch <span class="string">&#x27;master&#x27;</span></span><br></pre></td></tr></table></figure>
+<h2 id="merge合并"><a href="#merge合并" class="headerlink" title="merge合并"></a>merge合并</h2><p>在<code>dev</code>分支下创建<code>dev1.txt dev2.txt</code>，并提交，在<code>master</code>分支下查看，并没有<code>dev1.txt dev2.txt</code></p>
+<p>在创建main4.txt和main5.txt看到明显的分叉</p>
+<p>:memo:合并分支,将<code>dev</code>分支合并到<code>master</code>（当前）分支</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hdb22@hollis7 MINGW64 /c/individualproject/git-learn/branch-demo (master)</span><br><span class="line">$ git merge dev</span><br></pre></td></tr></table></figure>
+<p>查看分支图</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">log</span> --graph --oneline --decorate --all</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git <span class="built_in">log</span> --graph --oneline --decorate --all</span><br><span class="line">*   554c860 (HEAD -&gt; master) Merge branch <span class="string">&#x27;dev&#x27;</span></span><br><span class="line">|\</span><br><span class="line">| * 01f908c (dev) dev:2</span><br><span class="line">| * 0db7fa1 dev:1</span><br><span class="line">* | 7e18db1 main:5</span><br><span class="line">* | 5d73401 main:4</span><br><span class="line">|/</span><br><span class="line">* 185b91e main:3</span><br><span class="line">* 823dd12 main:2</span><br><span class="line">* 262a6df main:1</span><br></pre></td></tr></table></figure>
+<h3 id="删除分支"><a href="#删除分支" class="headerlink" title="删除分支"></a>删除分支</h3><p>合并后分支仍然存在，可以删除</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git branch -d dev</span><br></pre></td></tr></table></figure>
+<p><code>-d</code>表示删除已经合并的分支</p>
+<p><code>-D</code>表示强制删除</p>
+<h2 id="合并分支解决冲突"><a href="#合并分支解决冲突" class="headerlink" title="合并分支解决冲突"></a>合并分支解决冲突</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git branch feat</span><br><span class="line">git swich feat</span><br><span class="line">vim main1.txt</span><br></pre></td></tr></table></figure>
+<p>在<code>feat</code>分支下提交修改的main1.txt</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git commit -a -m <span class="string">&quot;feat:1&quot;</span></span><br></pre></td></tr></table></figure>
+<p>切回<code>master</code>分支，<code>main1.txt</code>的内容不变</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git switch master</span><br><span class="line"><span class="built_in">cat</span> main1.txt</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>main1</p>
+</blockquote>
+<p>修改<code>main1.txt</code>并保存</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vim main1.txt</span><br><span class="line">git commit -am <span class="string">&quot;main:6&quot;</span></span><br></pre></td></tr></table></figure>
+<p>:memo:<strong>直接合并出现冲突</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git merge feat</span><br><span class="line">Auto-merging main1.txt</span><br><span class="line">CONFLICT (content): Merge conflict <span class="keyword">in</span> main1.txt</span><br><span class="line">Automatic merge failed;fix conflicts and <span class="keyword">then</span> commit the result.</span><br></pre></td></tr></table></figure>
+<p>使用<code>git diff</code>查看冲突内容</p>
+<p><img src="https://gitee.com/hollis7/pictures/raw/master/2023/12/01/66112_image-20231201153625765.png" alt="image-20231201153625765"></p>
+<p><strong>手动修改main.txt文件，然后提交</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vim main1.txt</span><br><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">&quot;merge conflict&quot;</span></span><br></pre></td></tr></table></figure>
+<p>提交之前中断合并可以使用</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git merge --absort</span><br></pre></td></tr></table></figure>
+<h2 id="rebase"><a href="#rebase" class="headerlink" title="rebase"></a>rebase</h2><ol>
+<li>为了便于演示，先删除feat分支</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git branch -d feat</span><br></pre></td></tr></table></figure>
+<ol>
+<li>恢复dev分支</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git checkout -b dev 01f908c</span><br></pre></td></tr></table></figure>
+<p><code>01f908c</code>是提交dev2.txt的id</p>
+<ol>
+<li>切回master，并reset到状态提交<code>main.5</code>的状态</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git swtich master</span><br><span class="line">git reset --hard 7e18db1</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/hollis7/pictures/raw/master/2023/12/01/64965_image-20231201155844275.png" alt="image-20231201155844275" style="zoom:67%;" /></p>
+<p><img src="https://gitee.com/hollis7/pictures/raw/master/2024/01/16/10240_image-20231201160041852.png" alt="image-20231201160041852" style="zoom: 67%;" /></p>
+<ol>
+<li><strong>回退目录，copy两次branch-demo分别演示</strong></li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cp</span> -rf branch-demo rebase1</span><br><span class="line"><span class="built_in">cp</span> -rf branch-demo rebase2</span><br></pre></td></tr></table></figure>
+<ol>
+<li>rebase1文件夹下，切换到<code>dev</code>分支进行<code>rebase</code>，dev变基到master</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git switch dev</span><br><span class="line">git rebase master</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/hollis7/pictures/raw/master/2023/12/01/84395_image-20231201160653932.png" alt="image-20231201160653932" style="zoom: 67%;" /></p>
+<ol>
+<li>rebase2文件夹下，切换到<code>master</code>分支进行<code>rebase</code>，master变基到dev</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git rebase dev</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/hollis7/pictures/raw/master/2023/12/01/70958_image-20231201161355387.png" alt="image-20231201161355387" style="zoom:67%;" /></p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>只是想要merge，不关系历史采用rebase（个人开发，清晰明了）</p>
+<p>共享分支采用merge，不然会给别人带来困扰</p>
+<h2 id="alias"><a href="#alias" class="headerlink" title="alias"></a>alias</h2><p>定义命令别名</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">alias</span> graph=<span class="string">&quot;git log --oneline --graph --decorate --all&quot;</span></span><br></pre></td></tr></table></figure>
+<p>输入<code>graph</code>直接查看图像和提交记录</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ graph</span><br><span class="line">*   9d6c599 (master) merge conflict</span><br><span class="line">|\</span><br><span class="line">| * 55416ce feat:1</span><br><span class="line">* | 5b8f4ef main:6</span><br><span class="line">|/</span><br><span class="line">*   554c860 Merge branch <span class="string">&#x27;dev&#x27;</span></span><br><span class="line">|\</span><br><span class="line">| * 01f908c (HEAD -&gt; dev) dev:2</span><br><span class="line">| * 0db7fa1 dev:1</span><br><span class="line">* | 7e18db1 main:5</span><br><span class="line">* | 5d73401 main:4</span><br><span class="line">|/</span><br><span class="line">* 185b91e main:3</span><br><span class="line">* 823dd12 main:2</span><br><span class="line">* 262a6df main:1</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>git</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
       </tags>
   </entry>
   <entry>
@@ -383,256 +631,71 @@
       </tags>
   </entry>
   <entry>
-    <title>git学习</title>
-    <url>/2024/01/16/git%E5%AD%A6%E4%B9%A0/git_notes/</url>
+    <title>springboot3 基础特性</title>
+    <url>/2024/01/16/springboot3/springboot3_%E5%9F%BA%E7%A1%80%E7%89%B9%E6%80%A7/</url>
     <content><![CDATA[<meta name="referrer" content="no-referrer"/>
 
-<h2 id="初始化设置"><a href="#初始化设置" class="headerlink" title="初始化设置"></a>初始化设置</h2><p>配置⽤户名</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global user.name <span class="string">&quot;hollis7&quot;</span></span><br></pre></td></tr></table></figure>
+<h2 id="自定义-banner"><a href="#自定义-banner" class="headerlink" title="自定义 banner"></a>自定义 banner</h2><ol>
+<li>类路径添加banner.txt或设置spring.banner.location就可以定制 banner</li>
+<li>推荐网站：<a href="https://www.bootschool.net/ascii">Spring Boot banner 在线生成工具，制作下载英文 banner.txt，修改替换 banner.txt 文字实现自定义，个性化启动 banner-bootschool.net</a></li>
+</ol>
 <span id="more"></span>
-<p>配置邮箱</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global user.email <span class="string">&quot;herryhollis@163.com&quot;</span></span><br></pre></td></tr></table></figure>
-<p>查看配置信息</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global --list</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>user.name=hollis<br>user.email=herryhollis@163.com<br>http.proxy=<a href="http://127.0.0.1:7890">http://127.0.0.1:7890</a><br>https.proxy=<a href="https://127.0.0.1:7890">https://127.0.0.1:7890</a></p>
-</blockquote>
-<h2 id="创建仓库"><a href="#创建仓库" class="headerlink" title="创建仓库"></a>创建仓库</h2><p>创建⼀个新的本地仓库</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
-<p>当前目录下指定一个仓库</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git init my-repo</span><br></pre></td></tr></table></figure>
-<p>查看.git信息</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">ls</span> -altr</span><br><span class="line"><span class="built_in">ls</span> -al</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">total 8</span><br><span class="line">drwxr-xr-x 1 hdb22 197610 0 Nov 29 16:58 ../</span><br><span class="line">drwxr-xr-x 1 hdb22 197610 0 Nov 29 16:58 ./</span><br><span class="line">drwxr-xr-x 1 hdb22 197610 0 Nov 29 16:58 .git/</span><br></pre></td></tr></table></figure>
-<p>克隆⼀个远程仓库</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> &lt;url&gt;</span><br></pre></td></tr></table></figure>
-<h2 id="四个区域"><a href="#四个区域" class="headerlink" title="四个区域"></a>四个区域</h2><p><strong>工作区(Working Directory)</strong><br>就是你在电脑里能实际看到的目录。</p>
-<p><strong>暂存区（Stage/Index）</strong><br>暂存区也叫索引? ⽤来临时存放未提交的内容。 ⼀般在.git⽬录下的index中。</p>
-<p><strong>本地仓库(Repository)</strong><br>Git在本地的版本库，仓库信息存储在.git这个隐藏目录中。</p>
-<p><strong>远程仓库(Remote Repository)</strong><br>托管在远程服务器上的仓库。常用的有GitHub、GitLab、Gitee。</p>
-<h2 id="添加和提交"><a href="#添加和提交" class="headerlink" title="添加和提交"></a>添加和提交</h2><p>提交以.txt结尾的文件</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git add *.txt</span><br></pre></td></tr></table></figure>
-<p>提交记录</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git <span class="built_in">log</span></span><br><span class="line">commit 965946e2d53df2d211bb4fa9ff357007815f9c3e (HEAD -&gt; master)</span><br><span class="line">Author: hollis &lt;herryhollis@163.com&gt;</span><br><span class="line">Date:   Wed Nov 29 17:20:58 2023 +0800</span><br><span class="line"></span><br><span class="line">    second commit</span><br><span class="line"></span><br><span class="line">commit fccd50cb2e25533a639b4bc6ef4fa0d6c4225de6</span><br><span class="line">Author: hollis &lt;herryhollis@163.com&gt;</span><br><span class="line">Date:   Wed Nov 29 17:14:23 2023 +0800</span><br><span class="line"></span><br><span class="line">    first commit</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>简洁日志</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">log</span> --oneline</span><br></pre></td></tr></table></figure>
-<h2 id="git-reset"><a href="#git-reset" class="headerlink" title="git reset"></a>git reset</h2><p><img src="C:\data\mysoftware\Typora\typoraPicture\image-20231129172540607.png" alt="image-20231129172540607" style="zoom: 25%;" /></p>
-<h3 id="soft"><a href="#soft" class="headerlink" title="soft"></a>soft</h3><p>查看版本id</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">log</span> --oneline</span><br><span class="line">837739d (HEAD -&gt; master) 3</span><br><span class="line">e4b3f38 2</span><br><span class="line">8ef07df 1</span><br></pre></td></tr></table></figure>
-<p>回退到指定版本id：<code>e4b3f38</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git reset --soft e4b3f38</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git <span class="built_in">log</span> --oneline</span><br><span class="line">e4b3f38 (HEAD -&gt; master) 2</span><br><span class="line">8ef07df 1</span><br></pre></td></tr></table></figure>
-<p>查看暂存区的内容，<code>file3.txt</code>仍在</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git ls-files</span><br><span class="line">file1.txt</span><br><span class="line">file2.txt</span><br><span class="line">file3.txt</span><br></pre></td></tr></table></figure>
-<h3 id="hard"><a href="#hard" class="headerlink" title="hard"></a>hard</h3><p>回退到上一个版本</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git reset --hard HEAD^</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>工作区和暂存区的file3.txt均不存在</p>
-</blockquote>
-<ul>
-<li>[ ] 工作区</li>
-<li>[ ] 暂存区</li>
+<h2 id="环境隔离"><a href="#环境隔离" class="headerlink" title="环境隔离"></a>环境隔离</h2><p>1、标识环境</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1）、区分出几个环境： dev（开发环境）、test（测试环境）、prod（生产环境）</span><br><span class="line">2）、指定每个组件在哪个环境下生效； default环境：默认环境</span><br><span class="line">	通过： @Profile(&#123;&quot;test&quot;&#125;)标注</span><br><span class="line">	组件没有标注@Profile代表任意时候都生效</span><br><span class="line">3）、默认只有激活指定的环境，这些组件才会生效。</span><br></pre></td></tr></table></figure>
+<p>2、激活环境</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">配置文件激活：spring.profiles.active=dev；</span><br><span class="line">命令行激活： java -jar xxx.jar  --spring.profiles.active=dev</span><br><span class="line">集成环境如下图</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/hollis7/pictures/raw/master/2024/01/04/72330_image-20240104164250109.png" alt="image-20240104164250109" style="zoom: 50%;" /></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">--spring.profiles.active=dev</span><br></pre></td></tr></table></figure>
+<p>3、环境包含</p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="comment">#包含指定环境，不管你激活哪个环境，这个都要有。总是要生效的环境</span></span><br><span class="line"><span class="attr">spring.profiles.include</span>=<span class="string">prod</span></span><br></pre></td></tr></table></figure>
+<h3 id="最佳实战"><a href="#最佳实战" class="headerlink" title="最佳实战"></a>最佳实战</h3><ul>
+<li><strong>生效的环境</strong> = <strong>激活的环境/默认环境</strong>  + <strong>包含的环境</strong></li>
+<li><p>项目里面这么用</p>
+</li>
+<li><ul>
+<li>基础的配置<code>mybatis</code>、<code>log</code>、<code>xxx</code>：写到<strong>包含环境中</strong></li>
+<li>需要动态切换变化的 <code>db</code>、<code>redis</code>：写到<strong>激活的环境中</strong></li>
 </ul>
-<h3 id="mixed"><a href="#mixed" class="headerlink" title="mixed"></a>mixed</h3><p>回退到上一个版本</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git reset HEAD^</span><br></pre></td></tr></table></figure>
-<ul>
-<li>[x] 工作区</li>
-<li>[ ] 暂存区</li>
+</li>
 </ul>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git reset --soft <span class="built_in">id</span></span><br><span class="line">git reset --hard HEAD^</span><br><span class="line">git reset HEAD^</span><br></pre></td></tr></table></figure>
-<p>常用<code>git reset HEAD^</code>和<code>git reset --soft id</code></p>
-<p>:anger:慎用<code>git reset --hard HEAD^</code></p>
-<h2 id="误操作"><a href="#误操作" class="headerlink" title="误操作"></a>误操作</h2><p>查看操作，回退到误操作之前：837739d</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git reflog</span><br><span class="line">e4b3f38 (HEAD -&gt; master) HEAD@&#123;0&#125;: reset: moving to HEAD^</span><br><span class="line">837739d HEAD@&#123;1&#125;: commit: 3</span><br><span class="line">e4b3f38 (HEAD -&gt; master) HEAD@&#123;2&#125;: commit: 2</span><br><span class="line">8ef07df HEAD@&#123;3&#125;: commit (initial): 1</span><br></pre></td></tr></table></figure>
-<p>回退</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git reset 837739d</span><br></pre></td></tr></table></figure>
-<h2 id="查看差异"><a href="#查看差异" class="headerlink" title="查看差异"></a>查看差异</h2><ol>
-<li>查看工作区和暂存区的差异</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git diff</span><br></pre></td></tr></table></figure>
-<p><img src="https://gitee.com/hollis7/pictures/raw/master/2023/11/29/93054_image-20231129201440960.png" alt="image-20231129201440960"></p>
-<p>这里add一下，工作区和暂存区保持一致</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git add .</span><br></pre></td></tr></table></figure>
+<h3 id="Profile-分组"><a href="#Profile-分组" class="headerlink" title="Profile 分组"></a>Profile 分组</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">spring.profiles.group.haha=db,<span class="built_in">log</span></span><br><span class="line">spring.profiles.group.hehe=mq</span><br></pre></td></tr></table></figure>
+<h2 id="profile配置文件"><a href="#profile配置文件" class="headerlink" title="profile配置文件"></a>profile配置文件</h2><p>3、配置文件怎么使用Profile功能</p>
+<p>1）、application.properties： 主配置文件。任何情况下都生效</p>
+<p>2）、其他Profile环境下命名规范：  application-{profile标识}.properties：</p>
+<p>比如：application-dev.properties</p>
+<p>3）、激活指定环境即可：  配置文件激活、命令行激活</p>
+<p>4）、效果：</p>
+<p><strong>项目的所有生效配置项 = 激活环境配置文件的所有项 + 主配置文件和激活文件不冲突的所有项</strong></p>
+<p><strong>如果发生了配置冲突，以激活的环境配置文件为准。</strong></p>
+<p>application-{profile标识}.properties 优先级高于 application.properties</p>
+<p>主配置和激活的配置都生效，优先以激活的配置为准</p>
+<h2 id="配置优先级"><a href="#配置优先级" class="headerlink" title="配置优先级"></a>配置优先级</h2><p>命令行<code>&gt;</code>配置文件<code>&gt;</code>springapplication配置</p>
+<p><strong>配置文件优先级</strong>如下：(<strong>后面覆盖前面</strong>)</p>
 <ol>
-<li>比较工作区和版本库之间的差异</li>
+<li><strong>jar 包内</strong>的application.properties/yml</li>
+<li><strong>jar 包内</strong>的application-{profile}.properties/yml</li>
+<li><strong>jar 包外</strong>的application.properties/yml</li>
+<li><strong>jar 包外</strong>的application-{profile}.properties/yml</li>
 </ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git diff <span class="built_in">head</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://gitee.com/hollis7/pictures/raw/master/2023/11/29/67476_image-20231129202024642.png" alt="image-20231129202024642"></p>
-<ol>
-<li>比较暂存区和版本库之间的差异</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git diff --cached</span><br></pre></td></tr></table></figure>
-<p><img src="https://gitee.com/hollis7/pictures/raw/master/2023/11/29/55545_image-20231129202403474.png" alt="image-20231129202403474"></p>
-<ol>
-<li>比较两个版本内容</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git diff 837739d e4b3f38</span><br><span class="line">git diff <span class="built_in">head</span> 837739d</span><br></pre></td></tr></table></figure>
-<p><img src="https://gitee.com/hollis7/pictures/raw/master/2023/11/29/13924_image-20231129203139207.png" alt="image-20231129203139207"></p>
-<ol>
-<li>最新两个版本之间</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git diff <span class="built_in">head</span>~ <span class="built_in">head</span></span><br></pre></td></tr></table></figure>
-<p><code>head~</code>表示最新版本的上一版本，<code>head^</code>同理</p>
-<p><code>head~2</code>表示head之前的2个版本</p>
-<ol>
-<li>查看指定文件版本之间的差异</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git diff <span class="built_in">head</span>~ <span class="built_in">head</span> file3.txt</span><br></pre></td></tr></table></figure>
-<h2 id="git-rm删除文件"><a href="#git-rm删除文件" class="headerlink" title="git rm删除文件"></a>git rm删除文件</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">rm</span> file1.txt</span><br></pre></td></tr></table></figure>
-<p>暂存区中的内容没有被删掉</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git ls-files</span><br><span class="line">file1.txt</span><br><span class="line">file2.txt</span><br><span class="line">file3.txt</span><br></pre></td></tr></table></figure>
-<p>需要add 和commit</p>
-<h3 id="git-rm"><a href="#git-rm" class="headerlink" title="git rm"></a>git rm</h3><p>直接删除工作区和暂存区中的文件</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">rm</span> file2.txt</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>最后还是要提交，否则删除的文件还是在版本库中</p>
-</blockquote>
-<h3 id="附加"><a href="#附加" class="headerlink" title="附加"></a>附加</h3><p>递归删除某个目录下的所有子目录和文件</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">rm</span> -r *</span><br></pre></td></tr></table></figure>
-<h2 id="学习-gitigonore"><a href="#学习-gitigonore" class="headerlink" title="学习.gitigonore"></a>学习.gitigonore</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;some log&quot;</span> &gt; access.log</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;other log &quot;</span> &gt; other.log</span><br></pre></td></tr></table></figure>
-<p>将access.log放入<code>.gitigonore</code>文件</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> access.log &gt; .gitignore</span><br></pre></td></tr></table></figure>
-<p><img src="https://gitee.com/hollis7/pictures/raw/master/2023/11/29/13517_image-20231129205548067.png" alt="image-20231129205548067"></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">&quot;ignore and other files&quot;</span></span><br></pre></td></tr></table></figure>
-<h3 id="忽略所有日志文件"><a href="#忽略所有日志文件" class="headerlink" title="忽略所有日志文件"></a>忽略所有日志文件</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vim .gitignore</span><br><span class="line">*.<span class="built_in">log</span></span><br></pre></td></tr></table></figure>
-<p>输入：<code>*.log</code>然后<code>wq</code>保存</p>
-<h3 id="测试效果"><a href="#测试效果" class="headerlink" title="测试效果"></a>测试效果</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> hello &gt; hello.log</span><br><span class="line">git status</span><br></pre></td></tr></table></figure>
-<p><img src="https://gitee.com/hollis7/pictures/raw/master/2023/11/29/38701_image-20231129210211915.png" alt="image-20231129210211915"></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git commit -am <span class="string">&quot;test ignore log&quot;</span></span><br><span class="line">git ls-files</span><br></pre></td></tr></table></figure>
-<p>没有 <code>hello.log</code></p>
-<h3 id="测试已经提交的other-log"><a href="#测试已经提交的other-log" class="headerlink" title="测试已经提交的other.log"></a>测试已经提交的other.log</h3><p>追加</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot; modified&quot;</span> &gt;&gt; other.log</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line">Changes not staged <span class="keyword">for</span> commit:</span><br><span class="line">  (use <span class="string">&quot;git add &lt;file&gt;...&quot;</span> to update what will be committed)</span><br><span class="line">  (use <span class="string">&quot;git restore &lt;file&gt;...&quot;</span> to discard changes <span class="keyword">in</span> working directory)</span><br><span class="line">        modified:   other.log</span><br></pre></td></tr></table></figure>
-<p><code>.gitigonore</code>对已经添加的不能起作用</p>
-<h3 id="删除暂存区的other-log"><a href="#删除暂存区的other-log" class="headerlink" title="删除暂存区的other.log"></a>删除暂存区的other.log</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">rm</span> --cached other.log</span><br></pre></td></tr></table></figure>
-<ul>
-<li>[ ] 暂存区</li>
-<li>[x] 本地</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git commit -am <span class="string">&quot;delete other.log&quot;</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p><code>git commit -am &quot;delete other.log&quot;</code> 这个命令的作用是将所有已跟踪的文件的修改提交到版本库，并且使用 “delete other.log” 作为提交的消息。</p>
-<p>需要注意的是，这种方式只适用于已经被 Git 跟踪的文件。对于新添加的文件，还是需要使用 <code>git add</code> 将其添加到暂存区，然后再使用 <code>git commit -m &quot;message&quot;</code> 提交。</p>
-</blockquote>
-<h3 id="忽略文件夹"><a href="#忽略文件夹" class="headerlink" title="忽略文件夹"></a>忽略文件夹</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;hello&quot;</span> &gt; temp/hello.txt</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vim .gitignore</span><br><span class="line">//追加temp/</span><br><span class="line">temp/</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"> git add .</span><br><span class="line"> git commit -m <span class="string">&quot;test ignore fold&quot;</span></span><br><span class="line"> git ls-files</span><br><span class="line"> </span><br><span class="line"> $ git ls-files</span><br><span class="line">.gitignore</span><br><span class="line">file3.txt</span><br></pre></td></tr></table></figure>
-<h2 id="关联本地仓库和远程仓库"><a href="#关联本地仓库和远程仓库" class="headerlink" title="关联本地仓库和远程仓库"></a>关联本地仓库和远程仓库</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git remote add origin git@github.com:Hollis7/git_testrepo.git</span><br><span class="line">git branch -M main</span><br><span class="line">git push -u origin main</span><br></pre></td></tr></table></figure>
-<p>在GitHub上添加readme文件</p>
-<p>本地仓库拉取远程仓库的修改</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git pull</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git remote add &lt;remote-name&gt; &lt;remote-url&gt;</span><br><span class="line">//添加远程仓库</span><br><span class="line">git remote -v</span><br><span class="line">//查看远程仓库?</span><br></pre></td></tr></table></figure>
-<h2 id="⽂件状态"><a href="#⽂件状态" class="headerlink" title="⽂件状态"></a>⽂件状态</h2><ul>
-<li>main/master 默认主分⽀</li>
-<li>Origin 默认远程仓库</li>
-<li>HEAD 指向当前分⽀的指针</li>
-<li>HEAD^ 上⼀个版本</li>
-<li>HEAD~ 上四个版本</li>
-</ul>
-<h2 id="vscode中使用git"><a href="#vscode中使用git" class="headerlink" title="vscode中使用git"></a>vscode中使用git</h2><p>在git中打开vscode</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">code .</span><br></pre></td></tr></table></figure>
-<h2 id="分支简介和基本操作"><a href="#分支简介和基本操作" class="headerlink" title="分支简介和基本操作"></a>分支简介和基本操作</h2><h3 id="查看分支"><a href="#查看分支" class="headerlink" title="查看分支"></a>查看分支</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git branch</span><br></pre></td></tr></table></figure>
-<h3 id="创建新的分支"><a href="#创建新的分支" class="headerlink" title="创建新的分支"></a>创建新的分支</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git branch dev</span><br></pre></td></tr></table></figure>
-<p>查看分支，默认分支仍然为<code>master</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"> git branch</span><br><span class="line">  dev</span><br><span class="line">* master</span><br></pre></td></tr></table></figure>
-<h3 id="切换分支"><a href="#切换分支" class="headerlink" title="切换分支"></a>切换分支</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git checkout dev（不建议，存在歧义）</span><br><span class="line">git switch master（建议）</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git checkout dev</span><br><span class="line">Switched to branch <span class="string">&#x27;dev&#x27;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git switch master</span><br><span class="line">Switched to branch <span class="string">&#x27;master&#x27;</span></span><br></pre></td></tr></table></figure>
-<h2 id="merge合并"><a href="#merge合并" class="headerlink" title="merge合并"></a>merge合并</h2><p>在<code>dev</code>分支下创建<code>dev1.txt dev2.txt</code>，并提交，在<code>master</code>分支下查看，并没有<code>dev1.txt dev2.txt</code></p>
-<p>在创建main4.txt和main5.txt看到明显的分叉</p>
-<p>:memo:合并分支,将<code>dev</code>分支合并到<code>master</code>（当前）分支</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hdb22@hollis7 MINGW64 /c/individualproject/git-learn/branch-demo (master)</span><br><span class="line">$ git merge dev</span><br></pre></td></tr></table></figure>
-<p>查看分支图</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">log</span> --graph --oneline --decorate --all</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git <span class="built_in">log</span> --graph --oneline --decorate --all</span><br><span class="line">*   554c860 (HEAD -&gt; master) Merge branch <span class="string">&#x27;dev&#x27;</span></span><br><span class="line">|\</span><br><span class="line">| * 01f908c (dev) dev:2</span><br><span class="line">| * 0db7fa1 dev:1</span><br><span class="line">* | 7e18db1 main:5</span><br><span class="line">* | 5d73401 main:4</span><br><span class="line">|/</span><br><span class="line">* 185b91e main:3</span><br><span class="line">* 823dd12 main:2</span><br><span class="line">* 262a6df main:1</span><br></pre></td></tr></table></figure>
-<h3 id="删除分支"><a href="#删除分支" class="headerlink" title="删除分支"></a>删除分支</h3><p>合并后分支仍然存在，可以删除</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git branch -d dev</span><br></pre></td></tr></table></figure>
-<p><code>-d</code>表示删除已经合并的分支</p>
-<p><code>-D</code>表示强制删除</p>
-<h2 id="合并分支解决冲突"><a href="#合并分支解决冲突" class="headerlink" title="合并分支解决冲突"></a>合并分支解决冲突</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git branch feat</span><br><span class="line">git swich feat</span><br><span class="line">vim main1.txt</span><br></pre></td></tr></table></figure>
-<p>在<code>feat</code>分支下提交修改的main1.txt</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git commit -a -m <span class="string">&quot;feat:1&quot;</span></span><br></pre></td></tr></table></figure>
-<p>切回<code>master</code>分支，<code>main1.txt</code>的内容不变</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git switch master</span><br><span class="line"><span class="built_in">cat</span> main1.txt</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>main1</p>
-</blockquote>
-<p>修改<code>main1.txt</code>并保存</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vim main1.txt</span><br><span class="line">git commit -am <span class="string">&quot;main:6&quot;</span></span><br></pre></td></tr></table></figure>
-<p>:memo:<strong>直接合并出现冲突</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git merge feat</span><br><span class="line">Auto-merging main1.txt</span><br><span class="line">CONFLICT (content): Merge conflict <span class="keyword">in</span> main1.txt</span><br><span class="line">Automatic merge failed;fix conflicts and <span class="keyword">then</span> commit the result.</span><br></pre></td></tr></table></figure>
-<p>使用<code>git diff</code>查看冲突内容</p>
-<p><img src="https://gitee.com/hollis7/pictures/raw/master/2023/12/01/66112_image-20231201153625765.png" alt="image-20231201153625765"></p>
-<p><strong>手动修改main.txt文件，然后提交</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vim main1.txt</span><br><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">&quot;merge conflict&quot;</span></span><br></pre></td></tr></table></figure>
-<p>提交之前中断合并可以使用</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git merge --absort</span><br></pre></td></tr></table></figure>
-<h2 id="rebase"><a href="#rebase" class="headerlink" title="rebase"></a>rebase</h2><ol>
-<li>为了便于演示，先删除feat分支</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git branch -d feat</span><br></pre></td></tr></table></figure>
-<ol>
-<li>恢复dev分支</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git checkout -b dev 01f908c</span><br></pre></td></tr></table></figure>
-<p><code>01f908c</code>是提交dev2.txt的id</p>
-<ol>
-<li>切回master，并reset到状态提交<code>main.5</code>的状态</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git swtich master</span><br><span class="line">git reset --hard 7e18db1</span><br></pre></td></tr></table></figure>
-<p><img src="https://gitee.com/hollis7/pictures/raw/master/2023/12/01/64965_image-20231201155844275.png" alt="image-20231201155844275" style="zoom:67%;" /></p>
-<p><img src="https://gitee.com/hollis7/pictures/raw/master/2024/01/16/10240_image-20231201160041852.png" alt="image-20231201160041852" style="zoom: 67%;" /></p>
-<ol>
-<li><strong>回退目录，copy两次branch-demo分别演示</strong></li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cp</span> -rf branch-demo rebase1</span><br><span class="line"><span class="built_in">cp</span> -rf branch-demo rebase2</span><br></pre></td></tr></table></figure>
-<ol>
-<li>rebase1文件夹下，切换到<code>dev</code>分支进行<code>rebase</code>，dev变基到master</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git switch dev</span><br><span class="line">git rebase master</span><br></pre></td></tr></table></figure>
-<p><img src="https://gitee.com/hollis7/pictures/raw/master/2023/12/01/84395_image-20231201160653932.png" alt="image-20231201160653932" style="zoom: 67%;" /></p>
-<ol>
-<li>rebase2文件夹下，切换到<code>master</code>分支进行<code>rebase</code>，master变基到dev</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git rebase dev</span><br></pre></td></tr></table></figure>
-<p><img src="https://gitee.com/hollis7/pictures/raw/master/2023/12/01/70958_image-20231201161355387.png" alt="image-20231201161355387" style="zoom:67%;" /></p>
-<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>只是想要merge，不关系历史采用rebase（个人开发，清晰明了）</p>
-<p>共享分支采用merge，不然会给别人带来困扰</p>
-<h2 id="alias"><a href="#alias" class="headerlink" title="alias"></a>alias</h2><p>定义命令别名</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">alias</span> graph=<span class="string">&quot;git log --oneline --graph --decorate --all&quot;</span></span><br></pre></td></tr></table></figure>
-<p>输入<code>graph</code>直接查看图像和提交记录</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ graph</span><br><span class="line">*   9d6c599 (master) merge conflict</span><br><span class="line">|\</span><br><span class="line">| * 55416ce feat:1</span><br><span class="line">* | 5b8f4ef main:6</span><br><span class="line">|/</span><br><span class="line">*   554c860 Merge branch <span class="string">&#x27;dev&#x27;</span></span><br><span class="line">|\</span><br><span class="line">| * 01f908c (HEAD -&gt; dev) dev:2</span><br><span class="line">| * 0db7fa1 dev:1</span><br><span class="line">* | 7e18db1 main:5</span><br><span class="line">* | 5d73401 main:4</span><br><span class="line">|/</span><br><span class="line">* 185b91e main:3</span><br><span class="line">* 823dd12 main:2</span><br><span class="line">* 262a6df main:1</span><br></pre></td></tr></table></figure>
+<p>最终效果：优先级由高到低，前面覆盖后面</p>
+<p>命令行 &gt; 包外config直接子目录 &gt; 包外config目录 &gt; 包外根目录 &gt; 包内目录</p>
+<p><img src="C:\data\mysoftware\Typora\typoraPicture\未命名绘图.svg" alt="未命名绘图"></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2023/svg/1613913/1682073869709-2cba18c8-55bd-4bf1-a9df-ac784e30d89a.svg" alt="未命名绘图.svg"></p>
+<h2 id="属性占位符"><a href="#属性占位符" class="headerlink" title="属性占位符"></a>属性占位符</h2><p>配置文件中可以使用 <code>$&#123;name:default&#125;</code>形式取出之前配置过的值。</p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">app.name</span>=<span class="string">MyApp</span></span><br><span class="line"><span class="attr">app.description</span>=<span class="string">$&#123;app.name&#125; is a Spring Boot application written by $&#123;username:Unknown&#125;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Value(&quot;$&#123;app.name:中国mooc&#125;&quot;)</span></span><br><span class="line">String appName;</span><br></pre></td></tr></table></figure>
+<h2 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h2><p>@SpringBootTest</p>
 ]]></content>
       <categories>
-        <category>git</category>
+        <category>springboot3</category>
       </categories>
       <tags>
-        <tag>git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>spirng6知识小点</title>
-    <url>/2024/01/15/spring6/spring6_1/</url>
-    <content><![CDATA[<meta name="referrer" content="no-referrer"/>
-
-<h2 id="启用Log4j2日志框架"><a href="#启用Log4j2日志框架" class="headerlink" title="启用Log4j2日志框架"></a>启用Log4j2日志框架</h2><p><strong>（1）日志信息的优先级</strong>，日志信息的优先级从高到低有<strong>TRACE &lt; DEBUG &lt; INFO &lt; WARN &lt; ERROR &lt; FATAL</strong><br>                TRACE：追踪，是最低的日志级别，相当于追踪程序的执行<br>                DEBUG：调试，一般在开发中，都将其设置为最低的日志级别<br>                INFO：信息，输出重要的信息，使用较多<br>                WARN：警告，输出警告的信息<br>                ERROR：错误，输出错误信息<br>                FATAL：严重错误</p>
-<span id="more"></span>
-<p>这些级别分别用来指定这条日志信息的重要程度；级别高的会自动屏蔽级别低的日志，也就是说，设置了WARN的日志，则INFO、DEBUG的日志级别的日志不会显示</p>
-<p><strong>（2）日志信息的输出目的地</strong>，日志信息的输出目的地指定了日志将打印到<strong>控制台</strong>还是<strong>文件中</strong>；</p>
-<p><strong>（3）日志信息的输出格式</strong>，而输出格式则控制了日志信息的显示内容。</p>
-<p>CryptoNets: Applying Neural Networks to Encrypted Data with High Throughput and Accuracy</p>
-<h2 id="AOP概念及相关术语"><a href="#AOP概念及相关术语" class="headerlink" title="AOP概念及相关术语"></a>AOP概念及相关术语</h2><p>AOP（Aspect Oriented Programming）是一种设计思想，是软件设计领域中的面向切面编程，它是面向对象编程的一种补充和完善<strong>，它以通过预编译方式和运行期动态代理方式实现，在不修改源代码的情况下，给程序动态统一添加额外功能的一种技术</strong>。</p>
-]]></content>
-      <categories>
-        <category>spring6</category>
-      </categories>
-      <tags>
-        <tag>spring6</tag>
+        <tag>springboot3</tag>
       </tags>
   </entry>
   <entry>
     <title>springboot3 web开发</title>
-    <url>/2024/01/15/springboot3/springboot3_web%E5%BC%80%E5%8F%91/</url>
+    <url>/2024/01/16/springboot3/springboot3_web%E5%BC%80%E5%8F%91/</url>
     <content><![CDATA[<meta name="referrer" content="no-referrer"/>
 
 <h2 id="springboot3笔记资料地址"><a href="#springboot3笔记资料地址" class="headerlink" title="springboot3笔记资料地址"></a>springboot3笔记资料地址</h2><p><a href="https://www.yuque.com/leifengyang/springboot3">springboot3-notes</a></p>
@@ -1149,7 +1212,7 @@
   </entry>
   <entry>
     <title>springboot3 数据访问</title>
-    <url>/2024/01/15/springboot3/springboot3_%E6%95%B0%E6%8D%AE%E8%AE%BF%E9%97%AE/</url>
+    <url>/2024/01/16/springboot3/springboot3_%E6%95%B0%E6%8D%AE%E8%AE%BF%E9%97%AE/</url>
     <content><![CDATA[<meta name="referrer" content="no-referrer"/>
 
 <h2 id="springboot3笔记资料地址"><a href="#springboot3笔记资料地址" class="headerlink" title="springboot3笔记资料地址"></a>springboot3笔记资料地址</h2><p><a href="https://www.yuque.com/leifengyang/springboot3">springboot3-notes-尚硅谷</a></p>
@@ -1191,7 +1254,7 @@
   </entry>
   <entry>
     <title>springboot3 核心原理</title>
-    <url>/2024/01/15/springboot3/springboot3_%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86/</url>
+    <url>/2024/01/16/springboot3/springboot3_%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86/</url>
     <content><![CDATA[<meta name="referrer" content="no-referrer"/>
 
 <h2 id="springboot3笔记资料地址"><a href="#springboot3笔记资料地址" class="headerlink" title="springboot3笔记资料地址"></a>springboot3笔记资料地址</h2><p><a href="https://www.yuque.com/leifengyang/springboot3">springboot3-notes</a></p>
@@ -1311,147 +1374,8 @@ org.springframework.boot.SpringApplicationRunListener=com.hdb.core.listener.MyAp
       </tags>
   </entry>
   <entry>
-    <title>springboot3 基础特性</title>
-    <url>/2024/01/15/springboot3/springboot3_%E5%9F%BA%E7%A1%80%E7%89%B9%E6%80%A7/</url>
-    <content><![CDATA[<meta name="referrer" content="no-referrer"/>
-
-<h2 id="自定义-banner"><a href="#自定义-banner" class="headerlink" title="自定义 banner"></a>自定义 banner</h2><ol>
-<li>类路径添加banner.txt或设置spring.banner.location就可以定制 banner</li>
-<li>推荐网站：<a href="https://www.bootschool.net/ascii">Spring Boot banner 在线生成工具，制作下载英文 banner.txt，修改替换 banner.txt 文字实现自定义，个性化启动 banner-bootschool.net</a></li>
-</ol>
-<span id="more"></span>
-<h2 id="环境隔离"><a href="#环境隔离" class="headerlink" title="环境隔离"></a>环境隔离</h2><p>1、标识环境</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1）、区分出几个环境： dev（开发环境）、test（测试环境）、prod（生产环境）</span><br><span class="line">2）、指定每个组件在哪个环境下生效； default环境：默认环境</span><br><span class="line">	通过： @Profile(&#123;&quot;test&quot;&#125;)标注</span><br><span class="line">	组件没有标注@Profile代表任意时候都生效</span><br><span class="line">3）、默认只有激活指定的环境，这些组件才会生效。</span><br></pre></td></tr></table></figure>
-<p>2、激活环境</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">配置文件激活：spring.profiles.active=dev；</span><br><span class="line">命令行激活： java -jar xxx.jar  --spring.profiles.active=dev</span><br><span class="line">集成环境如下图</span><br></pre></td></tr></table></figure>
-<p><img src="https://gitee.com/hollis7/pictures/raw/master/2024/01/04/72330_image-20240104164250109.png" alt="image-20240104164250109" style="zoom: 50%;" /></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">--spring.profiles.active=dev</span><br></pre></td></tr></table></figure>
-<p>3、环境包含</p>
-<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="comment">#包含指定环境，不管你激活哪个环境，这个都要有。总是要生效的环境</span></span><br><span class="line"><span class="attr">spring.profiles.include</span>=<span class="string">prod</span></span><br></pre></td></tr></table></figure>
-<h3 id="最佳实战"><a href="#最佳实战" class="headerlink" title="最佳实战"></a>最佳实战</h3><ul>
-<li><strong>生效的环境</strong> = <strong>激活的环境/默认环境</strong>  + <strong>包含的环境</strong></li>
-<li><p>项目里面这么用</p>
-</li>
-<li><ul>
-<li>基础的配置<code>mybatis</code>、<code>log</code>、<code>xxx</code>：写到<strong>包含环境中</strong></li>
-<li>需要动态切换变化的 <code>db</code>、<code>redis</code>：写到<strong>激活的环境中</strong></li>
-</ul>
-</li>
-</ul>
-<h3 id="Profile-分组"><a href="#Profile-分组" class="headerlink" title="Profile 分组"></a>Profile 分组</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">spring.profiles.group.haha=db,<span class="built_in">log</span></span><br><span class="line">spring.profiles.group.hehe=mq</span><br></pre></td></tr></table></figure>
-<h2 id="profile配置文件"><a href="#profile配置文件" class="headerlink" title="profile配置文件"></a>profile配置文件</h2><p>3、配置文件怎么使用Profile功能</p>
-<p>1）、application.properties： 主配置文件。任何情况下都生效</p>
-<p>2）、其他Profile环境下命名规范：  application-{profile标识}.properties：</p>
-<p>比如：application-dev.properties</p>
-<p>3）、激活指定环境即可：  配置文件激活、命令行激活</p>
-<p>4）、效果：</p>
-<p><strong>项目的所有生效配置项 = 激活环境配置文件的所有项 + 主配置文件和激活文件不冲突的所有项</strong></p>
-<p><strong>如果发生了配置冲突，以激活的环境配置文件为准。</strong></p>
-<p>application-{profile标识}.properties 优先级高于 application.properties</p>
-<p>主配置和激活的配置都生效，优先以激活的配置为准</p>
-<h2 id="配置优先级"><a href="#配置优先级" class="headerlink" title="配置优先级"></a>配置优先级</h2><p>命令行<code>&gt;</code>配置文件<code>&gt;</code>springapplication配置</p>
-<p><strong>配置文件优先级</strong>如下：(<strong>后面覆盖前面</strong>)</p>
-<ol>
-<li><strong>jar 包内</strong>的application.properties/yml</li>
-<li><strong>jar 包内</strong>的application-{profile}.properties/yml</li>
-<li><strong>jar 包外</strong>的application.properties/yml</li>
-<li><strong>jar 包外</strong>的application-{profile}.properties/yml</li>
-</ol>
-<p>最终效果：优先级由高到低，前面覆盖后面</p>
-<p>命令行 &gt; 包外config直接子目录 &gt; 包外config目录 &gt; 包外根目录 &gt; 包内目录</p>
-<p><img src="C:\data\mysoftware\Typora\typoraPicture\未命名绘图.svg" alt="未命名绘图"></p>
-<p><img src="https://cdn.nlark.com/yuque/0/2023/svg/1613913/1682073869709-2cba18c8-55bd-4bf1-a9df-ac784e30d89a.svg" alt="未命名绘图.svg"></p>
-<h2 id="属性占位符"><a href="#属性占位符" class="headerlink" title="属性占位符"></a>属性占位符</h2><p>配置文件中可以使用 <code>$&#123;name:default&#125;</code>形式取出之前配置过的值。</p>
-<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">app.name</span>=<span class="string">MyApp</span></span><br><span class="line"><span class="attr">app.description</span>=<span class="string">$&#123;app.name&#125; is a Spring Boot application written by $&#123;username:Unknown&#125;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Value(&quot;$&#123;app.name:中国mooc&#125;&quot;)</span></span><br><span class="line">String appName;</span><br></pre></td></tr></table></figure>
-<h2 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h2><p>@SpringBootTest</p>
-]]></content>
-      <categories>
-        <category>springboot3</category>
-      </categories>
-      <tags>
-        <tag>springboot3</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>代码随想录2二叉树</title>
-    <url>/2024/01/16/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%952/</url>
-    <content><![CDATA[<meta name="referrer" content="no-referrer"/>
-
-
-<h2 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h2><p><strong>本节包括：</strong></p>
-<ul>
-<li>二叉树（部分）</li>
-</ul>
-<span id="more"></span>
-<h2 id="二叉树的最大深度"><a href="#二叉树的最大深度" class="headerlink" title="二叉树的最大深度"></a>二叉树的最大深度</h2><p>推荐方法，递归法</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">maxDepth</span><span class="params">(TreeNode root)</span> &#123;</span><br><span class="line">       <span class="keyword">if</span> (root == <span class="literal">null</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">       <span class="keyword">return</span> Math.max(maxDepth(root.left), maxDepth(root.right)) + <span class="number">1</span>;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-<p>左子树和右子树的最大深度 <em>l</em> 和 <em>r</em>，那么该二叉树的最大深度即为</p>
-<script type="math/tex; mode=display">
-m a x ( l , r ) + 1</script><h2 id="111-二叉树的最小深度"><a href="#111-二叉树的最小深度" class="headerlink" title="111.二叉树的最小深度"></a>111.二叉树的最小深度</h2><p>给定一个二叉树，找出其最小深度。</p>
-<p>最小深度是从根节点到最近叶子节点的最短路径上的节点数量。</p>
-<h3 id="误区"><a href="#误区" class="headerlink" title="误区"></a>误区</h3><p>不能简单粗暴的求<code>Math.min(minDepth(root.left),minDepth(root.right))+1</code></p>
-<p>因为当左右子树一空一不空的时候，该节点并不是叶子节点，应当选取不为空的分叉继续递归求二叉树的最小深度。</p>
-<h3 id="正确解法一：递归"><a href="#正确解法一：递归" class="headerlink" title="正确解法一：递归"></a>正确解法一：递归</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">minDepth</span><span class="params">(TreeNode root)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="literal">null</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="comment">//1、到达叶子节点</span></span><br><span class="line">        <span class="keyword">if</span> (root.left == <span class="literal">null</span> &amp;&amp; root.right == <span class="literal">null</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">l</span> <span class="operator">=</span> minDepth(root.left);</span><br><span class="line">        <span class="type">int</span> <span class="variable">r</span> <span class="operator">=</span> minDepth(root.right);</span><br><span class="line">        <span class="comment">//2、左右子树有一个为空，选择不为空的的分支，l和r其中国一个必为0</span></span><br><span class="line">        <span class="keyword">if</span> (root.left == <span class="literal">null</span> || root.right == <span class="literal">null</span>)</span><br><span class="line">            <span class="keyword">return</span> l + r + <span class="number">1</span>;</span><br><span class="line">        <span class="comment">//3、左右子树均不为空，子树最短路径+1</span></span><br><span class="line">        <span class="keyword">return</span> Math.min(l, r) + <span class="number">1</span>;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>情况1和二可以合并</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">minDepth</span><span class="params">(TreeNode root)</span> &#123;</span><br><span class="line">      <span class="keyword">if</span>(root == <span class="literal">null</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">       <span class="type">int</span> <span class="variable">m1</span> <span class="operator">=</span> minDepth(root.left);</span><br><span class="line">       <span class="type">int</span> <span class="variable">m2</span> <span class="operator">=</span> minDepth(root.right);</span><br><span class="line">       <span class="comment">//1.如果左孩子和右孩子有为空的情况，直接返回m1+m2+1</span></span><br><span class="line">       <span class="comment">//2.如果都不为空，返回较小深度+1</span></span><br><span class="line">       <span class="keyword">return</span> root.left == <span class="literal">null</span> || root.right == <span class="literal">null</span> ? m1 + m2 + <span class="number">1</span> : Math.min(m1,m2) + <span class="number">1</span>;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-<h3 id="正确解法二：层序遍历"><a href="#正确解法二：层序遍历" class="headerlink" title="正确解法二：层序遍历"></a>正确解法二：层序遍历</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">minDepth</span><span class="params">(TreeNode root)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        Queue&lt;TreeNode&gt; queue = <span class="keyword">new</span> <span class="title class_">LinkedList</span>&lt;&gt;();</span><br><span class="line">        queue.offer(root);</span><br><span class="line">        <span class="type">int</span> <span class="variable">depth</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (!queue.isEmpty())&#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">size</span> <span class="operator">=</span> queue.size();</span><br><span class="line">            depth++;</span><br><span class="line">            <span class="type">TreeNode</span> <span class="variable">cur</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; size; i++) &#123;</span><br><span class="line">                cur = queue.poll();</span><br><span class="line">                <span class="comment">//如果当前节点的左右孩子都为空，直接返回最小深度</span></span><br><span class="line">                <span class="keyword">if</span> (cur.left == <span class="literal">null</span> &amp;&amp; cur.right == <span class="literal">null</span>)&#123;</span><br><span class="line">                    <span class="keyword">return</span> depth;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (cur.left != <span class="literal">null</span>) queue.offer(cur.left);</span><br><span class="line">                <span class="keyword">if</span> (cur.right != <span class="literal">null</span>) queue.offer(cur.right);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> depth;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h2 id="226-翻转二叉树"><a href="#226-翻转二叉树" class="headerlink" title="226.翻转二叉树"></a>226.翻转二叉树</h2><p>给你一棵二叉树的根节点 <code>root</code> ，翻转这棵二叉树，并返回其根节点。</p>
-<h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><p>前序遍历，左右子树翻转</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">InvertBinTree</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> TreeNode <span class="title function_">invertTree</span><span class="params">(TreeNode root)</span> &#123;</span><br><span class="line">        preOrderInvertTree(root);</span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">preOrderInvertTree</span><span class="params">(TreeNode node)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (node == <span class="literal">null</span>) <span class="keyword">return</span>;</span><br><span class="line">        swapChild(node);</span><br><span class="line">        preOrderInvertTree(node.left);</span><br><span class="line">        preOrderInvertTree(node.right);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">swapChild</span><span class="params">(TreeNode node)</span> &#123;</span><br><span class="line">        <span class="type">TreeNode</span> <span class="variable">tmpNode</span> <span class="operator">=</span> node.right;</span><br><span class="line">        node.right = node.left;</span><br><span class="line">        node.left = tmpNode;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="222-完全二叉树的节点个数"><a href="#222-完全二叉树的节点个数" class="headerlink" title="222.完全二叉树的节点个数"></a>222.完全二叉树的节点个数</h2><p>给你一棵 <strong>完全二叉树</strong> 的根节点 <code>root</code> ，求出该树的节点个数。</p>
-<blockquote>
-<p>先求它的左子树的节点数量，再求右子树的节点数量，最后取总和再加一 （加1是因为算上当前中间节点）就是目前节点为根节点的节点数量。</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">countNodes</span><span class="params">(TreeNode root)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="literal">null</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> countNodes(root.left) + countNodes(root.right) + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h2 id="110-平衡二叉树"><a href="#110-平衡二叉树" class="headerlink" title="110.平衡二叉树"></a>110.平衡二叉树</h2><p>给定一个二叉树，判断它是否是高度平衡的二叉树。</p>
-<p>思路</p>
-<p>比较每一个节点的左右子树的高度差是否大于1</p>
-<h3 id="错误解法"><a href="#错误解法" class="headerlink" title="错误解法"></a>错误解法</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">isBalanced</span><span class="params">(TreeNode root)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> maxDepthBalance(root) != -<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">maxDepthBalance</span><span class="params">(TreeNode node)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (node == <span class="literal">null</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> Math.abs(maxDepthBalance(node.left) - maxDepthBalance(node.right)) &gt; <span class="number">1</span> ? -<span class="number">1</span> : Math.max(maxDepthBalance(node.left), maxDepthBalance(node.right)) + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>没有考虑到<code>maxDepthBalance(node.left) - maxDepthBalance(node.right)</code>其中或许已经存在-1这种结果而不是真实的高度了</p>
-<h3 id="正确解法"><a href="#正确解法" class="headerlink" title="正确解法"></a>正确解法</h3><p>如果当前传入节点为根节点的二叉树已经不是二叉平衡树了，还返回高度的话就没有意义了。</p>
-<p>所以如果已经不是二叉平衡树了，可以返回-1 来标记已经不符合平衡树的规则了。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">isBalanced</span><span class="params">(TreeNode root)</span> &#123;</span><br><span class="line">       <span class="keyword">return</span> maxDepthBalance(root) != -<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 所以如果已经不是二叉平衡树了，可以返回-1 来标记已经不符合平衡树的规则了。</span></span><br><span class="line"><span class="comment">    *</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> node</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">maxDepthBalance</span><span class="params">(TreeNode node)</span> &#123;</span><br><span class="line">       <span class="keyword">if</span> (node == <span class="literal">null</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">       <span class="type">int</span> <span class="variable">leftDepth</span> <span class="operator">=</span> maxDepthBalance(node.left);</span><br><span class="line">       <span class="keyword">if</span> (leftDepth == -<span class="number">1</span>) <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">       <span class="type">int</span> <span class="variable">rightDepth</span> <span class="operator">=</span> maxDepthBalance(node.right);</span><br><span class="line">       <span class="keyword">if</span> (rightDepth == -<span class="number">1</span>)</span><br><span class="line">           <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">       <span class="keyword">if</span> (Math.abs(leftDepth - rightDepth) &gt; <span class="number">1</span>) <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">       <span class="keyword">return</span> Math.max(leftDepth, rightDepth) + <span class="number">1</span>;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-<h2 id="257-二叉树的所有路径"><a href="#257-二叉树的所有路径" class="headerlink" title="257.二叉树的所有路径"></a>257.二叉树的所有路径</h2><p>给定一个二叉树，返回所有从根节点到叶子节点的路径。</p>
-<p>说明: 叶子节点是指没有子节点的节点。</p>
-<h3 id="法一"><a href="#法一" class="headerlink" title="法一"></a>法一</h3><p>采用采用递归和回溯的方法求取所有路径</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">List&lt;String&gt; res = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line"><span class="keyword">public</span> List&lt;String&gt; <span class="title function_">binaryTreePaths</span><span class="params">(TreeNode root)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (root == <span class="literal">null</span>) <span class="keyword">return</span> res;</span><br><span class="line">    <span class="comment">//traversal方法</span></span><br><span class="line">    List&lt;Integer&gt; paths = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();<span class="comment">//已经遍历的节点</span></span><br><span class="line">    traversal(root, paths, res);</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"> <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">traversal</span><span class="params">(TreeNode node, List&lt;Integer&gt; paths, List&lt;String&gt; res)</span> &#123;</span><br><span class="line">        paths.add(node.val);<span class="comment">//加入当前节点到路径</span></span><br><span class="line">        <span class="keyword">if</span> (node.left == <span class="literal">null</span> &amp;&amp; node.right == <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="type">StringBuilder</span> <span class="variable">sb</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuilder</span>();</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; paths.size() - <span class="number">1</span>; i++) &#123;<span class="comment">// 将paths里记录的路径转为string格式</span></span><br><span class="line">                sb.append(paths.get(i)).append(<span class="string">&quot;-&gt;&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            sb.append(paths.get(paths.size() - <span class="number">1</span>));<span class="comment">//加上最后一个节点（单独处理）</span></span><br><span class="line">            res.add(sb.toString());<span class="comment">//加入一个叶子节点的路径</span></span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//遍历左右节点路径，并回溯</span></span><br><span class="line">        <span class="keyword">if</span> (node.left != <span class="literal">null</span>) &#123;</span><br><span class="line">            traversal(node.left, paths, res);</span><br><span class="line">            paths.remove(paths.size() - <span class="number">1</span>);<span class="comment">//回溯</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (node.right != <span class="literal">null</span>) &#123;</span><br><span class="line">            traversal(node.right, paths, res);</span><br><span class="line">            paths.remove(paths.size() - <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h3 id="法二"><a href="#法二" class="headerlink" title="法二"></a>法二</h3><p>采用不断生长公共子节点的方法</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">List&lt;String&gt; res = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> List&lt;String&gt; <span class="title function_">binaryTreePaths</span><span class="params">(TreeNode root)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="literal">null</span>) <span class="keyword">return</span> res;</span><br><span class="line">        growthTraversal(root, <span class="string">&quot;&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">growthTraversal</span><span class="params">(TreeNode node, String s)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (node.left == <span class="literal">null</span> &amp;&amp; node.right == <span class="literal">null</span>) &#123;</span><br><span class="line">        res.add(<span class="keyword">new</span> <span class="title class_">StringBuilder</span>(s).append(node.val).toString());</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">String</span> <span class="variable">tmp</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuilder</span>(s).append(node.val).append(<span class="string">&quot;-&gt;&quot;</span>).toString();</span><br><span class="line">    <span class="keyword">if</span> (node.left != <span class="literal">null</span>) &#123;</span><br><span class="line">        growthTraversal(node.left, tmp);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (node.right != <span class="literal">null</span>) &#123;</span><br><span class="line">        growthTraversal(node.right, tmp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="小技巧"><a href="#小技巧" class="headerlink" title="小技巧"></a>小技巧</h3><blockquote>
-<p>使用StringBuilder进行字符串拼接通常比直接使用字符串相加的方式更高效。这是因为StringBuilder是可变的，允许在同一对象上进行多次追加操作，而不会每次都创建一个新的字符串对象。</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>代码随想录</category>
-      </categories>
-      <tags>
-        <tag>java</tag>
-        <tag>coding</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>博客搭建小技巧</title>
-    <url>/2024/01/16/tips/blogs/</url>
-    <content><![CDATA[<meta name="referrer" content="no-referrer"/>
-
-<h2 id="图片显示"><a href="#图片显示" class="headerlink" title="图片显示"></a>图片显示</h2><p>只需要输入命令：<code>&lt;meta name=&quot;referrer&quot; content=&quot;no-referrer&quot;/&gt;</code></p>
-<span id="more"></span>
-<h3 id="博客预览"><a href="#博客预览" class="headerlink" title="博客预览"></a>博客预览</h3><p>加入</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!--more--&gt;</span><br></pre></td></tr></table></figure>
-<p>实现预览分割</p>
-]]></content>
-      <categories>
-        <category>tips</category>
-      </categories>
-      <tags>
-        <tag>markdown</tag>
-        <tag>picture</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>springboot3 场景整合</title>
-    <url>/2024/01/15/springboot3/springboot3_%E5%9C%BA%E6%99%AF%E6%95%B4%E5%90%88/</url>
+    <url>/2024/01/16/springboot3/springboot3_%E5%9C%BA%E6%99%AF%E6%95%B4%E5%90%88/</url>
     <content><![CDATA[<meta name="referrer" content="no-referrer"/>
 
 <h2 id="springboot3笔记资料地址"><a href="#springboot3笔记资料地址" class="headerlink" title="springboot3笔记资料地址"></a>springboot3笔记资料地址</h2><p><a href="https://www.yuque.com/leifengyang/springboot3">springboot3-notes</a></p>
@@ -1596,88 +1520,6 @@ m a x ( l , r ) + 1</script><h2 id="111-二叉树的最小深度"><a href="#111-
       </categories>
       <tags>
         <tag>springboot3</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>clion小技巧</title>
-    <url>/2024/01/16/tips/clion/</url>
-    <content><![CDATA[<meta name="referrer" content="no-referrer"/>
-
-<h2 id="How-to-link-ws2-32-in-Clion"><a href="#How-to-link-ws2-32-in-Clion" class="headerlink" title="How to link ws2_32 in Clion"></a>How to link ws2_32 in Clion</h2><p>The following CMakeLists.txt compiled error-less. Only 1 line is really required: <code>link_libraries(ws2_32 wsock32)</code></p>
-<span id="more"></span>]]></content>
-      <categories>
-        <category>tips</category>
-      </categories>
-      <tags>
-        <tag>c++</tag>
-        <tag>clion</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>screen小技巧</title>
-    <url>/2024/01/16/tips/screen/</url>
-    <content><![CDATA[<p><meta name="referrer" content="no-referrer"/><br><span id="more"></span></p>
-<p><strong>新建一个screen会话</strong></p>
-<p>screen -S &lt;名字&gt;</p>
-<p><strong>退出当前screen会话</strong></p>
-<p>键盘点击ctrl+a , 然后按d</p>
-<p><strong>查看所有screen会话</strong></p>
-<p>screen -ls</p>
-<p><strong>进入（恢复）某一screen会话</strong></p>
-<p>screen -r &lt;会话序列号&gt;</p>
-<p><strong>关闭screen会话</strong></p>
-<p>screen -X -S &lt;序列号&gt; quit</p>
-]]></content>
-      <categories>
-        <category>tips</category>
-      </categories>
-      <tags>
-        <tag>screen</tag>
-        <tag>linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>git小技巧</title>
-    <url>/2024/01/16/tips/git/</url>
-    <content><![CDATA[<meta name="referrer" content="no-referrer"/>
-
-<h2 id="git设置代理"><a href="#git设置代理" class="headerlink" title="git设置代理"></a>git设置代理</h2><span id="more"></span>
-<h3 id="git中设置代理"><a href="#git中设置代理" class="headerlink" title="git中设置代理"></a>git中设置代理</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global http.proxy http://127.0.0.1:7890</span><br><span class="line">git config --global https.proxy http://127.0.0.1:7890</span><br></pre></td></tr></table></figure>
-<h3 id="git取消代理"><a href="#git取消代理" class="headerlink" title="git取消代理"></a>git取消代理</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global --<span class="built_in">unset</span> http.proxy</span><br><span class="line">git config --global --<span class="built_in">unset</span> https.proxy</span><br></pre></td></tr></table></figure>
-<h3 id="查询是否使用"><a href="#查询是否使用" class="headerlink" title="查询是否使用"></a>查询是否使用</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global http.proxy </span><br><span class="line">git config --global https.proxy </span><br></pre></td></tr></table></figure>
-<h3 id="idea中配置代理（可选？）"><a href="#idea中配置代理（可选？）" class="headerlink" title="idea中配置代理（可选？）"></a>idea中配置代理（可选？）</h3><p><img src="https://gitee.com/hollis7/pictures/raw/master/2023/11/27/42136_image-20231127202015854.png" alt="image-20231127202015854" style="zoom: 67%;" /></p>
-<p>7890是clash的端口</p>
-]]></content>
-      <categories>
-        <category>tips</category>
-      </categories>
-      <tags>
-        <tag>git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>pycharm小技巧</title>
-    <url>/2024/01/16/tips/pycharm/</url>
-    <content><![CDATA[<meta name="referrer" content="no-referrer"/>
-
-<span id="more"></span>
-<h2 id="开启show-comand-queue-gt-gt-gt"><a href="#开启show-comand-queue-gt-gt-gt" class="headerlink" title="开启show comand queue(&gt;&gt;&gt;)"></a>开启show comand queue(&gt;&gt;&gt;)</h2><p><img src="https://gitee.com/hollis7/pictures/raw/master/2023/10/23/43666_image-20231023163651677.png" alt="image-20231023163651677"></p>
-<h2 id="查看模型结构"><a href="#查看模型结构" class="headerlink" title="查看模型结构"></a>查看模型结构</h2><p>法一：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="built_in">print</span>(model)</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">      (11): RobertaLayer(</span><br><span class="line">        (attention): RobertaAttention(</span><br><span class="line">          (self): RobertaSelfAttention(</span><br><span class="line">            (query): Linear(in_features=768, out_features=768, bias=True)</span><br><span class="line">            (key): Linear(in_features=768, out_features=768, bias=True)</span><br><span class="line">            (value): Linear(in_features=768, out_features=768, bias=True)</span><br><span class="line">            (dropout): Dropout(p=0.1, inplace=False)</span><br><span class="line">          )</span><br><span class="line">          (output): RobertaSelfOutput(</span><br><span class="line">            (dense): Linear(in_features=768, out_features=768, bias=True)</span><br><span class="line">            (LayerNorm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)</span><br><span class="line">            (dropout): Dropout(p=0.1, inplace=False)</span><br><span class="line">          )</span><br><span class="line">        )</span><br><span class="line">        (intermediate): RobertaIntermediate(</span><br><span class="line">          (dense): Linear(in_features=768, out_features=3072, bias=True)</span><br><span class="line">          (intermediate_act_fn): GELUActivation()</span><br><span class="line">        )</span><br><span class="line">        (output): RobertaOutput(</span><br><span class="line">          (dense): Linear(in_features=3072, out_features=768, bias=True)</span><br><span class="line">          (LayerNorm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)</span><br><span class="line">          (dropout): Dropout(p=0.1, inplace=False)</span><br><span class="line">        )</span><br><span class="line">      )</span><br><span class="line">    )</span><br><span class="line">  )</span><br><span class="line">  (pooler): RobertaPooler(</span><br><span class="line">    (dense): Linear(in_features=768, out_features=768, bias=True)</span><br><span class="line">    (activation): Tanh()</span><br><span class="line">  )</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-<p>法二：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> name, parameters <span class="keyword">in</span> model.named_parameters():</span><br><span class="line">    <span class="built_in">print</span>(name, <span class="string">&#x27;:&#x27;</span>, parameters.size())</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">encoder.layer.11.attention.self.query.bias : torch.Size([768])</span><br><span class="line">encoder.layer.11.attention.self.key.weight : torch.Size([768, 768])</span><br><span class="line">encoder.layer.11.attention.self.key.bias : torch.Size([768])</span><br><span class="line">encoder.layer.11.attention.self.value.weight : torch.Size([768, 768])</span><br><span class="line">encoder.layer.11.attention.self.value.bias : torch.Size([768])</span><br><span class="line">encoder.layer.11.attention.output.dense.weight : torch.Size([768, 768])</span><br><span class="line">encoder.layer.11.attention.output.dense.bias : torch.Size([768])</span><br><span class="line">encoder.layer.11.attention.output.LayerNorm.weight : torch.Size([768])</span><br><span class="line">encoder.layer.11.attention.output.LayerNorm.bias : torch.Size([768])</span><br><span class="line">encoder.layer.11.intermediate.dense.weight : torch.Size([3072, 768])</span><br><span class="line">encoder.layer.11.intermediate.dense.bias : torch.Size([3072])</span><br><span class="line">encoder.layer.11.output.dense.weight : torch.Size([768, 3072])</span><br><span class="line">encoder.layer.11.output.dense.bias : torch.Size([768])</span><br><span class="line">encoder.layer.11.output.LayerNorm.weight : torch.Size([768])</span><br><span class="line">encoder.layer.11.output.LayerNorm.bias : torch.Size([768])</span><br><span class="line">pooler.dense.weight : torch.Size([768, 768])</span><br><span class="line">pooler.dense.bias : torch.Size([768])</span><br></pre></td></tr></table></figure>
-<h2 id="关闭占用端口的程序"><a href="#关闭占用端口的程序" class="headerlink" title="关闭占用端口的程序"></a>关闭占用端口的程序</h2><p>查看占用端口的程序</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">netstat -ano | findstr 8080</span><br></pre></td></tr></table></figure>
-<p>使用命令关闭</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">taskkill -PID 进程号 -F</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>tips</category>
-      </categories>
-      <tags>
-        <tag>pycharm</tag>
       </tags>
   </entry>
   <entry>
@@ -2065,6 +1907,164 @@ m a x ( l , r ) + 1</script>]]></content>
       <tags>
         <tag>java</tag>
         <tag>coding</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>代码随想录2二叉树</title>
+    <url>/2024/01/16/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%952/</url>
+    <content><![CDATA[<meta name="referrer" content="no-referrer"/>
+
+
+<h2 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h2><p><strong>本节包括：</strong></p>
+<ul>
+<li>二叉树（部分）</li>
+</ul>
+<span id="more"></span>
+<h2 id="二叉树的最大深度"><a href="#二叉树的最大深度" class="headerlink" title="二叉树的最大深度"></a>二叉树的最大深度</h2><p>推荐方法，递归法</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">maxDepth</span><span class="params">(TreeNode root)</span> &#123;</span><br><span class="line">       <span class="keyword">if</span> (root == <span class="literal">null</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">       <span class="keyword">return</span> Math.max(maxDepth(root.left), maxDepth(root.right)) + <span class="number">1</span>;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>左子树和右子树的最大深度 <em>l</em> 和 <em>r</em>，那么该二叉树的最大深度即为</p>
+<script type="math/tex; mode=display">
+m a x ( l , r ) + 1</script><h2 id="111-二叉树的最小深度"><a href="#111-二叉树的最小深度" class="headerlink" title="111.二叉树的最小深度"></a>111.二叉树的最小深度</h2><p>给定一个二叉树，找出其最小深度。</p>
+<p>最小深度是从根节点到最近叶子节点的最短路径上的节点数量。</p>
+<h3 id="误区"><a href="#误区" class="headerlink" title="误区"></a>误区</h3><p>不能简单粗暴的求<code>Math.min(minDepth(root.left),minDepth(root.right))+1</code></p>
+<p>因为当左右子树一空一不空的时候，该节点并不是叶子节点，应当选取不为空的分叉继续递归求二叉树的最小深度。</p>
+<h3 id="正确解法一：递归"><a href="#正确解法一：递归" class="headerlink" title="正确解法一：递归"></a>正确解法一：递归</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">minDepth</span><span class="params">(TreeNode root)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="literal">null</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="comment">//1、到达叶子节点</span></span><br><span class="line">        <span class="keyword">if</span> (root.left == <span class="literal">null</span> &amp;&amp; root.right == <span class="literal">null</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">l</span> <span class="operator">=</span> minDepth(root.left);</span><br><span class="line">        <span class="type">int</span> <span class="variable">r</span> <span class="operator">=</span> minDepth(root.right);</span><br><span class="line">        <span class="comment">//2、左右子树有一个为空，选择不为空的的分支，l和r其中国一个必为0</span></span><br><span class="line">        <span class="keyword">if</span> (root.left == <span class="literal">null</span> || root.right == <span class="literal">null</span>)</span><br><span class="line">            <span class="keyword">return</span> l + r + <span class="number">1</span>;</span><br><span class="line">        <span class="comment">//3、左右子树均不为空，子树最短路径+1</span></span><br><span class="line">        <span class="keyword">return</span> Math.min(l, r) + <span class="number">1</span>;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>情况1和二可以合并</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">minDepth</span><span class="params">(TreeNode root)</span> &#123;</span><br><span class="line">      <span class="keyword">if</span>(root == <span class="literal">null</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">       <span class="type">int</span> <span class="variable">m1</span> <span class="operator">=</span> minDepth(root.left);</span><br><span class="line">       <span class="type">int</span> <span class="variable">m2</span> <span class="operator">=</span> minDepth(root.right);</span><br><span class="line">       <span class="comment">//1.如果左孩子和右孩子有为空的情况，直接返回m1+m2+1</span></span><br><span class="line">       <span class="comment">//2.如果都不为空，返回较小深度+1</span></span><br><span class="line">       <span class="keyword">return</span> root.left == <span class="literal">null</span> || root.right == <span class="literal">null</span> ? m1 + m2 + <span class="number">1</span> : Math.min(m1,m2) + <span class="number">1</span>;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="正确解法二：层序遍历"><a href="#正确解法二：层序遍历" class="headerlink" title="正确解法二：层序遍历"></a>正确解法二：层序遍历</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">minDepth</span><span class="params">(TreeNode root)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        Queue&lt;TreeNode&gt; queue = <span class="keyword">new</span> <span class="title class_">LinkedList</span>&lt;&gt;();</span><br><span class="line">        queue.offer(root);</span><br><span class="line">        <span class="type">int</span> <span class="variable">depth</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (!queue.isEmpty())&#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">size</span> <span class="operator">=</span> queue.size();</span><br><span class="line">            depth++;</span><br><span class="line">            <span class="type">TreeNode</span> <span class="variable">cur</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; size; i++) &#123;</span><br><span class="line">                cur = queue.poll();</span><br><span class="line">                <span class="comment">//如果当前节点的左右孩子都为空，直接返回最小深度</span></span><br><span class="line">                <span class="keyword">if</span> (cur.left == <span class="literal">null</span> &amp;&amp; cur.right == <span class="literal">null</span>)&#123;</span><br><span class="line">                    <span class="keyword">return</span> depth;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (cur.left != <span class="literal">null</span>) queue.offer(cur.left);</span><br><span class="line">                <span class="keyword">if</span> (cur.right != <span class="literal">null</span>) queue.offer(cur.right);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> depth;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="226-翻转二叉树"><a href="#226-翻转二叉树" class="headerlink" title="226.翻转二叉树"></a>226.翻转二叉树</h2><p>给你一棵二叉树的根节点 <code>root</code> ，翻转这棵二叉树，并返回其根节点。</p>
+<h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><p>前序遍历，左右子树翻转</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">InvertBinTree</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> TreeNode <span class="title function_">invertTree</span><span class="params">(TreeNode root)</span> &#123;</span><br><span class="line">        preOrderInvertTree(root);</span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">preOrderInvertTree</span><span class="params">(TreeNode node)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (node == <span class="literal">null</span>) <span class="keyword">return</span>;</span><br><span class="line">        swapChild(node);</span><br><span class="line">        preOrderInvertTree(node.left);</span><br><span class="line">        preOrderInvertTree(node.right);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">swapChild</span><span class="params">(TreeNode node)</span> &#123;</span><br><span class="line">        <span class="type">TreeNode</span> <span class="variable">tmpNode</span> <span class="operator">=</span> node.right;</span><br><span class="line">        node.right = node.left;</span><br><span class="line">        node.left = tmpNode;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="222-完全二叉树的节点个数"><a href="#222-完全二叉树的节点个数" class="headerlink" title="222.完全二叉树的节点个数"></a>222.完全二叉树的节点个数</h2><p>给你一棵 <strong>完全二叉树</strong> 的根节点 <code>root</code> ，求出该树的节点个数。</p>
+<blockquote>
+<p>先求它的左子树的节点数量，再求右子树的节点数量，最后取总和再加一 （加1是因为算上当前中间节点）就是目前节点为根节点的节点数量。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">countNodes</span><span class="params">(TreeNode root)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="literal">null</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> countNodes(root.left) + countNodes(root.right) + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="110-平衡二叉树"><a href="#110-平衡二叉树" class="headerlink" title="110.平衡二叉树"></a>110.平衡二叉树</h2><p>给定一个二叉树，判断它是否是高度平衡的二叉树。</p>
+<p>思路</p>
+<p>比较每一个节点的左右子树的高度差是否大于1</p>
+<h3 id="错误解法"><a href="#错误解法" class="headerlink" title="错误解法"></a>错误解法</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">isBalanced</span><span class="params">(TreeNode root)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> maxDepthBalance(root) != -<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">maxDepthBalance</span><span class="params">(TreeNode node)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (node == <span class="literal">null</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> Math.abs(maxDepthBalance(node.left) - maxDepthBalance(node.right)) &gt; <span class="number">1</span> ? -<span class="number">1</span> : Math.max(maxDepthBalance(node.left), maxDepthBalance(node.right)) + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>没有考虑到<code>maxDepthBalance(node.left) - maxDepthBalance(node.right)</code>其中或许已经存在-1这种结果而不是真实的高度了</p>
+<h3 id="正确解法"><a href="#正确解法" class="headerlink" title="正确解法"></a>正确解法</h3><p>如果当前传入节点为根节点的二叉树已经不是二叉平衡树了，还返回高度的话就没有意义了。</p>
+<p>所以如果已经不是二叉平衡树了，可以返回-1 来标记已经不符合平衡树的规则了。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">isBalanced</span><span class="params">(TreeNode root)</span> &#123;</span><br><span class="line">       <span class="keyword">return</span> maxDepthBalance(root) != -<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 所以如果已经不是二叉平衡树了，可以返回-1 来标记已经不符合平衡树的规则了。</span></span><br><span class="line"><span class="comment">    *</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> node</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">maxDepthBalance</span><span class="params">(TreeNode node)</span> &#123;</span><br><span class="line">       <span class="keyword">if</span> (node == <span class="literal">null</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">       <span class="type">int</span> <span class="variable">leftDepth</span> <span class="operator">=</span> maxDepthBalance(node.left);</span><br><span class="line">       <span class="keyword">if</span> (leftDepth == -<span class="number">1</span>) <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">       <span class="type">int</span> <span class="variable">rightDepth</span> <span class="operator">=</span> maxDepthBalance(node.right);</span><br><span class="line">       <span class="keyword">if</span> (rightDepth == -<span class="number">1</span>)</span><br><span class="line">           <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">       <span class="keyword">if</span> (Math.abs(leftDepth - rightDepth) &gt; <span class="number">1</span>) <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">       <span class="keyword">return</span> Math.max(leftDepth, rightDepth) + <span class="number">1</span>;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="257-二叉树的所有路径"><a href="#257-二叉树的所有路径" class="headerlink" title="257.二叉树的所有路径"></a>257.二叉树的所有路径</h2><p>给定一个二叉树，返回所有从根节点到叶子节点的路径。</p>
+<p>说明: 叶子节点是指没有子节点的节点。</p>
+<h3 id="法一"><a href="#法一" class="headerlink" title="法一"></a>法一</h3><p>采用采用递归和回溯的方法求取所有路径</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">List&lt;String&gt; res = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line"><span class="keyword">public</span> List&lt;String&gt; <span class="title function_">binaryTreePaths</span><span class="params">(TreeNode root)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (root == <span class="literal">null</span>) <span class="keyword">return</span> res;</span><br><span class="line">    <span class="comment">//traversal方法</span></span><br><span class="line">    List&lt;Integer&gt; paths = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();<span class="comment">//已经遍历的节点</span></span><br><span class="line">    traversal(root, paths, res);</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"> <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">traversal</span><span class="params">(TreeNode node, List&lt;Integer&gt; paths, List&lt;String&gt; res)</span> &#123;</span><br><span class="line">        paths.add(node.val);<span class="comment">//加入当前节点到路径</span></span><br><span class="line">        <span class="keyword">if</span> (node.left == <span class="literal">null</span> &amp;&amp; node.right == <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="type">StringBuilder</span> <span class="variable">sb</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuilder</span>();</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; paths.size() - <span class="number">1</span>; i++) &#123;<span class="comment">// 将paths里记录的路径转为string格式</span></span><br><span class="line">                sb.append(paths.get(i)).append(<span class="string">&quot;-&gt;&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            sb.append(paths.get(paths.size() - <span class="number">1</span>));<span class="comment">//加上最后一个节点（单独处理）</span></span><br><span class="line">            res.add(sb.toString());<span class="comment">//加入一个叶子节点的路径</span></span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//遍历左右节点路径，并回溯</span></span><br><span class="line">        <span class="keyword">if</span> (node.left != <span class="literal">null</span>) &#123;</span><br><span class="line">            traversal(node.left, paths, res);</span><br><span class="line">            paths.remove(paths.size() - <span class="number">1</span>);<span class="comment">//回溯</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (node.right != <span class="literal">null</span>) &#123;</span><br><span class="line">            traversal(node.right, paths, res);</span><br><span class="line">            paths.remove(paths.size() - <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="法二"><a href="#法二" class="headerlink" title="法二"></a>法二</h3><p>采用不断生长公共子节点的方法</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">List&lt;String&gt; res = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> List&lt;String&gt; <span class="title function_">binaryTreePaths</span><span class="params">(TreeNode root)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="literal">null</span>) <span class="keyword">return</span> res;</span><br><span class="line">        growthTraversal(root, <span class="string">&quot;&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">growthTraversal</span><span class="params">(TreeNode node, String s)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (node.left == <span class="literal">null</span> &amp;&amp; node.right == <span class="literal">null</span>) &#123;</span><br><span class="line">        res.add(<span class="keyword">new</span> <span class="title class_">StringBuilder</span>(s).append(node.val).toString());</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">String</span> <span class="variable">tmp</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuilder</span>(s).append(node.val).append(<span class="string">&quot;-&gt;&quot;</span>).toString();</span><br><span class="line">    <span class="keyword">if</span> (node.left != <span class="literal">null</span>) &#123;</span><br><span class="line">        growthTraversal(node.left, tmp);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (node.right != <span class="literal">null</span>) &#123;</span><br><span class="line">        growthTraversal(node.right, tmp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="小技巧"><a href="#小技巧" class="headerlink" title="小技巧"></a>小技巧</h3><blockquote>
+<p>使用StringBuilder进行字符串拼接通常比直接使用字符串相加的方式更高效。这是因为StringBuilder是可变的，允许在同一对象上进行多次追加操作，而不会每次都创建一个新的字符串对象。</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>代码随想录</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>coding</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>博客搭建小技巧</title>
+    <url>/2024/01/16/tips/blogs/</url>
+    <content><![CDATA[<meta name="referrer" content="no-referrer"/>
+
+<h2 id="图片显示"><a href="#图片显示" class="headerlink" title="图片显示"></a>图片显示</h2><p>只需要输入命令：<code>&lt;meta name=&quot;referrer&quot; content=&quot;no-referrer&quot;/&gt;</code></p>
+<span id="more"></span>
+<h3 id="博客预览"><a href="#博客预览" class="headerlink" title="博客预览"></a>博客预览</h3><p>加入</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!--more--&gt;</span><br></pre></td></tr></table></figure>
+<p>实现预览分割</p>
+]]></content>
+      <categories>
+        <category>tips</category>
+      </categories>
+      <tags>
+        <tag>markdown</tag>
+        <tag>picture</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>git小技巧</title>
+    <url>/2024/01/16/tips/git/</url>
+    <content><![CDATA[<meta name="referrer" content="no-referrer"/>
+
+<h2 id="git设置代理"><a href="#git设置代理" class="headerlink" title="git设置代理"></a>git设置代理</h2><span id="more"></span>
+<h3 id="git中设置代理"><a href="#git中设置代理" class="headerlink" title="git中设置代理"></a>git中设置代理</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global http.proxy http://127.0.0.1:7890</span><br><span class="line">git config --global https.proxy http://127.0.0.1:7890</span><br></pre></td></tr></table></figure>
+<h3 id="git取消代理"><a href="#git取消代理" class="headerlink" title="git取消代理"></a>git取消代理</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global --<span class="built_in">unset</span> http.proxy</span><br><span class="line">git config --global --<span class="built_in">unset</span> https.proxy</span><br></pre></td></tr></table></figure>
+<h3 id="查询是否使用"><a href="#查询是否使用" class="headerlink" title="查询是否使用"></a>查询是否使用</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global http.proxy </span><br><span class="line">git config --global https.proxy </span><br></pre></td></tr></table></figure>
+<h3 id="idea中配置代理（可选？）"><a href="#idea中配置代理（可选？）" class="headerlink" title="idea中配置代理（可选？）"></a>idea中配置代理（可选？）</h3><p><img src="https://gitee.com/hollis7/pictures/raw/master/2023/11/27/42136_image-20231127202015854.png" alt="image-20231127202015854" style="zoom: 67%;" /></p>
+<p>7890是clash的端口</p>
+]]></content>
+      <categories>
+        <category>tips</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>screen小技巧</title>
+    <url>/2024/01/16/tips/screen/</url>
+    <content><![CDATA[<p><meta name="referrer" content="no-referrer"/><br><span id="more"></span></p>
+<p><strong>新建一个screen会话</strong></p>
+<p>screen -S &lt;名字&gt;</p>
+<p><strong>退出当前screen会话</strong></p>
+<p>键盘点击ctrl+a , 然后按d</p>
+<p><strong>查看所有screen会话</strong></p>
+<p>screen -ls</p>
+<p><strong>进入（恢复）某一screen会话</strong></p>
+<p>screen -r &lt;会话序列号&gt;</p>
+<p><strong>关闭screen会话</strong></p>
+<p>screen -X -S &lt;序列号&gt; quit</p>
+]]></content>
+      <categories>
+        <category>tips</category>
+      </categories>
+      <tags>
+        <tag>screen</tag>
+        <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>clion小技巧</title>
+    <url>/2024/01/16/tips/clion/</url>
+    <content><![CDATA[<meta name="referrer" content="no-referrer"/>
+
+<h2 id="How-to-link-ws2-32-in-Clion"><a href="#How-to-link-ws2-32-in-Clion" class="headerlink" title="How to link ws2_32 in Clion"></a>How to link ws2_32 in Clion</h2><p>The following CMakeLists.txt compiled error-less. Only 1 line is really required: <code>link_libraries(ws2_32 wsock32)</code></p>
+<span id="more"></span>]]></content>
+      <categories>
+        <category>tips</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+        <tag>clion</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>pycharm小技巧</title>
+    <url>/2024/01/16/tips/pycharm/</url>
+    <content><![CDATA[<meta name="referrer" content="no-referrer"/>
+
+<span id="more"></span>
+<h2 id="开启show-comand-queue-gt-gt-gt"><a href="#开启show-comand-queue-gt-gt-gt" class="headerlink" title="开启show comand queue(&gt;&gt;&gt;)"></a>开启show comand queue(&gt;&gt;&gt;)</h2><p><img src="https://gitee.com/hollis7/pictures/raw/master/2023/10/23/43666_image-20231023163651677.png" alt="image-20231023163651677"></p>
+<h2 id="查看模型结构"><a href="#查看模型结构" class="headerlink" title="查看模型结构"></a>查看模型结构</h2><p>法一：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="built_in">print</span>(model)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">      (11): RobertaLayer(</span><br><span class="line">        (attention): RobertaAttention(</span><br><span class="line">          (self): RobertaSelfAttention(</span><br><span class="line">            (query): Linear(in_features=768, out_features=768, bias=True)</span><br><span class="line">            (key): Linear(in_features=768, out_features=768, bias=True)</span><br><span class="line">            (value): Linear(in_features=768, out_features=768, bias=True)</span><br><span class="line">            (dropout): Dropout(p=0.1, inplace=False)</span><br><span class="line">          )</span><br><span class="line">          (output): RobertaSelfOutput(</span><br><span class="line">            (dense): Linear(in_features=768, out_features=768, bias=True)</span><br><span class="line">            (LayerNorm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)</span><br><span class="line">            (dropout): Dropout(p=0.1, inplace=False)</span><br><span class="line">          )</span><br><span class="line">        )</span><br><span class="line">        (intermediate): RobertaIntermediate(</span><br><span class="line">          (dense): Linear(in_features=768, out_features=3072, bias=True)</span><br><span class="line">          (intermediate_act_fn): GELUActivation()</span><br><span class="line">        )</span><br><span class="line">        (output): RobertaOutput(</span><br><span class="line">          (dense): Linear(in_features=3072, out_features=768, bias=True)</span><br><span class="line">          (LayerNorm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)</span><br><span class="line">          (dropout): Dropout(p=0.1, inplace=False)</span><br><span class="line">        )</span><br><span class="line">      )</span><br><span class="line">    )</span><br><span class="line">  )</span><br><span class="line">  (pooler): RobertaPooler(</span><br><span class="line">    (dense): Linear(in_features=768, out_features=768, bias=True)</span><br><span class="line">    (activation): Tanh()</span><br><span class="line">  )</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>法二：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> name, parameters <span class="keyword">in</span> model.named_parameters():</span><br><span class="line">    <span class="built_in">print</span>(name, <span class="string">&#x27;:&#x27;</span>, parameters.size())</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">encoder.layer.11.attention.self.query.bias : torch.Size([768])</span><br><span class="line">encoder.layer.11.attention.self.key.weight : torch.Size([768, 768])</span><br><span class="line">encoder.layer.11.attention.self.key.bias : torch.Size([768])</span><br><span class="line">encoder.layer.11.attention.self.value.weight : torch.Size([768, 768])</span><br><span class="line">encoder.layer.11.attention.self.value.bias : torch.Size([768])</span><br><span class="line">encoder.layer.11.attention.output.dense.weight : torch.Size([768, 768])</span><br><span class="line">encoder.layer.11.attention.output.dense.bias : torch.Size([768])</span><br><span class="line">encoder.layer.11.attention.output.LayerNorm.weight : torch.Size([768])</span><br><span class="line">encoder.layer.11.attention.output.LayerNorm.bias : torch.Size([768])</span><br><span class="line">encoder.layer.11.intermediate.dense.weight : torch.Size([3072, 768])</span><br><span class="line">encoder.layer.11.intermediate.dense.bias : torch.Size([3072])</span><br><span class="line">encoder.layer.11.output.dense.weight : torch.Size([768, 3072])</span><br><span class="line">encoder.layer.11.output.dense.bias : torch.Size([768])</span><br><span class="line">encoder.layer.11.output.LayerNorm.weight : torch.Size([768])</span><br><span class="line">encoder.layer.11.output.LayerNorm.bias : torch.Size([768])</span><br><span class="line">pooler.dense.weight : torch.Size([768, 768])</span><br><span class="line">pooler.dense.bias : torch.Size([768])</span><br></pre></td></tr></table></figure>
+<h2 id="关闭占用端口的程序"><a href="#关闭占用端口的程序" class="headerlink" title="关闭占用端口的程序"></a>关闭占用端口的程序</h2><p>查看占用端口的程序</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">netstat -ano | findstr 8080</span><br></pre></td></tr></table></figure>
+<p>使用命令关闭</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">taskkill -PID 进程号 -F</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>tips</category>
+      </categories>
+      <tags>
+        <tag>pycharm</tag>
       </tags>
   </entry>
 </search>
