@@ -7,4 +7,4 @@ tags:
   - computer
   - java learner
 ---
-大家好，这是hollis&的个人博客，用于记录学习的过程与心得。
+大家好，这是hollis7的个人博客，用于记录学习的过程与心得。

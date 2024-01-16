@@ -11,6 +11,8 @@ tags:
 
 [springboot3-notes](https://www.yuque.com/leifengyang/springboot3)
 
+<!--more-->
+
 ## xmind文件打开网址
 
 [幕布](https://mubu.com/app/edit/home/1IVQRB_zQ2b#m)

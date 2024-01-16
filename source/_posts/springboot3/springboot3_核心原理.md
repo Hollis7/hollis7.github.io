@@ -11,6 +11,8 @@ tags:
 
 [springboot3-notes](https://www.yuque.com/leifengyang/springboot3)
 
+<!--more-->
+
 ## 事件和监听器
 
 1. 自定义`SpringApplicationRunListener`来**监听事件**；

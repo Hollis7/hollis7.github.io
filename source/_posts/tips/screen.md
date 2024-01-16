@@ -1,13 +1,15 @@
 ---
 title: screen小技巧
 categories:
-  - linux
+  - tips
 tags:
   - screen
   - linux
 mathjax: true
 ---
 <meta name="referrer" content="no-referrer"/>
+<!--more-->
+
 **新建一个screen会话**
 
 screen -S <名字>

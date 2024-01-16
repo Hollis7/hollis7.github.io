@@ -1,7 +1,7 @@
 ---
 title: git小技巧
 categories:
-  - git
+  - tips
 tags:
   - git
 mathjax: true
@@ -9,6 +9,8 @@ mathjax: true
 <meta name="referrer" content="no-referrer"/>
 
 ## git设置代理
+
+<!--more-->
 
 ### git中设置代理
 

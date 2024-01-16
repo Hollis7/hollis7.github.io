@@ -1,10 +1,10 @@
 ---
 title: clion小技巧
 categories:
-  - clion
+  - tips
 tags:
   - c++
-  - continuing
+  - clion
 mathjax: true
 ---
 <meta name="referrer" content="no-referrer"/>
@@ -12,3 +12,5 @@ mathjax: true
 ## How to link ws2_32 in Clion
 
 The following CMakeLists.txt compiled error-less. Only 1 line is really required: `link_libraries(ws2_32 wsock32)`
+
+<!--more-->

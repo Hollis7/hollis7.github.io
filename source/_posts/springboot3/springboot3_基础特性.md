@@ -12,6 +12,8 @@ tags:
 1. 类路径添加banner.txt或设置spring.banner.location就可以定制 banner
 2. 推荐网站：[Spring Boot banner 在线生成工具，制作下载英文 banner.txt，修改替换 banner.txt 文字实现自定义，个性化启动 banner-bootschool.net](https://www.bootschool.net/ascii)
 
+<!--more-->
+
 ## 环境隔离
 
 1、标识环境

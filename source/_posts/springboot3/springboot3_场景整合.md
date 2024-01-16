@@ -11,6 +11,8 @@ tags:
 
 [springboot3-notes](https://www.yuque.com/leifengyang/springboot3)
 
+<!--more-->
+
 # NoSQL
 
 ## 准备工作

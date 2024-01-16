@@ -16,6 +16,8 @@ mathjax: true
 git config --global user.name "hollis7"
 ~~~
 
+<!--more-->
+
 配置邮箱
 
 ~~~bash

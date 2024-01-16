@@ -11,6 +11,8 @@ tags:
 
 [springboot3-notes-尚硅谷](https://www.yuque.com/leifengyang/springboot3)
 
+<!--more-->
+
 ## mysql
 
 ### 启动

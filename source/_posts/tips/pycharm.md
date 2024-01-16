@@ -1,12 +1,14 @@
 ---
 title: pycharm小技巧
 categories:
-  - pycharm
+  - tips
 tags:
-  - python
+  - pycharm
 mathjax: true
 ---
 <meta name="referrer" content="no-referrer"/>
+
+<!--more-->
 
 ## 开启show comand queue(>>>)
 

@@ -12,6 +12,8 @@ tags:
 
 [MyBatis](https://mybatis.net.cn/)
 
+<!--more-->
+
 ## MyBatis快速入门
 
 * 数据库表（tb_user）及数据准备
