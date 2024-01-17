@@ -2067,4 +2067,25 @@ m a x ( l , r ) + 1</script><h2 id="111-二叉树的最小深度"><a href="#111-
         <tag>pycharm</tag>
       </tags>
   </entry>
+  <entry>
+    <title>word小技巧</title>
+    <url>/2024/01/17/tips/word/</url>
+    <content><![CDATA[<meta name="referrer" content="no-referrer"/>
+
+<p>关于word写作时的一些小技巧记录。</p>
+<span id="more"></span>
+<h2 id="word交叉引用多个参考文献"><a href="#word交叉引用多个参考文献" class="headerlink" title="word交叉引用多个参考文献"></a>word交叉引用多个参考文献</h2><p>1、在交叉应用多个文件后：<code>[4][5][6][7]</code></p>
+<p>2、选中参考文献，右击选择切换域代码</p>
+<p><img src="https://gitee.com/hollis7/pictures/raw/master/2024/01/17/85877_image-20240117163758364.png" alt="image-20240117163758364"></p>
+<p>3、在第一篇文献后添加 <code>\#“[0”</code>，最后一篇添加 <code>\#“0]”</code>，位于中间的文献添加 <code>#“”</code>，如上图</p>
+<p>4、更新域</p>
+<p>5、手动添加<code>-</code></p>
+]]></content>
+      <categories>
+        <category>word</category>
+      </categories>
+      <tags>
+        <tag>文书</tag>
+      </tags>
+  </entry>
 </search>
