@@ -2094,8 +2094,8 @@ m a x ( l , r ) + 1</script><h2 id="111-二叉树的最小深度"><a href="#111-
     <content><![CDATA[<meta name="referrer" content="no-referrer"/>
 
 <h2 id="内容包括"><a href="#内容包括" class="headerlink" title="内容包括"></a>内容包括</h2><ul>
-<li>启动redis</li>
-<li>进入redis-cli</li>
+<li>docker启动redis</li>
+<li>docker进入redis-cli</li>
 <li>认识NoSql</li>
 <li>redis常用命令</li>
 </ul>
