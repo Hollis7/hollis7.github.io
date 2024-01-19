@@ -33,8 +33,3 @@ git config --global http.proxy
 git config --global https.proxy 
 ~~~
 
-### idea中配置代理（可选？）
-
-<img src="https://gitee.com/hollis7/pictures/raw/master/2023/11/27/42136_image-20231127202015854.png" alt="image-20231127202015854" style="zoom: 67%;" />
-
-7890是clash的端口
