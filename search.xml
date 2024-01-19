@@ -1994,8 +1994,6 @@ m a x ( l , r ) + 1</script><h2 id="111-二叉树的最小深度"><a href="#111-
 <h3 id="git中设置代理"><a href="#git中设置代理" class="headerlink" title="git中设置代理"></a>git中设置代理</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global http.proxy http://127.0.0.1:7890</span><br><span class="line">git config --global https.proxy http://127.0.0.1:7890</span><br></pre></td></tr></table></figure>
 <h3 id="git取消代理"><a href="#git取消代理" class="headerlink" title="git取消代理"></a>git取消代理</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global --<span class="built_in">unset</span> http.proxy</span><br><span class="line">git config --global --<span class="built_in">unset</span> https.proxy</span><br></pre></td></tr></table></figure>
 <h3 id="查询是否使用"><a href="#查询是否使用" class="headerlink" title="查询是否使用"></a>查询是否使用</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global http.proxy </span><br><span class="line">git config --global https.proxy </span><br></pre></td></tr></table></figure>
-<h3 id="idea中配置代理（可选？）"><a href="#idea中配置代理（可选？）" class="headerlink" title="idea中配置代理（可选？）"></a>idea中配置代理（可选？）</h3><p><img src="https://gitee.com/hollis7/pictures/raw/master/2023/11/27/42136_image-20231127202015854.png" alt="image-20231127202015854" style="zoom: 67%;" /></p>
-<p>7890是clash的端口</p>
 ]]></content>
       <categories>
         <category>tips</category>
@@ -2377,6 +2375,8 @@ m a x ( l , r ) + 1</script><h2 id="111-二叉树的最小深度"><a href="#111-
 <p>idea一些小技巧和设置</p>
 <span id="more"></span>
 <h2 id="保存自动格式话"><a href="#保存自动格式话" class="headerlink" title="保存自动格式话"></a>保存自动格式话</h2><p><img src="https://gitee.com/hollis7/pictures/raw/master/2024/01/18/76210_image-20240118190445354.png" alt="image-20240118190445354" style="zoom: 50%;" /></p>
+<h2 id="idea中配置代理"><a href="#idea中配置代理" class="headerlink" title="idea中配置代理"></a>idea中配置代理</h2><p><img src="https://gitee.com/hollis7/pictures/raw/master/2023/11/27/42136_image-20231127202015854.png" alt="image-20231127202015854" style="zoom: 67%;" /></p>
+<p>7890是clash的端口</p>
 ]]></content>
       <categories>
         <category>tips</category>
