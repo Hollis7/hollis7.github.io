@@ -29,9 +29,9 @@ custom_file_path:
   #postBodyEnd: source/_data/post-body-end.swig
   #footer: source/_data/footer.swig
   #bodyEnd: source/_data/body-end.swig
-  #variable: source/_data/variables.styl
+  # variable: source/_data/variables.styl
   #mixin: source/_data/mixins.styl
-  #style: source/_data/styles.styl
+  # style: source/_data/styles.styl
 
 
 # ---------------------------------------------------------------
@@ -251,9 +251,17 @@ post_meta:
 # Post wordcount display settings
 # Dependencies: https://github.com/theme-next/hexo-symbols-count-time
 symbols_count_time:
-  separated_meta: true
-  item_text_post: true
-  item_text_total: false
+  # 每篇文章显示
+  symbols: true
+  time: true
+  # 文章底部显示
+  total_symbols: true  
+  total_time: true
+  # 是否统计代码块
+  exclude_codeblock: false
+  awl: 2
+  wpm: 275
+  suffix: "mins."
 
 # Use icon instead of the symbol # to indicate the tag at the bottom of the post
 tag_icon: false
@@ -369,7 +377,7 @@ back2top:
   # Back to top in sidebar.
   sidebar: false
   # Scroll percent label in b2t button.
-  scrollpercent: false
+  scrollpercent: true
 
 # Reading progress bar
 reading_progress:
@@ -840,6 +848,30 @@ motion:
     coll_header: slideLeftIn
     # Only for Pisces | Gemini.
     sidebar: slideUpIn
+
+
+# 文章分享功能
+
+needmoreshare2:
+  enable: true
+  postbottom:
+    enable: true
+    options:
+      iconStyle: default
+      boxForm: horizontal
+      #位置
+      position: bottomCenter
+      #可分享网站
+      networks: Weibo,Wechat,Douban,QQZone,Twitter,Facebook
+  float:
+    enable: true
+    options:
+      iconStyle: default
+      boxForm: vertical
+      #位置
+      position: topRight
+       #可分享网站
+      networks: Weibo,Wechat,Douban,QQZone,Twitter,Facebook
 
 # Progress bar in the top during page loading.
 # Dependencies: https://github.com/theme-next/theme-next-pace
