@@ -452,5 +452,3 @@ public class MvcConfig implements WebMvcConfigurer {
 
 }
 ~~~
-
-p35
