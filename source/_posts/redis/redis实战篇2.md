@@ -160,8 +160,7 @@ public class ShopTypeServiceImpl extends ServiceImpl<ShopTypeMapper, ShopType> i
 
   * 先操作数据库，再删除缓存
 
-
-![1653323595206](C:\data\mysoftware\Typora\typoraPicture\1653323595206.png)
+<img src="https://gitee.com/hollis7/pictures/raw/master/2024/02/29/26130_1653323595206.png" alt="1653323595206" style="zoom:50%;" />
 
 更新数据库业务耗时更长，查询和写入redis缓存可能在更新数据库前完成
 
@@ -218,7 +217,7 @@ stringRedisTemplate.opsForValue().set(key, JSONUtil.toJsonStr(shop), CACHE_SHOP_
 
 ### 代码实现-缓存空对象
 
-![1653327124561](https://gitee.com/hollis7/pictures/raw/master/2024/02/28/77659_1653327124561.png)
+<img src="https://gitee.com/hollis7/pictures/raw/master/2024/02/28/77659_1653327124561.png" alt="1653327124561" style="zoom: 45%;" />
 
 ~~~java
  @Override
