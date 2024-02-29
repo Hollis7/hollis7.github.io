@@ -29,7 +29,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://gitee.com/hollis7/pictures/raw/master/2024/02/27/68828_1653322097736.png">
 <meta property="og:image" content="https://gitee.com/hollis7/pictures/raw/master/2024/02/28/80353_1653322506393.png">
-<meta property="og:image" content="c:\data\mysoftware\Typora\typoraPicture\1653323595206.png">
+<meta property="og:image" content="https://gitee.com/hollis7/pictures/raw/master/2024/02/29/26130_1653323595206.png">
 <meta property="og:image" content="https://gitee.com/hollis7/pictures/raw/master/2024/02/28/94607_1653326156516.png">
 <meta property="og:image" content="https://gitee.com/hollis7/pictures/raw/master/2024/02/28/77659_1653327124561.png">
 <meta property="og:image" content="https://gitee.com/hollis7/pictures/raw/master/2024/02/28/96191_1653328288627.png">
@@ -37,7 +37,7 @@
 <meta property="og:image" content="https://gitee.com/hollis7/pictures/raw/master/2024/02/28/88931_1653357860001.png">
 <meta property="og:image" content="https://gitee.com/hollis7/pictures/raw/master/2024/02/29/21339_1653360308731.png">
 <meta property="article:published_time" content="2024-02-29T09:28:31.755Z">
-<meta property="article:modified_time" content="2024-02-29T09:28:09.482Z">
+<meta property="article:modified_time" content="2024-02-29T09:36:08.451Z">
 <meta property="article:author" content="hollis7">
 <meta property="article:tag" content="java">
 <meta property="article:tag" content="redis">
@@ -226,7 +226,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2024-02-29 17:28:31 / 修改时间：17:28:09" itemprop="dateCreated datePublished" datetime="2024-02-29T17:28:31+08:00">2024-02-29</time>
+              <time title="创建时间：2024-02-29 17:28:31 / 修改时间：17:36:08" itemprop="dateCreated datePublished" datetime="2024-02-29T17:28:31+08:00">2024-02-29</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -327,7 +327,7 @@
 </ul>
 </li>
 </ul>
-<p><img src="C:\data\mysoftware\Typora\typoraPicture\1653323595206.png" alt="1653323595206"></p>
+<p><img src="https://gitee.com/hollis7/pictures/raw/master/2024/02/29/26130_1653323595206.png" alt="1653323595206" style="zoom:50%;" /></p>
 <p>更新数据库业务耗时更长，查询和写入redis缓存可能在更新数据库前完成</p>
 <p>写入缓存时间短，再次期间更新数据库和删除缓存的可能性小</p>
 <h3 id="代码修改"><a href="#代码修改" class="headerlink" title="代码修改"></a>代码修改</h3><p><strong>设置超时</strong></p>
@@ -359,7 +359,7 @@
 </li>
 </ul>
 <p><img src="https://gitee.com/hollis7/pictures/raw/master/2024/02/28/94607_1653326156516.png" alt="1653326156516" style="zoom: 67%;" /></p>
-<h3 id="代码实现-缓存空对象"><a href="#代码实现-缓存空对象" class="headerlink" title="代码实现-缓存空对象"></a>代码实现-缓存空对象</h3><p><img src="https://gitee.com/hollis7/pictures/raw/master/2024/02/28/77659_1653327124561.png" alt="1653327124561"></p>
+<h3 id="代码实现-缓存空对象"><a href="#代码实现-缓存空对象" class="headerlink" title="代码实现-缓存空对象"></a>代码实现-缓存空对象</h3><p><img src="https://gitee.com/hollis7/pictures/raw/master/2024/02/28/77659_1653327124561.png" alt="1653327124561" style="zoom: 45%;" /></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line">   <span class="keyword">public</span> Result <span class="title function_">queryById</span><span class="params">(Long id)</span> &#123;</span><br><span class="line">       <span class="comment">//CACHE_SHOP_KEY---&gt;&quot;cache:shop:&quot;</span></span><br><span class="line">       <span class="type">String</span> <span class="variable">key</span> <span class="operator">=</span> CACHE_SHOP_KEY + id;</span><br><span class="line">       <span class="comment">//1.从redis查询商铺缓存</span></span><br><span class="line">       <span class="type">String</span> <span class="variable">shopJson</span> <span class="operator">=</span> stringRedisTemplate.opsForValue().get(key);</span><br><span class="line">       <span class="comment">//2.判断是否存在</span></span><br><span class="line">       <span class="keyword">if</span> (StrUtil.isNotBlank(shopJson)) &#123;</span><br><span class="line">           <span class="comment">//3.存在，直接返回</span></span><br><span class="line">           <span class="type">Shop</span> <span class="variable">shop</span> <span class="operator">=</span> JSONUtil.toBean(shopJson, Shop.class);</span><br><span class="line">           <span class="keyword">return</span> Result.ok(shop);</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="comment">//空字符串</span></span><br><span class="line">       <span class="keyword">if</span> (shopJson != <span class="literal">null</span>) &#123;</span><br><span class="line">           <span class="comment">//返回错误信息</span></span><br><span class="line">           <span class="keyword">return</span> Result.fail(<span class="string">&quot;店铺不存在！&quot;</span>);</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="comment">//4.不存在，根据1d查询数据库</span></span><br><span class="line">       <span class="type">Shop</span> <span class="variable">shop</span> <span class="operator">=</span> getById(id);</span><br><span class="line">       <span class="comment">//5.不存在，返回错误</span></span><br><span class="line">       <span class="keyword">if</span> (shop == <span class="literal">null</span>) &#123;</span><br><span class="line">           <span class="comment">//将空值写入redis</span></span><br><span class="line">           stringRedisTemplate.opsForValue().set(key, <span class="string">&quot;&quot;</span>, CACHE_NULL_TTL, TimeUnit.MINUTES);</span><br><span class="line">           <span class="keyword">return</span> Result.fail(<span class="string">&quot;店铺不存在！&quot;</span>);</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="comment">//6.存在，写入redis</span></span><br><span class="line">       stringRedisTemplate.opsForValue().set(key, JSONUtil.toJsonStr(shop), CACHE_SHOP_TTL, TimeUnit.MINUTES);</span><br><span class="line">       <span class="comment">//7.返回</span></span><br><span class="line">       <span class="keyword">return</span> Result.ok(shop);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
 <h2 id="缓存雪崩"><a href="#缓存雪崩" class="headerlink" title="缓存雪崩"></a>缓存雪崩</h2><p>缓存雪崩是指在同一时段大量的缓存key同时失效或者Redis服务宕机，导致大量请求到达数据库，带来巨大压力。</p>
 <p>解决方案：</p>
