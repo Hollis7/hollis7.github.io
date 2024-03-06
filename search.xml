@@ -1888,6 +1888,9 @@ org.springframework.boot.SpringApplicationRunListener=com.hdb.core.listener.MyAp
 <h3 id="git中设置代理"><a href="#git中设置代理" class="headerlink" title="git中设置代理"></a>git中设置代理</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global http.proxy http://127.0.0.1:7890</span><br><span class="line">git config --global https.proxy http://127.0.0.1:7890</span><br></pre></td></tr></table></figure>
 <h3 id="git取消代理"><a href="#git取消代理" class="headerlink" title="git取消代理"></a>git取消代理</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global --<span class="built_in">unset</span> http.proxy</span><br><span class="line">git config --global --<span class="built_in">unset</span> https.proxy</span><br></pre></td></tr></table></figure>
 <h3 id="查询是否使用"><a href="#查询是否使用" class="headerlink" title="查询是否使用"></a>查询是否使用</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global http.proxy </span><br><span class="line">git config --global https.proxy </span><br></pre></td></tr></table></figure>
+<h2 id="git更新命令"><a href="#git更新命令" class="headerlink" title="git更新命令"></a>git更新命令</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git update-git-for-windows</span><br></pre></td></tr></table></figure>
+<h3 id="idea中配置代理（可选？）"><a href="#idea中配置代理（可选？）" class="headerlink" title="idea中配置代理（可选？）"></a>idea中配置代理（可选？）</h3><p><img src="https://gitee.com/hollis7/pictures/raw/master/2023/11/27/42136_image-20231127202015854.png" alt="image-20231127202015854" style="zoom: 67%;" /></p>
+<p>7890是clash的端口</p>
 ]]></content>
       <categories>
         <category>tips</category>
