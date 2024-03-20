@@ -1956,29 +1956,6 @@ org.springframework.boot.SpringApplicationRunListener=com.hdb.core.listener.MyAp
       </tags>
   </entry>
   <entry>
-    <title>screen小技巧</title>
-    <url>/2024/01/16/tips/screen/</url>
-    <content><![CDATA[<p><meta name="referrer" content="no-referrer"/><br><span id="more"></span></p>
-<p><strong>新建一个screen会话</strong></p>
-<p>screen -S &lt;名字&gt;</p>
-<p><strong>退出当前screen会话</strong></p>
-<p>键盘点击ctrl+a , 然后按d</p>
-<p><strong>查看所有screen会话</strong></p>
-<p>screen -ls</p>
-<p><strong>进入（恢复）某一screen会话</strong></p>
-<p>screen -r &lt;会话序列号&gt;</p>
-<p><strong>关闭screen会话</strong></p>
-<p>screen -X -S &lt;序列号&gt; quit</p>
-]]></content>
-      <categories>
-        <category>tips</category>
-      </categories>
-      <tags>
-        <tag>screen</tag>
-        <tag>linux</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>代码随想录-数组-链表-哈希表-指针-字符串-栈和队列-二叉树1</title>
     <url>/2024/01/16/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%951/</url>
     <content><![CDATA[<meta name="referrer" content="no-referrer"/>
@@ -3112,6 +3089,44 @@ m a x ( l , r ) + 1</script><h2 id="111-二叉树的最小深度"><a href="#111-
       <tags>
         <tag>binaryTree</tag>
         <tag>traversal</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ubuntu小技巧</title>
+    <url>/2024/03/20/tips/ubuntuTips/</url>
+    <content><![CDATA[<meta name="referrer" content="no-referrer"/>
+
+<h2 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h2><ul>
+<li>screen</li>
+<li>conda</li>
+</ul>
+<span id="more"></span>
+<h2 id="Screen"><a href="#Screen" class="headerlink" title="Screen"></a>Screen</h2><p><strong>新建一个screen会话</strong></p>
+<p>screen -S &lt;名字&gt;</p>
+<p><strong>退出当前screen会话</strong></p>
+<p>键盘点击ctrl+a , 然后按d</p>
+<p><strong>查看所有screen会话</strong></p>
+<p>screen -ls</p>
+<p><strong>进入（恢复）某一screen会话</strong></p>
+<p>screen -r &lt;会话序列号&gt;</p>
+<p><strong>关闭screen会话</strong></p>
+<p>screen -X -S &lt;序列号&gt; quit</p>
+<h2 id="conda"><a href="#conda" class="headerlink" title="conda"></a>conda</h2><p>查看虚拟环境列表</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda <span class="built_in">env</span> list</span><br><span class="line">conda info --envs</span><br></pre></td></tr></table></figure>
+<p>删除环境</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda remove -n env_name --all</span><br></pre></td></tr></table></figure>
+<p>创建虚拟环境</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda create -n name python=3.8</span><br></pre></td></tr></table></figure>
+<p>激活虚拟环境</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda activate name</span><br></pre></td></tr></table></figure>
+<p>退出虚拟环境</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda deactivate</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>tips</category>
+      </categories>
+      <tags>
+        <tag>ubuntu</tag>
       </tags>
   </entry>
 </search>
