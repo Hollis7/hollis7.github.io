@@ -12,7 +12,11 @@ mathjax: true
 
 ## 开启show comand queue(>>>)
 
-![image-20231023163651677](https://gitee.com/hollis7/pictures/raw/master/2023/10/23/43666_image-20231023163651677.png)
+`Build, Execution, Deployment`->`Console` ->`Command queue for Python Console`
+
+![image-20240321195659243](https://gitee.com/hollis7/pictures/raw/master/2024/03/21/69433_image-20240321195659243.png)
+
+<img src="https://gitee.com/hollis7/pictures/raw/master/2023/10/23/43666_image-20231023163651677.png" alt="image-20231023163651677" style="zoom: 50%;" />
 
 ## 查看模型结构
 
@@ -95,5 +99,23 @@ netstat -ano | findstr 8080
 
 ~~~bash
 taskkill -PID 进程号 -F
+~~~
+
+## plt.imshow不显示图片
+
+~~~python
+from matplotlib import pyplot as plt
+import pylab
+f = "data/tmp/Cats_Test49.jpg"
+f2 = "data/tmp/golf.jpg"
+im = plt.imread(f)
+im2 = plt.imread(f2)
+plt.subplot(1, 2, 1)
+plt.imshow(im)
+plt.title("dogs")
+plt.subplot(1, 2, 2)
+plt.imshow(im2)
+plt.title("golf")
+pylab.show()
 ~~~
 

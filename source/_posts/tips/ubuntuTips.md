@@ -70,3 +70,10 @@ conda activate name
 conda deactivate
 ~~~
 
+## 查看进程和杀死
+
+~~~bash
+top u name
+pkill name
+~~~
+
