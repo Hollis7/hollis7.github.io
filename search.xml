@@ -3124,6 +3124,7 @@ m a x ( l , r ) + 1</script><h2 id="111-二叉树的最小深度"><a href="#111-
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda activate name</span><br></pre></td></tr></table></figure>
 <p>退出虚拟环境</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda deactivate</span><br></pre></td></tr></table></figure>
+<h2 id="查看进程和杀死"><a href="#查看进程和杀死" class="headerlink" title="查看进程和杀死"></a>查看进程和杀死</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">top u name</span><br><span class="line">pkill name</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>tips</category>
