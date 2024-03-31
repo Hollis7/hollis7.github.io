@@ -12,6 +12,7 @@ mathjax: true
 
 - screen
 - conda
+- 常用命令
 
 <!--more-->
 
@@ -75,5 +76,11 @@ conda deactivate
 ~~~bash
 top u name
 pkill name
+~~~
+
+## 统计文件数
+
+~~~bash
+ls -1A | wc -l
 ~~~
 
