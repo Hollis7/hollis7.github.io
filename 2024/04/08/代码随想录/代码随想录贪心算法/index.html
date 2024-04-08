@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/web3232.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/web1616.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hollis7.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="内容本节包括：  各种贪心算法题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="代码随想录-贪心算法">
+<meta property="og:url" content="https://hollis7.github.io/2024/04/08/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/index.html">
+<meta property="og:site_name" content="hollis7">
+<meta property="og:description" content="内容本节包括：  各种贪心算法题">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/29/bst_cameras_01.png">
+<meta property="article:published_time" content="2024-04-08T03:02:02.428Z">
+<meta property="article:modified_time" content="2024-04-08T03:02:40.184Z">
+<meta property="article:author" content="hollis7">
+<meta property="article:tag" content="greedy">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/29/bst_cameras_01.png">
+
+<link rel="canonical" href="https://hollis7.github.io/2024/04/08/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>代码随想录-贪心算法 | hollis7</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">hollis7</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">personal-blogs</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>标签<span class="badge">38</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>分类<span class="badge">13</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档<span class="badge">30</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://hollis7.github.io/2024/04/08/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/person.jpg">
+      <meta itemprop="name" content="hollis7">
+      <meta itemprop="description" content="some learning blogs">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="hollis7">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          代码随想录-贪心算法
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2024-04-08 11:02:02 / 修改时间：11:02:40" itemprop="dateCreated datePublished" datetime="2024-04-08T11:02:02+08:00">2024-04-08</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/code-Musing/" itemprop="url" rel="index"><span itemprop="name">code_Musing</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>14k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>13 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <meta name="referrer" content="no-referrer"/>
+
+<h1 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h1><p><strong>本节包括：</strong></p>
+<ul>
+<li>各种贪心算法题</li>
+</ul>
+<span id="more"></span>
+<h2 id="455-分发饼干"><a href="#455-分发饼干" class="headerlink" title="455.分发饼干"></a>455.分发饼干</h2><p>假设你是一位很棒的家长，想要给你的孩子们一些小饼干。但是，每个孩子最多只能给一块饼干。</p>
+<p>对每个孩子 <code>i</code>，都有一个胃口值 <code>g[i]</code>，这是能让孩子们满足胃口的饼干的最小尺寸；并且每块饼干 <code>j</code>，都有一个尺寸 <code>s[j]</code> 。如果 <code>s[j] &gt;= g[i]</code>，我们可以将这个饼干 <code>j</code> 分配给孩子 <code>i</code> ，这个孩子会得到满足。你的目标是尽可能满足越多数量的孩子，并输出这个最大数值。</p>
+<p><strong>示例 2:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">输入: g = [1,2], s = [1,2,3]</span><br><span class="line">输出: 2</span><br><span class="line">解释: </span><br><span class="line">你有两个孩子和三块小饼干，2个孩子的胃口值分别是1,2。</span><br><span class="line">你拥有的饼干数量和尺寸都足以让所有孩子满足。</span><br><span class="line">所以你应该输出2.</span><br></pre></td></tr></table></figure>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>这里的局部最优就是大饼干喂给胃口大的，充分利用饼干尺寸喂饱一个，全局最优就是喂饱尽可能多的小孩。</p>
+<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">findContentChildren</span><span class="params">(<span class="type">int</span>[] g, <span class="type">int</span>[] s)</span> &#123;</span><br><span class="line">      Arrays.sort(g);</span><br><span class="line">      Arrays.sort(s);</span><br><span class="line">      <span class="type">int</span> <span class="variable">gPos</span> <span class="operator">=</span> g.length - <span class="number">1</span>;</span><br><span class="line">      <span class="type">int</span> <span class="variable">sPos</span> <span class="operator">=</span> s.length - <span class="number">1</span>;</span><br><span class="line">      <span class="type">int</span> <span class="variable">count</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">for</span> (; gPos &gt;= <span class="number">0</span> &amp;&amp; sPos &gt;= <span class="number">0</span>; gPos--) &#123;</span><br><span class="line">          <span class="comment">//饼干能满足孩子胃口</span></span><br><span class="line">          <span class="keyword">if</span> (s[sPos] &gt;= g[gPos]) &#123;</span><br><span class="line">              count++;</span><br><span class="line">              sPos--;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> count;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="376-摆动序列"><a href="#376-摆动序列" class="headerlink" title="376. 摆动序列"></a>376. 摆动序列</h2><p>如果连续数字之间的差严格地在正数和负数之间交替，则数字序列称为 <strong>摆动序列 。</strong>第一个差（如果存在的话）可能是正数或负数。仅有一个元素或者含两个不等元素的序列也视作摆动序列。</p>
+<ul>
+<li>例如， <code>[1, 7, 4, 9, 2, 5]</code> 是一个 <strong>摆动序列</strong> ，因为差值 <code>(6, -3, 5, -7, 3)</code> 是正负交替出现的。</li>
+<li>相反，<code>[1, 4, 7, 2, 5]</code> 和 <code>[1, 7, 4, 5, 5]</code> 不是摆动序列，第一个序列是因为它的前两个差值都是正数，第二个序列是因为它的最后一个差值为零。</li>
+</ul>
+<p><strong>子序列</strong> 可以通过从原始序列中删除一些（也可以不删除）元素来获得，剩下的元素保持其原始顺序。</p>
+<p>给你一个整数数组 <code>nums</code> ，返回 <code>nums</code> 中作为 <strong>摆动序列</strong> 的 <strong>最长子序列的长度</strong> 。</p>
+<h3 id="思路一"><a href="#思路一" class="headerlink" title="思路一"></a>思路一</h3><p>分情况讨论：</p>
+<ol>
+<li>情况一：上下坡中有平坡</li>
+<li>情况二：数组首尾两端</li>
+<li>情况三：单调坡中有平坡</li>
+</ol>
+<h4 id="情况一：上下坡中有平坡"><a href="#情况一：上下坡中有平坡" class="headerlink" title="情况一：上下坡中有平坡"></a>情况一：上下坡中有平坡</h4><p>我们记录峰值的条件应该是： <code>(preDiff &lt;= 0 &amp;&amp; curDiff &gt; 0) || (preDiff &gt;= 0 &amp;&amp; curDiff &lt; 0)</code></p>
+<h4 id="情况二：数组首尾两端"><a href="#情况二：数组首尾两端" class="headerlink" title="情况二：数组首尾两端"></a>情况二：数组首尾两端</h4><p>我们在计算 <code>prediff（nums[i] - nums[i-1]）</code> 和 <code>curdiff（nums[i+1] - nums[i]）</code>的时候，至少需要三个数字才能计算，而数组只有两个数字时。result 初始为 1（默认最右面有一个峰值），此时 <code>curDiff &gt; 0 &amp;&amp; preDiff &lt;= 0</code>，那么 result++（计算了左面的峰值）</p>
+<h4 id="情况三：单调坡度有平坡"><a href="#情况三：单调坡度有平坡" class="headerlink" title="情况三：单调坡度有平坡"></a>情况三：单调坡度有平坡</h4><p>如果在一个单调坡度上有平坡，例如[1,2,2,2,3,4]</p>
+<p>我们只需要在这个坡度摆动变化的时候，更新prediff就行，这样prediff在单调区间有平坡的时候就不会发生变化，造成我们的误判。</p>
+<h3 id="代码实现-1"><a href="#代码实现-1" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">wiggleMaxLength</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (nums.length == <span class="number">1</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">      <span class="type">int</span> <span class="variable">preDiff</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">      <span class="type">int</span> <span class="variable">curDiff</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">      <span class="type">int</span> <span class="variable">res</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line">      <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; nums.length - <span class="number">1</span>; i++) &#123;</span><br><span class="line">          curDiff = nums[i + <span class="number">1</span>] - nums[i];</span><br><span class="line">          <span class="keyword">if</span> ((preDiff &lt;= <span class="number">0</span> &amp;&amp; curDiff &gt; <span class="number">0</span>) || (preDiff &gt;= <span class="number">0</span> &amp;&amp; curDiff &lt; <span class="number">0</span>)) &#123;</span><br><span class="line">              res++;</span><br><span class="line">              <span class="comment">//出现拐弯时才更新preDiff</span></span><br><span class="line">              preDiff = curDiff;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> res;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="思路二"><a href="#思路二" class="headerlink" title="思路二"></a>思路二</h3><p>下降=在上升的次数加一，上升=在下降的次数加一</p>
+<h3 id="代码实现-2"><a href="#代码实现-2" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">wiggleMaxLength</span><span class="params">(<span class="type">int</span>[]nums)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">down</span> <span class="operator">=</span> <span class="number">1</span>, up = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (nums[i] &gt; nums[i - <span class="number">1</span>])</span><br><span class="line">            up = down + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (nums[i] &lt; nums[i - <span class="number">1</span>])</span><br><span class="line">            down = up + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> nums.length == <span class="number">0</span> ? <span class="number">0</span> : Math.max(down, up);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="53-最大子序和"><a href="#53-最大子序和" class="headerlink" title="53. 最大子序和"></a>53. 最大子序和</h2><p>给定一个整数数组 <code>nums</code> ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。</p>
+<p>示例:</p>
+<ul>
+<li>输入: [-2,1,-3,4,-1,2,1,-5,4]</li>
+<li>输出: 6</li>
+<li>解释: 连续子数组  [4,-1,2,1] 的和最大，为  6。</li>
+</ul>
+<h3 id="思路-贪心"><a href="#思路-贪心" class="headerlink" title="思路-贪心"></a>思路-贪心</h3><p>遍历 nums，从头开始用 sum累积，如果 count 一旦加上 nums[i]变为负数，那么就应该从 nums[i+1]开始从 0 累积 count 了，因为已经变为负数的 count，只会拖累总和。</p>
+<h3 id="代码实现-3"><a href="#代码实现-3" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">maxSubArray</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">res</span> <span class="operator">=</span> Integer.MIN_VALUE;</span><br><span class="line">        <span class="type">int</span> <span class="variable">sum</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">            sum += nums[i];</span><br><span class="line">            <span class="keyword">if</span> (sum &gt; res) &#123;<span class="comment">// 取区间累计的最大值（相当于不断确定最大子序终止位置）</span></span><br><span class="line">                res = sum;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (sum &lt; <span class="number">0</span>) &#123;</span><br><span class="line">                sum = <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="思路-动态规划"><a href="#思路-动态规划" class="headerlink" title="思路-动态规划"></a>思路-动态规划</h3><p>dp[i]：包括下标i（以nums[i]为结尾）的最大连续子序列和为dp[i]。</p>
+<p>递推公式中<code>dp[i]</code>依赖于dp[i - 1]的状态，需要从前向后遍历。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dp[i] = Math.max(dp[i - <span class="number">1</span>] + nums[i], nums[i]);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>dp[i - 1] + nums[i]，即：nums[i]加入当前连续子序列和</li>
+<li>nums[i]，即：从头开始计算当前连续子序列和</li>
+</ul>
+<h3 id="代码实现-4"><a href="#代码实现-4" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">maxSubArrayDP</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">    <span class="type">int</span>[] dp = <span class="keyword">new</span> <span class="title class_">int</span>[nums.length];</span><br><span class="line">    dp[<span class="number">0</span>] = nums[<span class="number">0</span>];</span><br><span class="line">    <span class="type">int</span> <span class="variable">res</span> <span class="operator">=</span> nums[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">        dp[i] = Math.max(dp[i - <span class="number">1</span>] + nums[i], nums[i]);</span><br><span class="line">        <span class="keyword">if</span> (res &lt; dp[i]) &#123;</span><br><span class="line">            res = dp[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="122-买卖股票的最佳时机-II"><a href="#122-买卖股票的最佳时机-II" class="headerlink" title="122.买卖股票的最佳时机 II"></a>122.买卖股票的最佳时机 II</h2><p>给你一个整数数组 <code>prices</code> ，其中 <code>prices[i]</code> 表示某支股票第 <code>i</code> 天的价格。</p>
+<p>在每一天，你可以决定是否购买和/或出售股票。你在任何时候 <strong>最多</strong> 只能持有 <strong>一股</strong> 股票。<strong>你也可以先购买，然后在 同一天出售。</strong></p>
+<p>返回你能获得的 <strong>最大</strong> 利润。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入：prices = [7,1,5,3,6,4]</span><br><span class="line">输出：7</span><br><span class="line">解释：在第 2 天（股票价格 = 1）的时候买入，在第 3 天（股票价格 = 5）的时候卖出, 这笔交易所能获得利润 = 5 - 1 = 4 。</span><br><span class="line">     随后，在第 4 天（股票价格 = 3）的时候买入，在第 5 天（股票价格 = 6）的时候卖出, 这笔交易所能获得利润 = 6 - 3 = 3 。</span><br><span class="line">     总利润为 4 + 3 = 7 。</span><br></pre></td></tr></table></figure>
+<h3 id="思路-贪心-1"><a href="#思路-贪心-1" class="headerlink" title="思路-贪心"></a>思路-贪心</h3><p><strong>如果想到其实最终利润是可以分解的，那么本题就很容易了！</strong></p>
+<p>假如第 0 天买入，第 3 天卖出，那么利润为：prices[3] - prices[0]。</p>
+<p>相当于(prices[3] - prices[2]) + (prices[2] - prices[1]) + (prices[1] - prices[0])。</p>
+<p><strong>此时就是把利润分解为每天为单位的维度，而不是从 0 天到第 3 天整体去考虑！</strong></p>
+<p>那么根据 prices 可以得到每天的利润序列：<code>(prices[i] - prices[i - 1]).....(prices[1] - prices[0])</code>。</p>
+<p>将每日的利润（正）加起来</p>
+<h3 id="代码实现-5"><a href="#代码实现-5" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">maxProfit</span><span class="params">(<span class="type">int</span>[] prices)</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">profit</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span>[] dailyProfit = <span class="keyword">new</span> <span class="title class_">int</span>[prices.length - <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; prices.length - <span class="number">1</span>; i++) &#123;</span><br><span class="line">        dailyProfit[i] = prices[i + <span class="number">1</span>] - prices[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; dailyProfit.length; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (dailyProfit[i] &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            profit += dailyProfit[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> profit;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="思路-动态规划-1"><a href="#思路-动态规划-1" class="headerlink" title="思路-动态规划"></a>思路-动态规划</h3><ul>
+<li><code>dp[i][0]</code> 表示第i天持有股票所得现金。</li>
+<li><code>dp[i][1]</code> 表示第i天不持有股票所得最多现金</li>
+</ul>
+<p><code>dp[i][0]</code></p>
+<p>第i-1天就持有股票，那么就保持现状，所得现金就是昨天持有股票的所得现金 即：<code>dp[i - 1][0]</code><br>第i天买入股票，所得现金就是昨天不持有股票的所得现金减去 今天的股票价格 即：<code>dp[i - 1][1] - prices[i]</code></p>
+<p><code>dp[i][1]</code></p>
+<p>第i-1天就不持有股票，那么就保持现状，所得现金就是昨天不持有股票的所得现金 即：<code>dp[i - 1][1]</code><br>第i天卖出股票，所得现金就是按照今天股票价格卖出后所得现金即：<code>prices[i] + dp[i - 1][0]</code></p>
+<h3 id="代码实现-6"><a href="#代码实现-6" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">maxProfitThroughDp</span><span class="params">(<span class="type">int</span>[] prices)</span> &#123;</span><br><span class="line">       <span class="type">int</span> <span class="variable">days</span> <span class="operator">=</span> prices.length;</span><br><span class="line">       <span class="type">int</span>[][] dp = <span class="keyword">new</span> <span class="title class_">int</span>[days][<span class="number">2</span>];<span class="comment">//第i天的最大利润</span></span><br><span class="line">       <span class="comment">//dp[i][0]代表有股票，dp[i][1]代表没有股票</span></span><br><span class="line">       dp[<span class="number">0</span>][<span class="number">0</span>] = -prices[<span class="number">0</span>];</span><br><span class="line">       dp[<span class="number">0</span>][<span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">       <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; days; i++) &#123;</span><br><span class="line">           dp[i][<span class="number">0</span>] =  Math.max(dp[i - <span class="number">1</span>][<span class="number">0</span>], dp[i - <span class="number">1</span>][<span class="number">1</span>] - prices[i]);</span><br><span class="line">           dp[i][<span class="number">1</span>] = Math.max(dp[i - <span class="number">1</span>][<span class="number">1</span>], dp[i - <span class="number">1</span>][<span class="number">0</span>] + prices[i]);</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> dp[days - <span class="number">1</span>][<span class="number">1</span>];</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="55-跳跃游戏"><a href="#55-跳跃游戏" class="headerlink" title="55. 跳跃游戏"></a>55. 跳跃游戏</h2><p>给你一个非负整数数组 <code>nums</code> ，你最初位于数组的 <strong>第一个下标</strong> 。数组中的每个元素代表你在该位置可以跳跃的最大长度。</p>
+<p>判断你是否能够到达最后一个下标，如果可以，返回 <code>true</code> ；否则，返回 <code>false</code> 。</p>
+<h3 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h3><p>每次取最大跳跃步数（取最大覆盖范围），整体最优解：最后得到整体最大覆盖范围，看是否能到终点。</p>
+<blockquote>
+<p>i 每次移动只能在 cover 的范围内移动，每移动一个元素，cover 得到该元素数值（新的覆盖范围）的补充，让 i 继续移动下去。</p>
+</blockquote>
+<h3 id="代码实现-7"><a href="#代码实现-7" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">canJump</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">cover</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt;= cover; i++) &#123;</span><br><span class="line">        cover = Math.max(cover, i + nums[i]);</span><br><span class="line">        <span class="keyword">if</span> (cover &gt;= nums.length - <span class="number">1</span>) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="45-跳跃游戏-II"><a href="#45-跳跃游戏-II" class="headerlink" title="45.跳跃游戏 II"></a>45.跳跃游戏 II</h2><p>给定一个长度为 <code>n</code> 的 <strong>0 索引</strong>整数数组 <code>nums</code>。初始位置为 <code>nums[0]</code>。</p>
+<p>每个元素 <code>nums[i]</code> 表示从索引 <code>i</code> 向前跳转的最大长度。换句话说，如果你在 <code>nums[i]</code> 处，你可以跳转到任意 <code>nums[i + j]</code> 处:</p>
+<ul>
+<li><code>0 &lt;= j &lt;= nums[i]</code> </li>
+<li><code>i + j &lt; n</code></li>
+</ul>
+<p>返回到达 <code>nums[n - 1]</code> 的最小跳跃次数。生成的测试用例可以到达 <code>nums[n - 1]</code>。</p>
+<h3 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h3><p>要从覆盖范围出发，不管怎么跳，覆盖范围内一定是可以跳到的，以最小的步数增加覆盖范围，覆盖范围一旦覆盖了终点，得到的就是最少步数！</p>
+<p><strong>这里需要统计两个覆盖范围，当前这一步的最大覆盖和下一步最大覆盖</strong>。</p>
+<p>如果移动下标达到了当前这一步的最大覆盖最远距离了，还没有到终点的话，那么就必须再走一步来增加覆盖范围，直到覆盖范围覆盖了终点。</p>
+<h3 id="代码实现-8"><a href="#代码实现-8" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">jump</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">steps</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> <span class="variable">curMax</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> <span class="variable">nextMax</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> (nums.length == <span class="number">1</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">        nextMax = Math.max(nextMax, i + nums[i]);</span><br><span class="line">        <span class="keyword">if</span> (i == curMax) &#123;</span><br><span class="line">            steps++;</span><br><span class="line">            curMax = nextMax;</span><br><span class="line">            <span class="comment">//已经可以跳到数组末尾</span></span><br><span class="line">            <span class="keyword">if</span> (nextMax &gt;= nums.length - <span class="number">1</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> steps;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> steps;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="1005-K次取反后最大化的数组和"><a href="#1005-K次取反后最大化的数组和" class="headerlink" title="1005.K次取反后最大化的数组和"></a>1005.K次取反后最大化的数组和</h2><p>给你一个整数数组 <code>nums</code> 和一个整数 <code>k</code> ，按以下方法修改该数组：</p>
+<ul>
+<li>选择某个下标 <code>i</code> 并将 <code>nums[i]</code> 替换为 <code>-nums[i]</code> 。</li>
+</ul>
+<p>重复这个过程恰好 <code>k</code> 次。可以多次选择同一个下标 <code>i</code> 。</p>
+<p>以这种方式修改数组后，返回数组 <strong>可能的最大和</strong> 。</p>
+<h3 id="思路-3"><a href="#思路-3" class="headerlink" title="思路"></a>思路</h3><ul>
+<li>第一步：将数组按照绝对值大小从大到小排序，<strong>注意要按照绝对值的大小</strong></li>
+<li>第二步：从前向后遍历，遇到负数将其变为正数，同时K—</li>
+<li>第三步：如果K还大于0，那么反复转变数值最小的元素，将K用完</li>
+<li>第四步：求和</li>
+</ul>
+<h3 id="代码实现-9"><a href="#代码实现-9" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">negCount</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">       <span class="comment">//数组按照绝对值从大到小排序</span></span><br><span class="line">       nums = IntStream.of(nums)</span><br><span class="line">               .boxed()</span><br><span class="line">               .sorted((o1, o2) -&gt; Math.abs(o2) - Math.abs(o1))</span><br><span class="line">               .mapToInt(Integer::intValue)</span><br><span class="line">               .toArray();</span><br><span class="line">       <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">           <span class="keyword">if</span> (k &gt; <span class="number">0</span> &amp;&amp; nums[i] &lt; <span class="number">0</span>) &#123;</span><br><span class="line">               nums[i] = Math.abs(nums[i]);</span><br><span class="line">               k--;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">if</span> (k % <span class="number">2</span> == <span class="number">1</span>) nums[nums.length - <span class="number">1</span>] = -nums[nums.length - <span class="number">1</span>];</span><br><span class="line">       <span class="keyword">return</span> Arrays.stream(nums).sum();</span><br></pre></td></tr></table></figure>
+<h3 id="思路2"><a href="#思路2" class="headerlink" title="思路2"></a>思路2</h3><ol>
+<li>先排序，将负数变为正数</li>
+<li>若k&gt;0，再次排序，将最小值取反</li>
+<li>求和</li>
+</ol>
+<h3 id="代码实现-10"><a href="#代码实现-10" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">largestSumAfterKNegations</span><span class="params">(<span class="type">int</span>[] nums, <span class="type">int</span> k)</span> &#123;</span><br><span class="line">       Arrays.sort(nums);</span><br><span class="line">       <span class="comment">//将负数变为正数</span></span><br><span class="line">       <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">           <span class="keyword">if</span> (nums[i] &lt; <span class="number">0</span> &amp;&amp; k &gt; <span class="number">0</span>) &#123;</span><br><span class="line">               nums[i] = -nums[i];</span><br><span class="line">               k--;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">if</span> (k % <span class="number">2</span> == <span class="number">1</span>) &#123;</span><br><span class="line">           Arrays.sort(nums);</span><br><span class="line">           nums[<span class="number">0</span>] = -nums[<span class="number">0</span>];</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> Arrays.stream(nums).sum();</span><br><span class="line"></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="134-加油站"><a href="#134-加油站" class="headerlink" title="134. 加油站"></a>134. 加油站</h2><p>在一条环路上有 <code>n</code> 个加油站，其中第 <code>i</code> 个加油站有汽油 <code>gas[i]</code> 升。</p>
+<p>你有一辆油箱容量无限的的汽车，从第 <code>i</code> 个加油站开往第 <code>i+1</code> 个加油站需要消耗汽油 <code>cost[i]</code> 升。你从其中的一个加油站出发，开始时油箱为空。</p>
+<p>给定两个整数数组 <code>gas</code> 和 <code>cost</code> ，如果你可以按顺序绕环路行驶一周，则返回出发时加油站的编号，否则返回 <code>-1</code> 。如果存在解，则 <strong>保证</strong> 它是 <strong>唯一</strong> 的。</p>
+<h3 id="思路-4"><a href="#思路-4" class="headerlink" title="思路"></a>思路</h3><p>首先如果总油量减去总消耗大于等于零那么一定可以跑完一圈，说明 各个站点的加油站 剩油量<code>rest[i]</code>相加一定是大于等于零的。</p>
+<p>i从0开始累加rest[i]，和记为curSum，一旦curSum小于零，说明[0, i]区间都不能作为起始位置，因为这个区间选择任何一个位置作为起点，到i这里都会断油，那么起始位置从i+1算起，再从0计算curSum。</p>
+<h3 id="代码实现-11"><a href="#代码实现-11" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">canCompleteCircuit</span><span class="params">(<span class="type">int</span>[] gas, <span class="type">int</span>[] cost)</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">len</span> <span class="operator">=</span> gas.length;</span><br><span class="line">    <span class="type">int</span> <span class="variable">resGas</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> <span class="variable">totalRest</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> <span class="variable">start</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">        resGas += gas[i] - cost[i];</span><br><span class="line">        totalRest += gas[i] - cost[i];</span><br><span class="line">        <span class="keyword">if</span> (resGas &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            start = i + <span class="number">1</span>;</span><br><span class="line">            resGas = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (totalRest &lt; <span class="number">0</span>) <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> start;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="135-分发糖果"><a href="#135-分发糖果" class="headerlink" title="135. 分发糖果"></a>135. 分发糖果</h2><p><code>n</code> 个孩子站成一排。给你一个整数数组 <code>ratings</code> 表示每个孩子的评分。</p>
+<p>你需要按照以下要求，给这些孩子分发糖果：</p>
+<ul>
+<li>每个孩子至少分配到 <code>1</code> 个糖果。</li>
+<li>相邻两个孩子评分更高的孩子会获得更多的糖果。</li>
+</ul>
+<p>请你给每个孩子分发糖果，计算并返回需要准备的 <strong>最少糖果数目</strong> 。</p>
+<p>示例 2:</p>
+<ul>
+<li>输入: [1,2,2]</li>
+<li>输出: 4</li>
+<li>解释: 你可以分别给这三个孩子分发 1、2、1 颗糖果。第三个孩子只得到 1 颗糖果，这已满足上述两个条件。</li>
+</ul>
+<h3 id="思路-5"><a href="#思路-5" class="headerlink" title="思路"></a>思路</h3><ul>
+<li>一次是从左到右遍历，只比较右边孩子评分比左边大的情况。</li>
+<li>一次是从右到左遍历，只比较左边孩子评分比右边大的情况。</li>
+</ul>
+<h3 id="代码实现-12"><a href="#代码实现-12" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">candy</span><span class="params">(<span class="type">int</span>[] ratings)</span> &#123;</span><br><span class="line">        <span class="type">int</span>[] childCandy = <span class="keyword">new</span> <span class="title class_">int</span>[ratings.length];</span><br><span class="line">        Arrays.fill(childCandy, <span class="number">1</span>);</span><br><span class="line">        <span class="comment">//从左往右比较</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; ratings.length; i++) &#123;</span><br><span class="line">            childCandy[i] = (ratings[i] &gt; ratings[i - <span class="number">1</span>]) ? childCandy[i - <span class="number">1</span>] + <span class="number">1</span> : <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//从后往前比较</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> ratings.length - <span class="number">1</span>; i &gt; <span class="number">0</span>; i--) &#123;</span><br><span class="line">            <span class="keyword">if</span> (ratings[i - <span class="number">1</span>] &gt; ratings[i])</span><br><span class="line">                childCandy[i - <span class="number">1</span>] = Math.max(childCandy[i - <span class="number">1</span>], childCandy[i] + <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> Arrays.stream(childCandy).sum();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="860-柠檬水找零"><a href="#860-柠檬水找零" class="headerlink" title="860.柠檬水找零"></a>860.柠檬水找零</h2><p>在柠檬水摊上，每一杯柠檬水的售价为 <code>5</code> 美元。顾客排队购买你的产品，（按账单 <code>bills</code> 支付的顺序）一次购买一杯。</p>
+<p>每位顾客只买一杯柠檬水，然后向你付 <code>5</code> 美元、<code>10</code> 美元或 <code>20</code> 美元。你必须给每个顾客正确找零，也就是说净交易是每位顾客向你支付 <code>5</code> 美元。</p>
+<p>注意，一开始你手头没有任何零钱。</p>
+<p>给你一个整数数组 <code>bills</code> ，其中 <code>bills[i]</code> 是第 <code>i</code> 位顾客付的账。如果你能给每位顾客正确找零，返回 <code>true</code> ，否则返回 <code>false</code> 。</p>
+<h3 id="代码实现-13"><a href="#代码实现-13" class="headerlink" title="代码实现"></a>代码实现</h3><p>在 Java 中，switch 语句通常在匹配到一个 case 后会执行对应的代码块然后跳出 switch 结构。如果删除了 break 语句，即使匹配到一个 case，也会继续执行下一个 case 中的代码，直到遇到 break 语句或者 switch 结束。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">lemonadeChange</span><span class="params">(<span class="type">int</span>[] bills)</span> &#123;</span><br><span class="line">    <span class="comment">//0,1分别存5美元和10美元零钱</span></span><br><span class="line">    <span class="type">int</span>[] coins = <span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">2</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; bills.length; i++) &#123;</span><br><span class="line">        <span class="keyword">switch</span> (bills[i]) &#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">20</span>:</span><br><span class="line">                <span class="keyword">if</span> (coins[<span class="number">1</span>] &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                    coins[<span class="number">1</span>] -= <span class="number">1</span>;</span><br><span class="line">                    coins[<span class="number">0</span>] -= <span class="number">1</span>;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    coins[<span class="number">0</span>] -= <span class="number">3</span>;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">10</span>:</span><br><span class="line">                coins[<span class="number">0</span>] -= <span class="number">1</span>;</span><br><span class="line">                coins[<span class="number">1</span>] += <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">5</span>:</span><br><span class="line">                coins[<span class="number">0</span>] += <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (coins[<span class="number">0</span>] &lt; <span class="number">0</span> || coins[<span class="number">1</span>] &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="406-根据身高重建队列"><a href="#406-根据身高重建队列" class="headerlink" title="406.根据身高重建队列"></a>406.根据身高重建队列</h2><p>假设有打乱顺序的一群人站成一个队列，数组 <code>people</code> 表示队列中一些人的属性（不一定按顺序）。每个 <code>people[i] = [hi, ki]</code> 表示第 <code>i</code> 个人的身高为 <code>hi</code> ，前面 <strong>正好</strong> 有 <code>ki</code> 个身高大于或等于 <code>hi</code> 的人。</p>
+<p>请你重新构造并返回输入数组 <code>people</code> 所表示的队列。返回的队列应该格式化为数组 <code>queue</code> ，其中 <code>queue[j] = [hj, kj]</code> 是队列中第 <code>j</code> 个人的属性（<code>queue[0]</code> 是排在队列前面的人）</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">输入：people = [[7,0],[4,4],[7,1],[5,0],[6,1],[5,2]]</span><br><span class="line">输出：[[5,0],[7,0],[5,2],[6,1],[4,4],[7,1]]</span><br><span class="line">解释：</span><br><span class="line">编号为 0 的人身高为 5 ，没有身高更高或者相同的人排在他前面。</span><br><span class="line">编号为 1 的人身高为 7 ，没有身高更高或者相同的人排在他前面。</span><br><span class="line">编号为 2 的人身高为 5 ，有 2 个身高更高或者相同的人排在他前面，即编号为 0 和 1 的人。</span><br><span class="line">编号为 3 的人身高为 6 ，有 1 个身高更高或者相同的人排在他前面，即编号为 1 的人。</span><br><span class="line">编号为 4 的人身高为 4 ，有 4 个身高更高或者相同的人排在他前面，即编号为 0、1、2、3 的人。</span><br><span class="line">编号为 5 的人身高为 7 ，有 1 个身高更高或者相同的人排在他前面，即编号为 1 的人。</span><br><span class="line">因此 [[5,0],[7,0],[5,2],[6,1],[4,4],[7,1]] 是重新构造后的队列。</span><br></pre></td></tr></table></figure>
+<h3 id="思路-6"><a href="#思路-6" class="headerlink" title="思路"></a>思路</h3><ol>
+<li>先按照身高<code>h</code>从大到小排序，注意身高相同，那么就按照<code>k</code>从小到大排序</li>
+<li>遍历，根据<code>ki</code>插入对应的队列位置</li>
+<li>注意，最后序列转化为数组的方式</li>
+</ol>
+<h3 id="代码实现-14"><a href="#代码实现-14" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ReconstructQueue</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span>[][] reconstructQueue(<span class="type">int</span>[][] people) &#123;</span><br><span class="line">        Arrays.sort(people, (a, b) -&gt; &#123;</span><br><span class="line">            <span class="keyword">if</span> (a[<span class="number">0</span>] == b[<span class="number">0</span>]) <span class="keyword">return</span> a[<span class="number">1</span>] - b[<span class="number">1</span>];<span class="comment">//身高相同，从小到达排序</span></span><br><span class="line">            <span class="keyword">return</span> b[<span class="number">0</span>] - a[<span class="number">0</span>];<span class="comment">//整体升高从大到小</span></span><br><span class="line">        &#125;);</span><br><span class="line">        LinkedList&lt;<span class="type">int</span>[]&gt; queue = <span class="keyword">new</span> <span class="title class_">LinkedList</span>&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; people.length; i++) &#123;</span><br><span class="line">            queue.add(people[i][<span class="number">1</span>], people[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> queue.toArray(<span class="keyword">new</span> <span class="title class_">int</span>[people.length][]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="452-用最少数量的箭引爆气球"><a href="#452-用最少数量的箭引爆气球" class="headerlink" title="452. 用最少数量的箭引爆气球"></a>452. 用最少数量的箭引爆气球</h2><p>有一些球形气球贴在一堵用 XY 平面表示的墙面上。墙面上的气球记录在整数数组 <code>points</code> ，其中<code>points[i] = [x_start, x_end]</code> 表示水平直径在 <code>xstart</code> 和 <code>xend</code>之间的气球。你不知道气球的确切 y 坐标。</p>
+<p>一支弓箭可以沿着 x 轴从不同点 <strong>完全垂直</strong> 地射出。在坐标 <code>x</code> 处射出一支箭，若有一个气球的直径的开始和结束坐标为 <code>x_start</code>，<code>x_end</code>， 且满足  <code>x_start ≤ x ≤ x_end</code>，则该气球会被 <strong>引爆</strong> 。可以射出的弓箭的数量 <strong>没有限制</strong> 。 弓箭一旦被射出之后，可以无限地前进。</p>
+<p>给你一个数组 <code>points</code> ，<em>返回引爆所有气球所必须射出的 <strong>最小</strong> 弓箭数</em> 。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入：points = [[10,16],[2,8],[1,6],[7,12]]</span><br><span class="line">输出：2</span><br><span class="line">解释：气球可以用2支箭来爆破:</span><br><span class="line">-在x = 6处射出箭，击破气球[2,8]和[1,6]。</span><br><span class="line">-在x = 11处发射箭，击破气球[10,16]和[7,12]。</span><br></pre></td></tr></table></figure>
+<p><code>-231 &lt;= xstart &lt; xend &lt;= 231 - 1</code></p>
+<h3 id="思路-7"><a href="#思路-7" class="headerlink" title="思路"></a>思路</h3><p>既然按照起始位置排序，那么就从前向后遍历气球数组，靠左尽可能让气球重复。</p>
+<p>从前向后遍历遇到重叠的气球了怎么办？</p>
+<p><strong>如果气球重叠了，重叠气球中右边边界的最小值 之前的区间一定需要一个弓箭</strong>。</p>
+<blockquote>
+<p>为了避免数据溢出，要考虑Integer.compare(a[0], b[0]))进行比较，它不是直接做减法运算，而是比较两个数的大小，因此不会发生溢出。</p>
+<p>一定要更新重叠气球的最小值</p>
+</blockquote>
+<h3 id="代码实现-15"><a href="#代码实现-15" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">findMinArrowShots</span><span class="params">(<span class="type">int</span>[][] points)</span> &#123;</span><br><span class="line">    Arrays.sort(points, (a, b) -&gt; Integer.compare(a[<span class="number">0</span>], b[<span class="number">0</span>]));</span><br><span class="line">    <span class="comment">//至少需要一只箭，避免最后的一组会落空</span></span><br><span class="line">    <span class="type">int</span> <span class="variable">numArrows</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; points.length; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (points[i][<span class="number">0</span>] &gt; points[i - <span class="number">1</span>][<span class="number">1</span>]) &#123;</span><br><span class="line">            numArrows++;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            points[i][<span class="number">1</span>] = Math.min(points[i][<span class="number">1</span>], points[i - <span class="number">1</span>][<span class="number">1</span>]); <span class="comment">// 更新重叠气球最小右边界</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> numArrows;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="435-无重叠区间"><a href="#435-无重叠区间" class="headerlink" title="435. 无重叠区间"></a>435. 无重叠区间</h2><p>给定一个区间的集合，找到需要移除区间的最小数量，使剩余区间互不重叠。</p>
+<p>注意: 可以认为区间的终点总是大于它的起点。 区间 [1,2] 和 [2,3] 的边界相互“接触”，但没有相互重叠。</p>
+<h3 id="思路-8"><a href="#思路-8" class="headerlink" title="思路"></a>思路</h3><p>找到所有重叠的区间，然后用总区间减去重叠区间数</p>
+<h3 id="代码实现-16"><a href="#代码实现-16" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">EraseOverlapIntervals</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">eraseOverlapIntervals</span><span class="params">(<span class="type">int</span>[][] intervals)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">crossInterval</span> <span class="operator">=</span> <span class="number">1</span>;<span class="comment">//记录重叠的区间组总数</span></span><br><span class="line">        Arrays.sort(intervals, (a, b) -&gt; a[<span class="number">0</span>] - b[<span class="number">0</span>]);</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; intervals.length; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (intervals[i][<span class="number">0</span>] &gt;= intervals[i - <span class="number">1</span>][<span class="number">1</span>]) &#123;</span><br><span class="line">                crossInterval++;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                intervals[i][<span class="number">1</span>] = Math.min(intervals[i][<span class="number">1</span>], intervals[i - <span class="number">1</span>][<span class="number">1</span>]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> intervals.length - crossInterval;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="763-划分字母区间"><a href="#763-划分字母区间" class="headerlink" title="763.划分字母区间"></a>763.划分字母区间</h2><p>给你一个字符串 <code>s</code> 。我们要把这个字符串划分为尽可能多的片段，同一字母最多出现在一个片段中。</p>
+<p>注意，划分结果需要满足：将所有划分结果按顺序连接，得到的字符串仍然是 <code>s</code> 。</p>
+<p>返回一个表示每个字符串片段的长度的列表。</p>
+<h3 id="思路-9"><a href="#思路-9" class="headerlink" title="思路"></a>思路</h3><p>将每个字母的最后出现的位置记录下来，不断更新局部区间字母出现最大值，直到这个最大值等于当前索引，这是由于<code>ababcbaca</code>中<code>a</code>最后出现的位置大于<code>b</code>，应该让<code>a</code>包含<code>b</code>，同时用last记录上个区间的位置，方便计算字符串长度。</p>
+<h3 id="代码实现-17"><a href="#代码实现-17" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title function_">partitionLabels</span><span class="params">(String s)</span> &#123;</span><br><span class="line">    <span class="type">int</span>[] farIdx = <span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">26</span>];</span><br><span class="line">    List&lt;Integer&gt; res = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; s.length(); i++) &#123;</span><br><span class="line">        farIdx[s.charAt(i) - <span class="string">&#x27;a&#x27;</span>] = i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> <span class="variable">last</span> <span class="operator">=</span> -<span class="number">1</span>;</span><br><span class="line">    <span class="type">int</span> <span class="variable">far</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; s.length(); i++) &#123;</span><br><span class="line">        far = Math.max(far, farIdx[s.charAt(i) - <span class="string">&#x27;a&#x27;</span>]);</span><br><span class="line">        <span class="keyword">if</span> (far == i) &#123;</span><br><span class="line">            res.add(i - last);</span><br><span class="line">            last = i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="56-合并区间"><a href="#56-合并区间" class="headerlink" title="56. 合并区间"></a>56. 合并区间</h2><p>以数组 <code>intervals</code> 表示若干个区间的集合，其中单个区间为 <code>intervals[i] = [starti, endi]</code> 。请你合并所有重叠的区间，并返回 <em>一个不重叠的区间数组，该数组需恰好覆盖输入中的所有区间</em> 。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：intervals = [[1,3],[2,6],[8,10],[15,18]]</span><br><span class="line">输出：[[1,6],[8,10],[15,18]]</span><br><span class="line">解释：区间 [1,3] 和 [2,6] 重叠, 将它们合并为 [1,6].</span><br></pre></td></tr></table></figure>
+<h3 id="思路-10"><a href="#思路-10" class="headerlink" title="思路"></a>思路</h3><p>先排序，让所有的相邻区间尽可能的重叠在一起，按左边界，或者右边界排序都可以，处理逻辑稍有不同。</p>
+<p><code>intervals[i][0] &gt; r</code>，表明当前区间不能和前面的区间合并</p>
+<p>合并区间后左边界和右边界，作为一个新的区间，加入到result数组里就可以了</p>
+<h3 id="代码实现-18"><a href="#代码实现-18" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span>[][] merge(<span class="type">int</span>[][] intervals) &#123;</span><br><span class="line">    List&lt;<span class="type">int</span>[]&gt; res = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;<span class="type">int</span>[]&gt;();</span><br><span class="line">    Arrays.sort(intervals, (a, b) -&gt; &#123;</span><br><span class="line">        <span class="keyword">if</span> (a[<span class="number">0</span>] == b[<span class="number">0</span>]) <span class="keyword">return</span> a[<span class="number">1</span>] - b[<span class="number">1</span>];</span><br><span class="line">        <span class="keyword">return</span> a[<span class="number">0</span>] - b[<span class="number">0</span>];</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="type">int</span> <span class="variable">l</span> <span class="operator">=</span> intervals[<span class="number">0</span>][<span class="number">0</span>];</span><br><span class="line">    <span class="type">int</span> <span class="variable">r</span> <span class="operator">=</span> intervals[<span class="number">0</span>][<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; intervals.length; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (intervals[i][<span class="number">0</span>] &gt; r) &#123;</span><br><span class="line">            res.add(<span class="keyword">new</span> <span class="title class_">int</span>[]&#123;l, r&#125;);</span><br><span class="line">            l = intervals[i][<span class="number">0</span>];</span><br><span class="line">            r = intervals[i][<span class="number">1</span>];</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            r = Math.max(r, intervals[i][<span class="number">1</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    res.add(<span class="keyword">new</span> <span class="title class_">int</span>[]&#123;l, r&#125;);</span><br><span class="line">    <span class="keyword">return</span> res.toArray(<span class="keyword">new</span> <span class="title class_">int</span>[res.size()][]);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="738-单调递增的数字"><a href="#738-单调递增的数字" class="headerlink" title="738.单调递增的数字"></a>738.单调递增的数字</h2><p>当且仅当每个相邻位数上的数字 <code>x</code> 和 <code>y</code> 满足 <code>x &lt;= y</code> 时，我们称这个整数是<strong>单调递增</strong>的。</p>
+<p>给定一个整数 <code>n</code> ，返回 <em>小于或等于 <code>n</code> 的最大数字，且数字呈 <strong>单调递增</strong></em> 。</p>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: n = 10</span><br><span class="line">输出: 9</span><br></pre></td></tr></table></figure>
+<p><strong>示例 2:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: n = 1234</span><br><span class="line">输出: 1234</span><br></pre></td></tr></table></figure>
+<p><strong>示例 3:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: n = 332</span><br><span class="line">输出: 299</span><br></pre></td></tr></table></figure>
+<h3 id="思路-11"><a href="#思路-11" class="headerlink" title="思路"></a>思路</h3><p>用一个flag来标记从哪里开始赋值9</p>
+<p>遇到<code>strNum[i - 1] &gt; strNum[i]</code>的情况，让<code>strNum[i - 1]</code>减一，<code>flag</code>设为<code>i</code></p>
+<h3 id="代码实现-19"><a href="#代码实现-19" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">monotoneIncreasingDigits</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line">    <span class="type">String</span> <span class="variable">s</span> <span class="operator">=</span> String.valueOf(n);</span><br><span class="line">    <span class="type">char</span>[] array = s.toCharArray();</span><br><span class="line">    <span class="type">int</span> <span class="variable">start</span> <span class="operator">=</span> s.length();</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> array.length - <span class="number">1</span>; i &gt; <span class="number">0</span>; i--) &#123;</span><br><span class="line">        <span class="keyword">if</span> (array[i - <span class="number">1</span>] &gt; array[i]) &#123;</span><br><span class="line">            start = i;</span><br><span class="line">            array[i - <span class="number">1</span>]--;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> start; i &lt; array.length; i++) &#123;</span><br><span class="line">        array[i] = <span class="string">&#x27;9&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> Integer.parseInt(String.valueOf(array));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="968-监控二叉树"><a href="#968-监控二叉树" class="headerlink" title="968.监控二叉树"></a>968.监控二叉树</h2><p>给定一个二叉树，我们在树的节点上安装摄像头。</p>
+<p>节点上的每个摄影头都可以监视<strong>其父对象、自身及其直接子对象。</strong></p>
+<p>计算监控树的所有节点所需的最小摄像头数量。</p>
+<p><strong>示例 1：</strong></p>
+<p><img src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/29/bst_cameras_01.png" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：[0,0,null,0,0]</span><br><span class="line">输出：1</span><br><span class="line">解释：如图所示，一台摄像头足以监控所有节点。</span><br></pre></td></tr></table></figure>
+<h3 id="思路-12"><a href="#思路-12" class="headerlink" title="思路"></a>思路</h3><p>后续遍历</p>
+<p><strong>局部最优：让叶子节点的父节点安摄像头，所用摄像头最少，整体最优：全部摄像头数量所用最少！</strong></p>
+<p>我们分别有三个数字来表示：</p>
+<ul>
+<li>0：该节点无覆盖</li>
+<li>1：本节点有摄像头</li>
+<li>2：本节点有覆盖</li>
+</ul>
+<p><strong>空节点的状态只能是有覆盖，这样就可以在叶子节点的父节点放摄像头了</strong></p>
+<p><strong>递推关系：</strong></p>
+<p>终止条件应该是遇到了空节点，此时应该返回2（有覆盖）</p>
+<p><strong>单层逻辑：</strong></p>
+<ul>
+<li>情况1：左右节点都有覆盖</li>
+</ul>
+<p>左孩子有覆盖，右孩子有覆盖，那么此时中间节点应该就是无覆盖的状态了。</p>
+<ul>
+<li>情况2：左右节点至少有一个无覆盖的情况</li>
+</ul>
+<p>此时摄像头的数量要加一，并且return 1，代表中间节点放摄像头。</p>
+<p>如果是以下情况，其实就是 左右孩子节点有一个有摄像头了，那么其父节点就应该是2（覆盖的状态）</p>
+<ul>
+<li>情况3：左右节点至少有一个有摄像头</li>
+</ul>
+<p>如果是以下情况，其实就是 左右孩子节点有一个有摄像头了，那么其父节点就应该是2（覆盖的状态）</p>
+<ul>
+<li>情况4：头结点没有覆盖</li>
+</ul>
+<p>以上都处理完了，递归结束之后，可能头结点 还有一个无覆盖的情况</p>
+<h3 id="代码实现-20"><a href="#代码实现-20" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MinCameraCover</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">res</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">minCameraCover</span><span class="params">(TreeNode root)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (traversal(root) == <span class="number">0</span>) &#123;</span><br><span class="line">            ++res;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 0：该节点无覆盖</span></span><br><span class="line"><span class="comment">     * 1：本节点有摄像头</span></span><br><span class="line"><span class="comment">     * 2：本节点有覆盖</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> root</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">traversal</span><span class="params">(TreeNode root)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="literal">null</span>) <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">left</span> <span class="operator">=</span> traversal(root.left);</span><br><span class="line">        <span class="type">int</span> <span class="variable">right</span> <span class="operator">=</span> traversal(root.right);</span><br><span class="line">        <span class="keyword">if</span> (left == <span class="number">2</span> &amp;&amp; right == <span class="number">2</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (left == <span class="number">0</span> || right == <span class="number">0</span>) &#123;<span class="comment">//一定是父节点覆盖子节点优先，2优于3</span></span><br><span class="line">            ++res;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (left == <span class="number">1</span> || right == <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;<span class="comment">//不会走到这里</span></span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>hollis7
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://hollis7.github.io/2024/04/08/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/" title="代码随想录-贪心算法">https://hollis7.github.io/2024/04/08/代码随想录/代码随想录贪心算法/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/greedy/" rel="tag"><i class="fa fa-tag"></i> greedy</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/03/31/daliyQustion/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%981/" rel="prev" title="每日一题-1">
+      <i class="fa fa-chevron-left"></i> 每日一题-1
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%86%85%E5%AE%B9"><span class="nav-number">1.</span> <span class="nav-text">内容</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#455-%E5%88%86%E5%8F%91%E9%A5%BC%E5%B9%B2"><span class="nav-number">1.1.</span> <span class="nav-text">455.分发饼干</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF"><span class="nav-number">1.1.1.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.1.2.</span> <span class="nav-text">代码实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#376-%E6%91%86%E5%8A%A8%E5%BA%8F%E5%88%97"><span class="nav-number">1.2.</span> <span class="nav-text">376. 摆动序列</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF%E4%B8%80"><span class="nav-number">1.2.1.</span> <span class="nav-text">思路一</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%83%85%E5%86%B5%E4%B8%80%EF%BC%9A%E4%B8%8A%E4%B8%8B%E5%9D%A1%E4%B8%AD%E6%9C%89%E5%B9%B3%E5%9D%A1"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">情况一：上下坡中有平坡</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%83%85%E5%86%B5%E4%BA%8C%EF%BC%9A%E6%95%B0%E7%BB%84%E9%A6%96%E5%B0%BE%E4%B8%A4%E7%AB%AF"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">情况二：数组首尾两端</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%83%85%E5%86%B5%E4%B8%89%EF%BC%9A%E5%8D%95%E8%B0%83%E5%9D%A1%E5%BA%A6%E6%9C%89%E5%B9%B3%E5%9D%A1"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">情况三：单调坡度有平坡</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0-1"><span class="nav-number">1.2.2.</span> <span class="nav-text">代码实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF%E4%BA%8C"><span class="nav-number">1.2.3.</span> <span class="nav-text">思路二</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0-2"><span class="nav-number">1.2.4.</span> <span class="nav-text">代码实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#53-%E6%9C%80%E5%A4%A7%E5%AD%90%E5%BA%8F%E5%92%8C"><span class="nav-number">1.3.</span> <span class="nav-text">53. 最大子序和</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF-%E8%B4%AA%E5%BF%83"><span class="nav-number">1.3.1.</span> <span class="nav-text">思路-贪心</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0-3"><span class="nav-number">1.3.2.</span> <span class="nav-text">代码实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92"><span class="nav-number">1.3.3.</span> <span class="nav-text">思路-动态规划</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0-4"><span class="nav-number">1.3.4.</span> <span class="nav-text">代码实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#122-%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BA-II"><span class="nav-number">1.4.</span> <span class="nav-text">122.买卖股票的最佳时机 II</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF-%E8%B4%AA%E5%BF%83-1"><span class="nav-number">1.4.1.</span> <span class="nav-text">思路-贪心</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0-5"><span class="nav-number">1.4.2.</span> <span class="nav-text">代码实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-1"><span class="nav-number">1.4.3.</span> <span class="nav-text">思路-动态规划</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0-6"><span class="nav-number">1.4.4.</span> <span class="nav-text">代码实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#55-%E8%B7%B3%E8%B7%83%E6%B8%B8%E6%88%8F"><span class="nav-number">1.5.</span> <span class="nav-text">55. 跳跃游戏</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF-1"><span class="nav-number">1.5.1.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0-7"><span class="nav-number">1.5.2.</span> <span class="nav-text">代码实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#45-%E8%B7%B3%E8%B7%83%E6%B8%B8%E6%88%8F-II"><span class="nav-number">1.6.</span> <span class="nav-text">45.跳跃游戏 II</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF-2"><span class="nav-number">1.6.1.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0-8"><span class="nav-number">1.6.2.</span> <span class="nav-text">代码实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1005-K%E6%AC%A1%E5%8F%96%E5%8F%8D%E5%90%8E%E6%9C%80%E5%A4%A7%E5%8C%96%E7%9A%84%E6%95%B0%E7%BB%84%E5%92%8C"><span class="nav-number">1.7.</span> <span class="nav-text">1005.K次取反后最大化的数组和</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF-3"><span class="nav-number">1.7.1.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0-9"><span class="nav-number">1.7.2.</span> <span class="nav-text">代码实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF2"><span class="nav-number">1.7.3.</span> <span class="nav-text">思路2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0-10"><span class="nav-number">1.7.4.</span> <span class="nav-text">代码实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#134-%E5%8A%A0%E6%B2%B9%E7%AB%99"><span class="nav-number">1.8.</span> <span class="nav-text">134. 加油站</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF-4"><span class="nav-number">1.8.1.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0-11"><span class="nav-number">1.8.2.</span> <span class="nav-text">代码实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#135-%E5%88%86%E5%8F%91%E7%B3%96%E6%9E%9C"><span class="nav-number">1.9.</span> <span class="nav-text">135. 分发糖果</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF-5"><span class="nav-number">1.9.1.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0-12"><span class="nav-number">1.9.2.</span> <span class="nav-text">代码实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#860-%E6%9F%A0%E6%AA%AC%E6%B0%B4%E6%89%BE%E9%9B%B6"><span class="nav-number">1.10.</span> <span class="nav-text">860.柠檬水找零</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0-13"><span class="nav-number">1.10.1.</span> <span class="nav-text">代码实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#406-%E6%A0%B9%E6%8D%AE%E8%BA%AB%E9%AB%98%E9%87%8D%E5%BB%BA%E9%98%9F%E5%88%97"><span class="nav-number">1.11.</span> <span class="nav-text">406.根据身高重建队列</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF-6"><span class="nav-number">1.11.1.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0-14"><span class="nav-number">1.11.2.</span> <span class="nav-text">代码实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#452-%E7%94%A8%E6%9C%80%E5%B0%91%E6%95%B0%E9%87%8F%E7%9A%84%E7%AE%AD%E5%BC%95%E7%88%86%E6%B0%94%E7%90%83"><span class="nav-number">1.12.</span> <span class="nav-text">452. 用最少数量的箭引爆气球</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF-7"><span class="nav-number">1.12.1.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0-15"><span class="nav-number">1.12.2.</span> <span class="nav-text">代码实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#435-%E6%97%A0%E9%87%8D%E5%8F%A0%E5%8C%BA%E9%97%B4"><span class="nav-number">1.13.</span> <span class="nav-text">435. 无重叠区间</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF-8"><span class="nav-number">1.13.1.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0-16"><span class="nav-number">1.13.2.</span> <span class="nav-text">代码实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#763-%E5%88%92%E5%88%86%E5%AD%97%E6%AF%8D%E5%8C%BA%E9%97%B4"><span class="nav-number">1.14.</span> <span class="nav-text">763.划分字母区间</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF-9"><span class="nav-number">1.14.1.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0-17"><span class="nav-number">1.14.2.</span> <span class="nav-text">代码实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#56-%E5%90%88%E5%B9%B6%E5%8C%BA%E9%97%B4"><span class="nav-number">1.15.</span> <span class="nav-text">56. 合并区间</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF-10"><span class="nav-number">1.15.1.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0-18"><span class="nav-number">1.15.2.</span> <span class="nav-text">代码实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#738-%E5%8D%95%E8%B0%83%E9%80%92%E5%A2%9E%E7%9A%84%E6%95%B0%E5%AD%97"><span class="nav-number">1.16.</span> <span class="nav-text">738.单调递增的数字</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF-11"><span class="nav-number">1.16.1.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0-19"><span class="nav-number">1.16.2.</span> <span class="nav-text">代码实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#968-%E7%9B%91%E6%8E%A7%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="nav-number">1.17.</span> <span class="nav-text">968.监控二叉树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF-12"><span class="nav-number">1.17.1.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0-20"><span class="nav-number">1.17.2.</span> <span class="nav-text">代码实现</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="hollis7"
+      src="/images/person.jpg">
+  <p class="site-author-name" itemprop="name">hollis7</p>
+  <div class="site-description" itemprop="description">some learning blogs</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">38</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hollis7" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hollis7" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://gitee.com/hollis7" title="Gitee → https:&#x2F;&#x2F;gitee.com&#x2F;hollis7" rel="noopener" target="_blank"><i class="fab fa-github-alt fa-fw"></i>Gitee</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">hollis7</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">230k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">3:29</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
