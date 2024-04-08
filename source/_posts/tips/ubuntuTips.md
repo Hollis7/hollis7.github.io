@@ -84,3 +84,24 @@ pkill name
 ls -1A | wc -l
 ~~~
 
+## 查找文件
+
+正则匹配
+
+~~~bash
+ls | grep '\.py$'
+~~~
+
+模糊匹配
+
+~~~bash
+ls | grep requi
+~~~
+
+~~~bash
+(pytorch_yolo) ➜  yolov5-pytorch git:(main) ✗ ls | grep requi
+requirements.txt
+~~~
+
+
+
