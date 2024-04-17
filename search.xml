@@ -4225,4 +4225,25 @@ f ( x , y ) = \max _ { 1 \leq j < y } \left\{ f ( x , j ) + f ( x , y - j ) \rig
         <tag>dp</tag>
       </tags>
   </entry>
+  <entry>
+    <title>obs录屏技巧</title>
+    <url>/2024/04/17/tips/obs%E5%BD%95%E5%B1%8F/</url>
+    <content><![CDATA[<meta name="referrer" content="no-referrer"/>
+
+<h2 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h2><ul>
+<li>obs录屏模糊</li>
+<li>屏幕抓取不全</li>
+</ul>
+<span id="more"></span>
+<h3 id="obs录屏模糊"><a href="#obs录屏模糊" class="headerlink" title="obs录屏模糊"></a>obs录屏模糊</h3><p>查看自己电脑的屏幕分辨率，<strong>打开OBS&gt;设置&gt;视频，将基础和输出分辨率修改为和系统一样</strong></p>
+<p>比如：3840*2160（4K）</p>
+<h3 id="屏幕抓取不全"><a href="#屏幕抓取不全" class="headerlink" title="屏幕抓取不全"></a>屏幕抓取不全</h3><p>鼠标靠近屏幕&gt;右键&gt;变换&gt;比例适配屏幕</p>
+]]></content>
+      <categories>
+        <category>tips</category>
+      </categories>
+      <tags>
+        <tag>obs</tag>
+      </tags>
+  </entry>
 </search>
