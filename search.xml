@@ -3144,6 +3144,24 @@ m a x ( l , r ) + 1</script><h2 id="111-二叉树的最小深度"><a href="#111-
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo iptables -L INPUT --line-numbers</span><br></pre></td></tr></table></figure>
 <p><strong>删除特定编号的规则</strong>： 根据上一步显示的编号，如果开放端口 40000 的规则是第 N 号，使用以下命令删除它：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo iptables -D INPUT N</span><br></pre></td></tr></table></figure>
+<h2 id="conda环境打包"><a href="#conda环境打包" class="headerlink" title="conda环境打包"></a>conda环境打包</h2><p>1、 安装conda-pack</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda install -c conda-forge conda-pack</span><br></pre></td></tr></table></figure>
+<p>2、 打包虚拟环境</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda pack -n sf -o sf_output.tar.gz</span><br></pre></td></tr></table></figure>
+<p>3、 新机器上安装<strong>打包的conda环境</strong></p>
+<ol>
+<li><strong>复制压缩文件sf_output.tar.gz 到新的电脑环境</strong></li>
+<li>进入到conda的安装目录下：<strong>/anaconda(或者miniconda)/envs/</strong>，在该名目录下创建文件夹，复制sf_output.tar.gz 到文件夹中。</li>
+<li>解压conda环境：<strong>tar -xzvf sf_output.tar.gz</strong></li>
+<li>使用conda env list查看虚拟环境</li>
+<li>conda activate激活环境</li>
+</ol>
+<h2 id="clash"><a href="#clash" class="headerlink" title="clash"></a>clash</h2><p>命令开启</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo bash start.sh</span><br><span class="line"><span class="built_in">source</span> /etc/profile.d/clash.sh</span><br><span class="line">proxy_on</span><br></pre></td></tr></table></figure>
+<p>关闭</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">proxy_off</span><br></pre></td></tr></table></figure>
+<h2 id="python函数说明文档"><a href="#python函数说明文档" class="headerlink" title="python函数说明文档"></a>python函数说明文档</h2><p>查询函数库中的函数：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">python3 -m pydoc -p 1234</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>tips</category>
@@ -4270,7 +4288,7 @@ f ( x , y ) = \max _ { 1 \leq j < y } \left\{ f ( x , j ) + f ( x , y - j ) \rig
 <h1 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h1><p><strong>本节包括：</strong></p>
 <ul>
 <li>完全背包</li>
-<li>打家劫色</li>
+<li>打家劫舍</li>
 <li>买卖股票</li>
 </ul>
 <span id="more"></span>
