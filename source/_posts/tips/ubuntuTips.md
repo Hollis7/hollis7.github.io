@@ -191,3 +191,49 @@ sudo iptables -L INPUT --line-numbers
 sudo iptables -D INPUT N
 ~~~
 
+## conda环境打包
+
+1、 安装conda-pack
+
+~~~bash
+conda install -c conda-forge conda-pack
+~~~
+
+2、 打包虚拟环境
+
+~~~bash
+conda pack -n sf -o sf_output.tar.gz
+~~~
+
+3、 新机器上安装**打包的conda环境**
+
+1. **复制压缩文件sf_output.tar.gz 到新的电脑环境**
+2. 进入到conda的安装目录下：**/anaconda(或者miniconda)/envs/**，在该名目录下创建文件夹，复制sf_output.tar.gz 到文件夹中。
+3. 解压conda环境：**tar -xzvf sf_output.tar.gz**
+4. 使用conda env list查看虚拟环境
+5. conda activate激活环境
+
+## clash
+
+命令开启
+
+~~~bash
+sudo bash start.sh
+source /etc/profile.d/clash.sh
+proxy_on
+~~~
+
+关闭
+
+~~~bash
+proxy_off
+~~~
+
+## python函数说明文档
+
+查询函数库中的函数：
+
+```bash
+python3 -m pydoc -p 1234
+```
+
