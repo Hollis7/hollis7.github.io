@@ -1,7 +1,7 @@
 ---
 title: docker初学
 categories:
-  - tips
+  - docker
 tags:
   - docker
 mathjax: true
