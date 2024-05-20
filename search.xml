@@ -4762,7 +4762,7 @@ f ( x , y ) = \max _ { 1 \leq j < y } \left\{ f ( x , j ) + f ( x , y - j ) \rig
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ping busybox2</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>tips</category>
+        <category>docker</category>
       </categories>
       <tags>
         <tag>docker</tag>
