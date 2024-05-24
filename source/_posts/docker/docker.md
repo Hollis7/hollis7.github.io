@@ -651,13 +651,26 @@ docker exec -it 326 bash
 
 ### 导入和导出
 
-#### 导出容器
+#### 导出容器export
 
 如果要导出本地某个容器，可以使用 `docker export` 命令。
 
 ~~~bash
 docker export bb5 > ubuntu18.tar
 ~~~
+
+**`docker export`**:
+
+- 导出一个容器的文件系统为一个 tar 包。
+- 这个命令不包含容器的元数据（例如 Docker 镜像的历史记录、容器的配置信息等）。
+
+#### 导出容器save recommend
+
+1. **`docker save`**:
+   - 保存一个或多个镜像为一个 tar 包。
+   - 这个命令包含镜像的所有层和元数据，适用于导出和共享 Docker 镜像。
+   - `docker save` 通常用于将镜像保存为 tar 文件，然后可以用 `docker load` 恢复。
+   - 示例用法：`docker save -o my_image.tar my_image:tag`
 
 #### 导入容器快照
 
@@ -666,6 +679,13 @@ docker export bb5 > ubuntu18.tar
 ```bash
 cat ubuntu18.tar | docker import - test/ubunntu:1.0
 ```
+
+~~~bash
+docker load -i ubuntu18.tar
+~~~
+
+- `docker load` 命令是从一个 tar 文件加载一个完整的 Docker 镜像，包括所有的元数据。
+- 它能够完全恢复镜像的所有状态和信息，确保导入的镜像和原始镜像完全一致。
 
 启动镜像
 
@@ -918,3 +938,12 @@ docker run -it --rm --name busybox2 --network my-net busybox sh
 ping busybox2
 ~~~
 
+## docker宿主机和容器之间拷贝
+
+### 从容器里面拷文件到宿主机
+
+docker cp 容器名：要拷贝的文件在容器里面的路径       要拷贝到宿主机的相应路径   
+
+#### 从宿主机拷文件到容器里面
+
+docker  cp  要拷贝的文件路径    容器名:要拷贝到容器里面对应的路径
