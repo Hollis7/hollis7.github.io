@@ -4684,10 +4684,29 @@ f ( x , y ) = \max _ { 1 \leq j < y } \left\{ f ( x , j ) + f ( x , y - j ) \rig
 <p>某些时候需要进入容器进行操作，包括使用 <code>docker attach</code> 命令或 <code>docker exec</code> 命令，推荐大家使用 <code>docker exec</code> 命令，原因会在下面说明。</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -dit ubuntu:18.04</span><br><span class="line">-------------------------------------------</span><br><span class="line">(base) ➜  container_demo docker container <span class="built_in">ls</span></span><br><span class="line">CONTAINER ID   IMAGE                                     COMMAND                   CREATED         STATUS                PORTS                                   NAMES</span><br><span class="line">326c1f3e8643   ubuntu:18.04                              <span class="string">&quot;/bin/bash&quot;</span>               6 seconds ago   Up 5 seconds                                                  funny_lovelace</span><br><span class="line">-------------------------------------------</span><br><span class="line">docker <span class="built_in">exec</span> -it 326 bash</span><br></pre></td></tr></table></figure>
 <p>如果从这个 stdin 中 exit，不会导致容器的停止（docker attach会停止容器）。这就是为什么推荐大家使用 <code>docker exec</code> 的原因。</p>
-<h3 id="导入和导出"><a href="#导入和导出" class="headerlink" title="导入和导出"></a>导入和导出</h3><h4 id="导出容器"><a href="#导出容器" class="headerlink" title="导出容器"></a>导出容器</h4><p>如果要导出本地某个容器，可以使用 <code>docker export</code> 命令。</p>
+<h3 id="导入和导出"><a href="#导入和导出" class="headerlink" title="导入和导出"></a>导入和导出</h3><h4 id="导出容器export"><a href="#导出容器export" class="headerlink" title="导出容器export"></a>导出容器export</h4><p>如果要导出本地某个容器，可以使用 <code>docker export</code> 命令。</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker <span class="built_in">export</span> bb5 &gt; ubuntu18.tar</span><br></pre></td></tr></table></figure>
+<p><strong><code>docker export</code></strong>:</p>
+<ul>
+<li>导出一个容器的文件系统为一个 tar 包。</li>
+<li>这个命令不包含容器的元数据（例如 Docker 镜像的历史记录、容器的配置信息等）。</li>
+</ul>
+<h4 id="导出容器save-recommend"><a href="#导出容器save-recommend" class="headerlink" title="导出容器save recommend"></a>导出容器save recommend</h4><ol>
+<li><strong><code>docker save</code></strong>:<ul>
+<li>保存一个或多个镜像为一个 tar 包。</li>
+<li>这个命令包含镜像的所有层和元数据，适用于导出和共享 Docker 镜像。</li>
+<li><code>docker save</code> 通常用于将镜像保存为 tar 文件，然后可以用 <code>docker load</code> 恢复。</li>
+<li>示例用法：<code>docker save -o my_image.tar my_image:tag</code></li>
+</ul>
+</li>
+</ol>
 <h4 id="导入容器快照"><a href="#导入容器快照" class="headerlink" title="导入容器快照"></a>导入容器快照</h4><p>可以使用 <code>docker import</code> 从容器快照文件中再导入为镜像，例如</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cat</span> ubuntu18.tar | docker import - <span class="built_in">test</span>/ubunntu:1.0</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker load -i ubuntu18.tar</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>docker load</code> 命令是从一个 tar 文件加载一个完整的 Docker 镜像，包括所有的元数据。</li>
+<li>它能够完全恢复镜像的所有状态和信息，确保导入的镜像和原始镜像完全一致。</li>
+</ul>
 <p>启动镜像</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -dit --name test_ubuntu --<span class="built_in">rm</span> <span class="built_in">test</span>/ubuntu:1.0 bash</span><br><span class="line">911ae74f13732a0ff1b76cb44e174313dd6ccbe96a4a168b1b288b5a03ffd38c</span><br></pre></td></tr></table></figure>
 <p>进入镜像</p>
@@ -4760,6 +4779,8 @@ f ( x , y ) = \max _ { 1 \leq j < y } \left\{ f ( x , j ) + f ( x , y - j ) \rig
 <p>下面通过 <code>ping</code> 来证明 <code>busybox1</code> 容器和 <code>busybox2</code> 容器建立了互联关系。</p>
 <p>在 <code>busybox1</code> 容器输入以下命令</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ping busybox2</span><br></pre></td></tr></table></figure>
+<h2 id="docker宿主机和容器之间拷贝"><a href="#docker宿主机和容器之间拷贝" class="headerlink" title="docker宿主机和容器之间拷贝"></a>docker宿主机和容器之间拷贝</h2><h3 id="从容器里面拷文件到宿主机"><a href="#从容器里面拷文件到宿主机" class="headerlink" title="从容器里面拷文件到宿主机"></a>从容器里面拷文件到宿主机</h3><p>docker cp 容器名：要拷贝的文件在容器里面的路径       要拷贝到宿主机的相应路径   </p>
+<h4 id="从宿主机拷文件到容器里面"><a href="#从宿主机拷文件到容器里面" class="headerlink" title="从宿主机拷文件到容器里面"></a>从宿主机拷文件到容器里面</h4><p>docker  cp  要拷贝的文件路径    容器名:要拷贝到容器里面对应的路径</p>
 ]]></content>
       <categories>
         <category>docker</category>
