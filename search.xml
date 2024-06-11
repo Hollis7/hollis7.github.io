@@ -5565,7 +5565,7 @@ f ( x , y ) = \max _ { 1 \leq j < y } \left\{ f ( x , j ) + f ( x , y - j ) \rig
 <h3 id="续写LoginController-logout"><a href="#续写LoginController-logout" class="headerlink" title="续写LoginController-logout"></a>续写LoginController-logout</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(path = &quot;/logout&quot;, method = RequestMethod.GET)</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">logout</span><span class="params">(<span class="meta">@CookieValue(&quot;ticket&quot;)</span> String ticket)</span> &#123;</span><br><span class="line">    userService.logout(ticket);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;redirect:/login&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="修改index-html-退出链接"><a href="#修改index-html-退出链接" class="headerlink" title="修改index.html-退出链接"></a>修改index.html-退出链接</h3><p>这里一定要修改index.html，因为其他模块复用了这个头部</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">&quot;dropdown-item text-center&quot;</span> <span class="attr">th:href</span>=<span class="string">&quot;@&#123;/logout&#125;&quot;</span>&gt;</span>退出登录<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h2 id=""><a href="#" class="headerlink" title=" "></a> </h2>]]></content>
+]]></content>
       <categories>
         <category>nowcoder</category>
       </categories>
