@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/web3232.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/web1616.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hollis7.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="内容本节包括：  事务概念 事务特性 事务隔离性 事务隔离级别（表） spring事务管理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="牛客论坛项目-事务管理">
+<meta property="og:url" content="https://hollis7.github.io/2024/06/14/%E7%89%9B%E5%AE%A2%E8%AE%BA%E5%9D%9B%E7%A4%BE%E5%8C%BA/%E5%BC%80%E5%8F%91%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD/%E7%89%9B%E5%AE%A2%E8%AE%BA%E5%9D%9B%E5%BC%80%E5%8F%913.4-%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86/index.html">
+<meta property="og:site_name" content="hollis7">
+<meta property="og:description" content="内容本节包括：  事务概念 事务特性 事务隔离性 事务隔离级别（表） spring事务管理">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/hollis7/pictures/raw/master/2024/06/14/69313_image-20240614170353132.png">
+<meta property="og:image" content="https://gitee.com/hollis7/pictures/raw/master/2024/06/14/51455_image-20240614170555122.png">
+<meta property="og:image" content="https://gitee.com/hollis7/pictures/raw/master/2024/06/14/56222_image-20240614170735129.png">
+<meta property="og:image" content="https://gitee.com/hollis7/pictures/raw/master/2024/06/14/56394_image-20240614171128226.png">
+<meta property="og:image" content="https://gitee.com/hollis7/pictures/raw/master/2024/06/14/46134_image-20240614171234998.png">
+<meta property="og:image" content="https://gitee.com/hollis7/pictures/raw/master/2024/06/14/50461_image-20240614171611207.png">
+<meta property="article:published_time" content="2024-06-14T09:39:41.961Z">
+<meta property="article:modified_time" content="2024-06-14T09:39:14.208Z">
+<meta property="article:author" content="hollis7">
+<meta property="article:tag" content="nowcoder">
+<meta property="article:tag" content="core_function">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/hollis7/pictures/raw/master/2024/06/14/69313_image-20240614170353132.png">
+
+<link rel="canonical" href="https://hollis7.github.io/2024/06/14/%E7%89%9B%E5%AE%A2%E8%AE%BA%E5%9D%9B%E7%A4%BE%E5%8C%BA/%E5%BC%80%E5%8F%91%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD/%E7%89%9B%E5%AE%A2%E8%AE%BA%E5%9D%9B%E5%BC%80%E5%8F%913.4-%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>牛客论坛项目-事务管理 | hollis7</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">hollis7</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">personal-blogs</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>标签<span class="badge">46</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>分类<span class="badge">15</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档<span class="badge">52</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://hollis7.github.io/2024/06/14/%E7%89%9B%E5%AE%A2%E8%AE%BA%E5%9D%9B%E7%A4%BE%E5%8C%BA/%E5%BC%80%E5%8F%91%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD/%E7%89%9B%E5%AE%A2%E8%AE%BA%E5%9D%9B%E5%BC%80%E5%8F%913.4-%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/person.jpg">
+      <meta itemprop="name" content="hollis7">
+      <meta itemprop="description" content="some learning blogs">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="hollis7">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          牛客论坛项目-事务管理
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2024-06-14 17:39:41 / 修改时间：17:39:14" itemprop="dateCreated datePublished" datetime="2024-06-14T17:39:41+08:00">2024-06-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/nowcoder/" itemprop="url" rel="index"><span itemprop="name">nowcoder</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>2.5k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <meta name="referrer" content="no-referrer"/>
+
+<h2 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h2><p><strong>本节包括：</strong></p>
+<ul>
+<li>事务概念</li>
+<li>事务特性</li>
+<li>事务隔离性</li>
+<li>事务隔离级别（表）</li>
+<li>spring事务管理</li>
+</ul>
+<span id="more"></span>
+<h2 id="事务概念"><a href="#事务概念" class="headerlink" title="事务概念"></a>事务概念</h2><p>事务是由N步数据库操作序列组成的逻辑执行单元，这系列操作要么全执行，要么全放弃执行。</p>
+<h2 id="事务特性"><a href="#事务特性" class="headerlink" title="事务特性"></a>事务特性</h2><p>原子性(Atomicity):事务是应用中不可再分的最小执行体。<br>一致性(Consistency)：事务执行的结果，须使数据从一个一致性状态，变为另一个一致性状态。<br>隔离性(Isolation)：各个事务的执行互不干扰，任何事务的内部操作对其他的事务都是隔离的。<br>持久性(Durability)：事务一旦提交，对数据所做的任何改变都要记录到永久存储器中。</p>
+<h2 id="事务隔离性"><a href="#事务隔离性" class="headerlink" title="事务隔离性"></a>事务隔离性</h2><h3 id="常见隔离级别"><a href="#常见隔离级别" class="headerlink" title="常见隔离级别"></a>常见隔离级别</h3><ul>
+<li>Read Uncommitted:读取未提交的数据。</li>
+<li>Read Committed:读取已提交的数据。</li>
+<li>Repeatable Read:可重复读。</li>
+<li>Serializable:串行化。</li>
+</ul>
+<h3 id="常见并发异常"><a href="#常见并发异常" class="headerlink" title="常见并发异常"></a>常见并发异常</h3><h4 id="第一类丢失更新"><a href="#第一类丢失更新" class="headerlink" title="第一类丢失更新"></a>第一类丢失更新</h4><p>某一个事务的回滚，导致另外一个事务已更新的数据丢失了。</p>
+<p><img src="https://gitee.com/hollis7/pictures/raw/master/2024/06/14/69313_image-20240614170353132.png" alt="image-20240614170353132" style="zoom: 33%;" /></p>
+<h4 id="第二类丢失更新"><a href="#第二类丢失更新" class="headerlink" title="第二类丢失更新"></a>第二类丢失更新</h4><p>某一个事务的提交，导致另外一个事务已更新的数据丢失了。</p>
+<p><img src="https://gitee.com/hollis7/pictures/raw/master/2024/06/14/51455_image-20240614170555122.png" alt="image-20240614170555122" style="zoom:33%;" /></p>
+<h4 id="脏读"><a href="#脏读" class="headerlink" title="脏读"></a>脏读</h4><p>某一个事务，读取了另外一个事务未提交的数据。</p>
+<p><img src="https://gitee.com/hollis7/pictures/raw/master/2024/06/14/56222_image-20240614170735129.png" alt="image-20240614170735129" style="zoom:33%;" /></p>
+<h4 id="不可重复读"><a href="#不可重复读" class="headerlink" title="不可重复读"></a>不可重复读</h4><p>某一个事务，极短时间内对同一个数据前后读取的结果不一致。</p>
+<p><img src="https://gitee.com/hollis7/pictures/raw/master/2024/06/14/56394_image-20240614171128226.png" alt="image-20240614171128226" style="zoom:33%;" /></p>
+<h4 id="幻读"><a href="#幻读" class="headerlink" title="幻读"></a>幻读</h4><p>某一个事务，对同一个表前后查询到的行数不一致。</p>
+<p><img src="https://gitee.com/hollis7/pictures/raw/master/2024/06/14/46134_image-20240614171234998.png" alt="image-20240614171234998" style="zoom:33%;" /></p>
+<h3 id="事务隔离级别解决的异常表"><a href="#事务隔离级别解决的异常表" class="headerlink" title="事务隔离级别解决的异常表"></a>事务隔离级别解决的异常表</h3><p><img src="https://gitee.com/hollis7/pictures/raw/master/2024/06/14/50461_image-20240614171611207.png" alt="image-20240614171611207" style="zoom:33%;" /></p>
+<h2 id="spring事务管理"><a href="#spring事务管理" class="headerlink" title="spring事务管理"></a>spring事务管理</h2><h3 id="声明式-Transactional"><a href="#声明式-Transactional" class="headerlink" title="声明式-@Transactional"></a>声明式-@Transactional</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// REQUIRED: 支持当前事务(外部事务),如果不存在则创建新事务.</span></span><br><span class="line"><span class="comment">// REQUIRES_NEW: 创建一个新事务,并且暂停当前事务(外部事务).</span></span><br><span class="line"><span class="comment">// NESTED: 如果当前存在事务(外部事务),则嵌套在该事务中执行(独立的提交和回滚),否则就会REQUIRED一样.</span></span><br><span class="line"><span class="meta">@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED)</span></span><br><span class="line"><span class="keyword">public</span> Object <span class="title function_">save1</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="comment">// 新增用户</span></span><br><span class="line">    <span class="type">User</span> <span class="variable">user</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">User</span>();</span><br><span class="line">    user.setUsername(<span class="string">&quot;alpha&quot;</span>);</span><br><span class="line">    user.setSalt(CommunityUtil.generateUUID().substring(<span class="number">0</span>, <span class="number">5</span>));</span><br><span class="line">    user.setPassword(CommunityUtil.md5(<span class="string">&quot;123&quot;</span> + user.getSalt()));</span><br><span class="line">    user.setEmail(<span class="string">&quot;alpha@qq.com&quot;</span>);</span><br><span class="line">    user.setHeaderUrl(<span class="string">&quot;http://image.nowcoder.com/head/99t.png&quot;</span>);</span><br><span class="line">    user.setCreateTime(<span class="keyword">new</span> <span class="title class_">Date</span>());</span><br><span class="line">    userMapper.insertUser(user);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 新增帖子</span></span><br><span class="line">    <span class="type">DiscussPost</span> <span class="variable">post</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">DiscussPost</span>();</span><br><span class="line">    post.setUserId(user.getId());</span><br><span class="line">    post.setTitle(<span class="string">&quot;Hello&quot;</span>);</span><br><span class="line">    post.setContent(<span class="string">&quot;新人报道!&quot;</span>);</span><br><span class="line">    post.setCreateTime(<span class="keyword">new</span> <span class="title class_">Date</span>());</span><br><span class="line">    discussPostMapper.insertDiscussPost(post);</span><br><span class="line"></span><br><span class="line">    Integer.valueOf(<span class="string">&quot;abc&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;ok&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="编程式-TransactionTemplate"><a href="#编程式-TransactionTemplate" class="headerlink" title="编程式-TransactionTemplate"></a>编程式-TransactionTemplate</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> Object <span class="title function_">save2</span><span class="params">()</span> &#123;</span><br><span class="line">    transactionTemplate.setIsolationLevel(TransactionDefinition.ISOLATION_READ_COMMITTED);</span><br><span class="line">    transactionTemplate.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> transactionTemplate.execute(<span class="keyword">new</span> <span class="title class_">TransactionCallback</span>&lt;Object&gt;() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> Object <span class="title function_">doInTransaction</span><span class="params">(TransactionStatus status)</span> &#123;</span><br><span class="line">            <span class="comment">// 新增用户</span></span><br><span class="line">            <span class="type">User</span> <span class="variable">user</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">User</span>();</span><br><span class="line">            user.setUsername(<span class="string">&quot;beta&quot;</span>);</span><br><span class="line">            user.setSalt(CommunityUtil.generateUUID().substring(<span class="number">0</span>, <span class="number">5</span>));</span><br><span class="line">            user.setPassword(CommunityUtil.md5(<span class="string">&quot;123&quot;</span> + user.getSalt()));</span><br><span class="line">            user.setEmail(<span class="string">&quot;beta@qq.com&quot;</span>);</span><br><span class="line">            user.setHeaderUrl(<span class="string">&quot;http://image.nowcoder.com/head/999t.png&quot;</span>);</span><br><span class="line">            user.setCreateTime(<span class="keyword">new</span> <span class="title class_">Date</span>());</span><br><span class="line">            userMapper.insertUser(user);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 新增帖子</span></span><br><span class="line">            <span class="type">DiscussPost</span> <span class="variable">post</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">DiscussPost</span>();</span><br><span class="line">            post.setUserId(user.getId());</span><br><span class="line">            post.setTitle(<span class="string">&quot;你好&quot;</span>);</span><br><span class="line">            post.setContent(<span class="string">&quot;我是新人!&quot;</span>);</span><br><span class="line">            post.setCreateTime(<span class="keyword">new</span> <span class="title class_">Date</span>());</span><br><span class="line">            discussPostMapper.insertDiscussPost(post);</span><br><span class="line"></span><br><span class="line">            Integer.valueOf(<span class="string">&quot;abc&quot;</span>);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;ok&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>hollis7
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://hollis7.github.io/2024/06/14/%E7%89%9B%E5%AE%A2%E8%AE%BA%E5%9D%9B%E7%A4%BE%E5%8C%BA/%E5%BC%80%E5%8F%91%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD/%E7%89%9B%E5%AE%A2%E8%AE%BA%E5%9D%9B%E5%BC%80%E5%8F%913.4-%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86/" title="牛客论坛项目-事务管理">https://hollis7.github.io/2024/06/14/牛客论坛社区/开发核心功能/牛客论坛开发3.4-事务管理/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/nowcoder/" rel="tag"><i class="fa fa-tag"></i> nowcoder</a>
+              <a href="/tags/core-function/" rel="tag"><i class="fa fa-tag"></i> core_function</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/06/14/%E7%89%9B%E5%AE%A2%E8%AE%BA%E5%9D%9B%E7%A4%BE%E5%8C%BA/%E5%BC%80%E5%8F%91%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD/%E7%89%9B%E5%AE%A2%E8%AE%BA%E5%9D%9B%E5%BC%80%E5%8F%913.3-%E5%B8%96%E5%AD%90%E8%AF%A6%E6%83%85/" rel="prev" title="牛客论坛项目-帖子详情">
+      <i class="fa fa-chevron-left"></i> 牛客论坛项目-帖子详情
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%85%E5%AE%B9"><span class="nav-number">1.</span> <span class="nav-text">内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1%E6%A6%82%E5%BF%B5"><span class="nav-number">2.</span> <span class="nav-text">事务概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1%E7%89%B9%E6%80%A7"><span class="nav-number">3.</span> <span class="nav-text">事务特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E6%80%A7"><span class="nav-number">4.</span> <span class="nav-text">事务隔离性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB"><span class="nav-number">4.1.</span> <span class="nav-text">常见隔离级别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E5%B9%B6%E5%8F%91%E5%BC%82%E5%B8%B8"><span class="nav-number">4.2.</span> <span class="nav-text">常见并发异常</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E7%B1%BB%E4%B8%A2%E5%A4%B1%E6%9B%B4%E6%96%B0"><span class="nav-number">4.2.1.</span> <span class="nav-text">第一类丢失更新</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E7%B1%BB%E4%B8%A2%E5%A4%B1%E6%9B%B4%E6%96%B0"><span class="nav-number">4.2.2.</span> <span class="nav-text">第二类丢失更新</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%84%8F%E8%AF%BB"><span class="nav-number">4.2.3.</span> <span class="nav-text">脏读</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%8D%E5%8F%AF%E9%87%8D%E5%A4%8D%E8%AF%BB"><span class="nav-number">4.2.4.</span> <span class="nav-text">不可重复读</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B9%BB%E8%AF%BB"><span class="nav-number">4.2.5.</span> <span class="nav-text">幻读</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB%E8%A7%A3%E5%86%B3%E7%9A%84%E5%BC%82%E5%B8%B8%E8%A1%A8"><span class="nav-number">4.3.</span> <span class="nav-text">事务隔离级别解决的异常表</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#spring%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86"><span class="nav-number">5.</span> <span class="nav-text">spring事务管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A3%B0%E6%98%8E%E5%BC%8F-Transactional"><span class="nav-number">5.1.</span> <span class="nav-text">声明式-@Transactional</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E7%A8%8B%E5%BC%8F-TransactionTemplate"><span class="nav-number">5.2.</span> <span class="nav-text">编程式-TransactionTemplate</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="hollis7"
+      src="/images/person.jpg">
+  <p class="site-author-name" itemprop="name">hollis7</p>
+  <div class="site-description" itemprop="description">some learning blogs</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">52</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">46</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hollis7" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hollis7" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://gitee.com/hollis7" title="Gitee → https:&#x2F;&#x2F;gitee.com&#x2F;hollis7" rel="noopener" target="_blank"><i class="fab fa-github-alt fa-fw"></i>Gitee</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">hollis7</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">370k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">5:36</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
