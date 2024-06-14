@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/web3232.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/web1616.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hollis7.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="内容本节包括：  AJAX 发布帖子">
+<meta property="og:type" content="article">
+<meta property="og:title" content="牛客论坛项目-发布帖子">
+<meta property="og:url" content="https://hollis7.github.io/2024/06/14/%E7%89%9B%E5%AE%A2%E8%AE%BA%E5%9D%9B%E7%A4%BE%E5%8C%BA/%E5%BC%80%E5%8F%91%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD/%E7%89%9B%E5%AE%A2%E8%AE%BA%E5%9D%9B%E5%BC%80%E5%8F%913.2-%E5%8F%91%E5%B8%83%E5%B8%96%E5%AD%90/index.html">
+<meta property="og:site_name" content="hollis7">
+<meta property="og:description" content="内容本节包括：  AJAX 发布帖子">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-06-14T03:09:24.091Z">
+<meta property="article:modified_time" content="2024-06-14T03:09:06.790Z">
+<meta property="article:author" content="hollis7">
+<meta property="article:tag" content="nowcoder">
+<meta property="article:tag" content="core_function">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://hollis7.github.io/2024/06/14/%E7%89%9B%E5%AE%A2%E8%AE%BA%E5%9D%9B%E7%A4%BE%E5%8C%BA/%E5%BC%80%E5%8F%91%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD/%E7%89%9B%E5%AE%A2%E8%AE%BA%E5%9D%9B%E5%BC%80%E5%8F%913.2-%E5%8F%91%E5%B8%83%E5%B8%96%E5%AD%90/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>牛客论坛项目-发布帖子 | hollis7</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">hollis7</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">personal-blogs</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>标签<span class="badge">46</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>分类<span class="badge">15</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档<span class="badge">50</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://hollis7.github.io/2024/06/14/%E7%89%9B%E5%AE%A2%E8%AE%BA%E5%9D%9B%E7%A4%BE%E5%8C%BA/%E5%BC%80%E5%8F%91%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD/%E7%89%9B%E5%AE%A2%E8%AE%BA%E5%9D%9B%E5%BC%80%E5%8F%913.2-%E5%8F%91%E5%B8%83%E5%B8%96%E5%AD%90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/person.jpg">
+      <meta itemprop="name" content="hollis7">
+      <meta itemprop="description" content="some learning blogs">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="hollis7">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          牛客论坛项目-发布帖子
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2024-06-14 11:09:24 / 修改时间：11:09:06" itemprop="dateCreated datePublished" datetime="2024-06-14T11:09:24+08:00">2024-06-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/nowcoder/" itemprop="url" rel="index"><span itemprop="name">nowcoder</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>4.8k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>4 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <meta name="referrer" content="no-referrer"/>
+
+<h2 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h2><p><strong>本节包括：</strong></p>
+<ul>
+<li>AJAX</li>
+<li>发布帖子</li>
+</ul>
+<span id="more"></span>
+<h2 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h2><p>Asynchronous JavaScript and XML<br>异步的JavaScript与XML,不是一门新技术，只是一个新的术语。<br>使用AJAX,<strong>网页能够将增量更新呈现在页面上，而不需要刷新整个页面</strong>。<br>虽然X代表XML,但目前SON的使用比XML更加普遍。</p>
+<h2 id="导入fastjson依赖"><a href="#导入fastjson依赖" class="headerlink" title="导入fastjson依赖"></a>导入fastjson依赖</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- https://mvnrepository.com/artifact/com.alibaba/fastjson --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>fastjson<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2.58<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="续写CommunityUtil-转化json字符串"><a href="#续写CommunityUtil-转化json字符串" class="headerlink" title="续写CommunityUtil-转化json字符串"></a>续写CommunityUtil-转化json字符串</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title function_">getJSONString</span><span class="params">(<span class="type">int</span> code, String msg, Map&lt;String, Object&gt; map)</span> &#123;</span><br><span class="line">        <span class="type">JSONObject</span> <span class="variable">json</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">JSONObject</span>();</span><br><span class="line">        json.put(<span class="string">&quot;code&quot;</span>, code);</span><br><span class="line">        json.put(<span class="string">&quot;msg&quot;</span>, msg);</span><br><span class="line">        <span class="keyword">if</span> (map != <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">for</span> (String key : map.keySet()) &#123;</span><br><span class="line">                json.put(key, map.get(key));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> json.toJSONString();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> String <span class="title function_">getJSONString</span><span class="params">(<span class="type">int</span> code, String msg)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> getJSONString(code, msg, <span class="literal">null</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> String <span class="title function_">getJSONString</span><span class="params">(<span class="type">int</span> code)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> getJSONString(code, <span class="literal">null</span>, <span class="literal">null</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="发布帖子"><a href="#发布帖子" class="headerlink" title="发布帖子"></a>发布帖子</h2><h3 id="续写DiscussPostMapper-插入帖子"><a href="#续写DiscussPostMapper-插入帖子" class="headerlink" title="续写DiscussPostMapper-插入帖子"></a>续写DiscussPostMapper-插入帖子</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">insertDiscussPost</span><span class="params">(DiscussPost discussPost)</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="续写discusspost-mapper-xml-实现插入帖子sql"><a href="#续写discusspost-mapper-xml-实现插入帖子sql" class="headerlink" title="续写discusspost-mapper.xml-实现插入帖子sql"></a>续写discusspost-mapper.xml-实现插入帖子sql</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">sql</span> <span class="attr">id</span>=<span class="string">&quot;insertFields&quot;</span>&gt;</span></span><br><span class="line">    user_id, title, content, type, status, create_time, comment_count, score</span><br><span class="line"><span class="tag">&lt;/<span class="name">sql</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">insert</span> <span class="attr">id</span>=<span class="string">&quot;insertDiscussPost&quot;</span> <span class="attr">parameterType</span>=<span class="string">&quot;DiscussPost&quot;</span>&gt;</span></span><br><span class="line">    insert into discuss_post(<span class="tag">&lt;<span class="name">include</span> <span class="attr">refid</span>=<span class="string">&quot;insertFields&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">include</span>&gt;</span>)</span><br><span class="line">    values(#&#123;userId&#125;,#&#123;title&#125;,#&#123;content&#125;,#&#123;type&#125;,#&#123;status&#125;,#&#123;createTime&#125;,#&#123;commentCount&#125;,#&#123;score&#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">insert</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="续写DiscussPostService-添加发布帖子方法"><a href="#续写DiscussPostService-添加发布帖子方法" class="headerlink" title="续写DiscussPostService-添加发布帖子方法"></a>续写DiscussPostService-添加发布帖子方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Autowired</span></span><br><span class="line"><span class="keyword">private</span> SensitiveFilter sensitiveFilter;</span><br><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">addDiscussPost</span><span class="params">(DiscussPost post)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (post == <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IllegalArgumentException</span>(<span class="string">&quot;参数不能为空!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 转义HTML标记</span></span><br><span class="line">    post.setTitle(HtmlUtils.htmlEscape(post.getTitle()));</span><br><span class="line">    post.setContent(HtmlUtils.htmlEscape(post.getContent()));</span><br><span class="line">    <span class="comment">// 过滤敏感词</span></span><br><span class="line">    post.setTitle(sensitiveFilter.filter(post.getTitle()));</span><br><span class="line">    post.setContent(sensitiveFilter.filter(post.getContent()));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> discussPostMapper.insertDiscussPost(post);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>HtmlUtils.htmlEscape</code> 函数的主要作用是将给定的字符串中的特殊字符转换为 HTML 实体。这在处理用户输入或者生成 HTML 内容时非常重要，因为它可以防止 HTML 注入攻击，确保输出内容在浏览器中被安全地渲染。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">unsafeString</span> <span class="operator">=</span> <span class="string">&quot;&lt;script&gt;alert(&#x27;XSS&#x27;)&lt;/script&gt;&quot;</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">safeString</span> <span class="operator">=</span> HtmlUtils.htmlEscape(unsafeString);</span><br><span class="line"><span class="comment">// safeString 的值将是 &quot;&amp;lt;script&amp;gt;alert(&amp;#x27;XSS&amp;#x27;)&amp;lt;/script&amp;gt;&quot;</span></span><br></pre></td></tr></table></figure>
+<p>通过这种转换，浏览器会将 <code>safeString</code> 作为普通文本渲染，而不会执行其中的脚本。</p>
+<h3 id="DiscussPostController"><a href="#DiscussPostController" class="headerlink" title="DiscussPostController"></a>DiscussPostController</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/discuss&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">DiscussPostController</span> &#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> DiscussPostService discussPostService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> HostHolder hostHolder;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping(path = &quot;/add&quot;, method = RequestMethod.POST)</span></span><br><span class="line">    <span class="meta">@ResponseBody</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">addDiscussPost</span><span class="params">(String title, String content)</span> &#123;</span><br><span class="line">        <span class="type">User</span> <span class="variable">user</span> <span class="operator">=</span> hostHolder.getUser();</span><br><span class="line">        <span class="keyword">if</span> (user == <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> CommunityUtil.getJSONString(<span class="number">403</span>, <span class="string">&quot;你还没有登录哦!&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="type">DiscussPost</span> <span class="variable">post</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">DiscussPost</span>();</span><br><span class="line">        post.setUserId(user.getId());</span><br><span class="line">        post.setTitle(title);</span><br><span class="line">        post.setContent(content);</span><br><span class="line">        post.setCreateTime(<span class="keyword">new</span> <span class="title class_">Date</span>());</span><br><span class="line">        discussPostService.addDiscussPost(post);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 报错的情况,将来统一处理.</span></span><br><span class="line">        <span class="keyword">return</span> CommunityUtil.getJSONString(<span class="number">0</span>, <span class="string">&quot;发布成功!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="修改index-js的发布功能"><a href="#修改index-js的发布功能" class="headerlink" title="修改index.js的发布功能"></a>修改index.js的发布功能</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">	$(<span class="string">&quot;#publishBtn&quot;</span>).<span class="title function_">click</span>(publish);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">publish</span>(<span class="params"></span>) &#123;</span><br><span class="line">	$(<span class="string">&quot;#publishModal&quot;</span>).<span class="title function_">modal</span>(<span class="string">&quot;hide&quot;</span>);</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 获取标题和内容</span></span><br><span class="line">	<span class="keyword">var</span> title = $(<span class="string">&quot;#recipient-name&quot;</span>).<span class="title function_">val</span>();</span><br><span class="line">	<span class="keyword">var</span> content = $(<span class="string">&quot;#message-text&quot;</span>).<span class="title function_">val</span>();</span><br><span class="line">	<span class="comment">// 发送异步请求(POST)</span></span><br><span class="line">	$.<span class="title function_">post</span>(</span><br><span class="line">	    <span class="variable constant_">CONTEXT_PATH</span> + <span class="string">&quot;/discuss/add&quot;</span>,</span><br><span class="line">	    &#123;<span class="string">&quot;title&quot;</span>:title,<span class="string">&quot;content&quot;</span>:content&#125;,</span><br><span class="line">	    <span class="keyword">function</span>(<span class="params">data</span>) &#123;</span><br><span class="line">	        data = $.<span class="title function_">parseJSON</span>(data);</span><br><span class="line">	        <span class="comment">// 在提示框中显示返回消息</span></span><br><span class="line">	        $(<span class="string">&quot;#hintBody&quot;</span>).<span class="title function_">text</span>(data.<span class="property">msg</span>);</span><br><span class="line">	        <span class="comment">// 显示提示框</span></span><br><span class="line">            $(<span class="string">&quot;#hintModal&quot;</span>).<span class="title function_">modal</span>(<span class="string">&quot;show&quot;</span>);</span><br><span class="line">            <span class="comment">// 2秒后,自动隐藏提示框</span></span><br><span class="line">            <span class="built_in">setTimeout</span>(<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">                $(<span class="string">&quot;#hintModal&quot;</span>).<span class="title function_">modal</span>(<span class="string">&quot;hide&quot;</span>);</span><br><span class="line">                <span class="comment">// 刷新页面</span></span><br><span class="line">                <span class="keyword">if</span>(data.<span class="property">code</span> == <span class="number">0</span>) &#123;</span><br><span class="line">                    <span class="variable language_">window</span>.<span class="property">location</span>.<span class="title function_">reload</span>();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;, <span class="number">2000</span>);</span><br><span class="line">	    &#125;</span><br><span class="line">	);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>#hintModal</code>这些符号都是取得对应index提示框的id值</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 提示框 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;modal fade&quot;</span> <span class="attr">id</span>=<span class="string">&quot;hintModal&quot;</span> <span class="attr">tabindex</span>=<span class="string">&quot;-1&quot;</span> <span class="attr">role</span>=<span class="string">&quot;dialog&quot;</span> <span class="attr">aria-labelledby</span>=<span class="string">&quot;hintModalLabel&quot;</span></span></span><br><span class="line"><span class="tag"> <span class="attr">aria-hidden</span>=<span class="string">&quot;true&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;modal-dialog modal-lg&quot;</span> <span class="attr">role</span>=<span class="string">&quot;document&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;modal-content&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;modal-header&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">h5</span> <span class="attr">class</span>=<span class="string">&quot;modal-title&quot;</span> <span class="attr">id</span>=<span class="string">&quot;hintModalLabel&quot;</span>&gt;</span>提示<span class="tag">&lt;/<span class="name">h5</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;modal-body&quot;</span> <span class="attr">id</span>=<span class="string">&quot;hintBody&quot;</span>&gt;</span></span><br><span class="line">            发布完毕!</span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="修改index-html发布-验证登录状态"><a href="#修改index-html发布-验证登录状态" class="headerlink" title="修改index.html发布-验证登录状态"></a>修改index.html发布-验证登录状态</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;button type=<span class="string">&quot;button&quot;</span> class=<span class="string">&quot;btn btn-primary btn-sm position-absolute rt-0&quot;</span> data-toggle=<span class="string">&quot;modal&quot;</span> data-target=<span class="string">&quot;#publishModal&quot;</span> th:<span class="keyword">if</span>=<span class="string">&quot;$&#123;loginUser!=null&#125;&quot;</span>&gt;我要发布&lt;/button&gt;</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>hollis7
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://hollis7.github.io/2024/06/14/%E7%89%9B%E5%AE%A2%E8%AE%BA%E5%9D%9B%E7%A4%BE%E5%8C%BA/%E5%BC%80%E5%8F%91%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD/%E7%89%9B%E5%AE%A2%E8%AE%BA%E5%9D%9B%E5%BC%80%E5%8F%913.2-%E5%8F%91%E5%B8%83%E5%B8%96%E5%AD%90/" title="牛客论坛项目-发布帖子">https://hollis7.github.io/2024/06/14/牛客论坛社区/开发核心功能/牛客论坛开发3.2-发布帖子/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/nowcoder/" rel="tag"><i class="fa fa-tag"></i> nowcoder</a>
+              <a href="/tags/core-function/" rel="tag"><i class="fa fa-tag"></i> core_function</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/06/13/%E7%89%9B%E5%AE%A2%E8%AE%BA%E5%9D%9B%E7%A4%BE%E5%8C%BA/%E5%BC%80%E5%8F%91%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD/%E7%89%9B%E5%AE%A2%E8%AE%BA%E5%9D%9B%E5%BC%80%E5%8F%913.1-%E8%BF%87%E6%BB%A4%E9%93%AD%E6%84%9F%E8%AF%8D/" rel="prev" title="牛客论坛项目-过滤铭感词">
+      <i class="fa fa-chevron-left"></i> 牛客论坛项目-过滤铭感词
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%85%E5%AE%B9"><span class="nav-number">1.</span> <span class="nav-text">内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AJAX"><span class="nav-number">2.</span> <span class="nav-text">AJAX</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%BC%E5%85%A5fastjson%E4%BE%9D%E8%B5%96"><span class="nav-number">3.</span> <span class="nav-text">导入fastjson依赖</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%AD%E5%86%99CommunityUtil-%E8%BD%AC%E5%8C%96json%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-number">3.1.</span> <span class="nav-text">续写CommunityUtil-转化json字符串</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%91%E5%B8%83%E5%B8%96%E5%AD%90"><span class="nav-number">4.</span> <span class="nav-text">发布帖子</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%AD%E5%86%99DiscussPostMapper-%E6%8F%92%E5%85%A5%E5%B8%96%E5%AD%90"><span class="nav-number">4.1.</span> <span class="nav-text">续写DiscussPostMapper-插入帖子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%AD%E5%86%99discusspost-mapper-xml-%E5%AE%9E%E7%8E%B0%E6%8F%92%E5%85%A5%E5%B8%96%E5%AD%90sql"><span class="nav-number">4.2.</span> <span class="nav-text">续写discusspost-mapper.xml-实现插入帖子sql</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%AD%E5%86%99DiscussPostService-%E6%B7%BB%E5%8A%A0%E5%8F%91%E5%B8%83%E5%B8%96%E5%AD%90%E6%96%B9%E6%B3%95"><span class="nav-number">4.3.</span> <span class="nav-text">续写DiscussPostService-添加发布帖子方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DiscussPostController"><span class="nav-number">4.4.</span> <span class="nav-text">DiscussPostController</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9index-js%E7%9A%84%E5%8F%91%E5%B8%83%E5%8A%9F%E8%83%BD"><span class="nav-number">4.5.</span> <span class="nav-text">修改index.js的发布功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9index-html%E5%8F%91%E5%B8%83-%E9%AA%8C%E8%AF%81%E7%99%BB%E5%BD%95%E7%8A%B6%E6%80%81"><span class="nav-number">4.6.</span> <span class="nav-text">修改index.html发布-验证登录状态</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="hollis7"
+      src="/images/person.jpg">
+  <p class="site-author-name" itemprop="name">hollis7</p>
+  <div class="site-description" itemprop="description">some learning blogs</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">46</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hollis7" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hollis7" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://gitee.com/hollis7" title="Gitee → https:&#x2F;&#x2F;gitee.com&#x2F;hollis7" rel="noopener" target="_blank"><i class="fab fa-github-alt fa-fw"></i>Gitee</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">hollis7</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">365k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">5:32</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
