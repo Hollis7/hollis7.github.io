@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/web3232.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/web1616.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hollis7.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="内容本节包括：  发送私信 设置已读">
+<meta property="og:type" content="article">
+<meta property="og:title" content="牛客论坛项目-发送私信">
+<meta property="og:url" content="https://hollis7.github.io/2024/06/19/%E7%89%9B%E5%AE%A2%E8%AE%BA%E5%9D%9B%E7%A4%BE%E5%8C%BA/%E5%BC%80%E5%8F%91%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD/%E7%89%9B%E5%AE%A2%E8%AE%BA%E5%9D%9B%E5%BC%80%E5%8F%913.8-%E5%8F%91%E9%80%81%E7%A7%81%E4%BF%A1/index.html">
+<meta property="og:site_name" content="hollis7">
+<meta property="og:description" content="内容本节包括：  发送私信 设置已读">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/hollis7/pictures/raw/master/2024/06/19/82256_image-20240619202846008.png">
+<meta property="article:published_time" content="2024-06-19T12:43:29.759Z">
+<meta property="article:modified_time" content="2024-06-19T12:42:40.766Z">
+<meta property="article:author" content="hollis7">
+<meta property="article:tag" content="nowcoder">
+<meta property="article:tag" content="core_function">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/hollis7/pictures/raw/master/2024/06/19/82256_image-20240619202846008.png">
+
+<link rel="canonical" href="https://hollis7.github.io/2024/06/19/%E7%89%9B%E5%AE%A2%E8%AE%BA%E5%9D%9B%E7%A4%BE%E5%8C%BA/%E5%BC%80%E5%8F%91%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD/%E7%89%9B%E5%AE%A2%E8%AE%BA%E5%9D%9B%E5%BC%80%E5%8F%913.8-%E5%8F%91%E9%80%81%E7%A7%81%E4%BF%A1/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>牛客论坛项目-发送私信 | hollis7</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">hollis7</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">personal-blogs</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>标签<span class="badge">46</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>分类<span class="badge">15</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档<span class="badge">56</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://hollis7.github.io/2024/06/19/%E7%89%9B%E5%AE%A2%E8%AE%BA%E5%9D%9B%E7%A4%BE%E5%8C%BA/%E5%BC%80%E5%8F%91%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD/%E7%89%9B%E5%AE%A2%E8%AE%BA%E5%9D%9B%E5%BC%80%E5%8F%913.8-%E5%8F%91%E9%80%81%E7%A7%81%E4%BF%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/person.jpg">
+      <meta itemprop="name" content="hollis7">
+      <meta itemprop="description" content="some learning blogs">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="hollis7">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          牛客论坛项目-发送私信
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2024-06-19 20:43:29 / 修改时间：20:42:40" itemprop="dateCreated datePublished" datetime="2024-06-19T20:43:29+08:00">2024-06-19</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/nowcoder/" itemprop="url" rel="index"><span itemprop="name">nowcoder</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>4.3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>4 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <meta name="referrer" content="no-referrer"/>
+
+<h2 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h2><p><strong>本节包括：</strong></p>
+<ul>
+<li>发送私信</li>
+<li>设置已读</li>
+</ul>
+<span id="more"></span>
+<h2 id="总体步骤"><a href="#总体步骤" class="headerlink" title="总体步骤"></a>总体步骤</h2><p>发送私信</p>
+<ul>
+<li>采用异步的方式发送私信。</li>
+<li>发送成功后刷新私信列表。</li>
+</ul>
+<p>设置已读</p>
+<ul>
+<li>访问私信详情时，将显示的私信设置为已读状态</li>
+</ul>
+<h2 id="数据访问层"><a href="#数据访问层" class="headerlink" title="数据访问层"></a>数据访问层</h2><h3 id="续写MessageMapper"><a href="#续写MessageMapper" class="headerlink" title="续写MessageMapper"></a>续写MessageMapper</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 新增消息</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">insertMessage</span><span class="params">(Message message)</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 修改消息的状态</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">updateStatus</span><span class="params">(List&lt;Integer&gt; ids, <span class="type">int</span> status)</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="续写message-mapper-xml"><a href="#续写message-mapper-xml" class="headerlink" title="续写message-mapper.xml"></a>续写message-mapper.xml</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">insert</span> <span class="attr">id</span>=<span class="string">&quot;insertMessage&quot;</span> <span class="attr">parameterType</span>=<span class="string">&quot;Message&quot;</span> <span class="attr">keyProperty</span>=<span class="string">&quot;id&quot;</span>&gt;</span></span><br><span class="line">    insert into message(<span class="tag">&lt;<span class="name">include</span> <span class="attr">refid</span>=<span class="string">&quot;insertFields&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">include</span>&gt;</span>)</span><br><span class="line">    values(#&#123;fromId&#125;,#&#123;toId&#125;,#&#123;conversationId&#125;,#&#123;content&#125;,#&#123;status&#125;,#&#123;createTime&#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">insert</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">update</span> <span class="attr">id</span>=<span class="string">&quot;updateStatus&quot;</span>&gt;</span></span><br><span class="line">    update message set status = #&#123;status&#125;</span><br><span class="line">    where id in</span><br><span class="line">    <span class="tag">&lt;<span class="name">foreach</span> <span class="attr">collection</span>=<span class="string">&quot;ids&quot;</span> <span class="attr">item</span>=<span class="string">&quot;id&quot;</span> <span class="attr">open</span>=<span class="string">&quot;(&quot;</span> <span class="attr">separator</span>=<span class="string">&quot;,&quot;</span> <span class="attr">close</span>=<span class="string">&quot;)&quot;</span>&gt;</span></span><br><span class="line">        #&#123;id&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">update</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><code>&lt;foreach collection=&quot;ids&quot; item=&quot;id&quot; open=&quot;(&quot; separator=&quot;,&quot; close=&quot;)&quot;&gt;</code>:</p>
+<ul>
+<li>这是一个 MyBatis 的 <code>foreach</code> 元素，用于遍历一个集合并生成 SQL 代码片段。</li>
+<li><code>collection=&quot;ids&quot;</code> 指定了要遍历的集合名称为 <code>ids</code>，这个集合应该是传递给 MyBatis 的参数。</li>
+<li><code>item=&quot;id&quot;</code> 指定了在遍历集合时，每个元素的别名为 <code>id</code>。</li>
+<li><code>open=&quot;(&quot;</code> 表示在生成的 SQL 片段的开头加上一个左括号 <code>(</code>。</li>
+<li><code>separator=&quot;,&quot;</code> 表示每个元素之间用逗号 <code>,</code> 分隔。</li>
+<li><code>close=&quot;)&quot;</code> 表示在生成的 SQL 片段的末尾加上一个右括号 <code>)</code>。</li>
+</ul>
+<h2 id="业务层"><a href="#业务层" class="headerlink" title="业务层"></a>业务层</h2><h3 id="续写MessageService"><a href="#续写MessageService" class="headerlink" title="续写MessageService"></a>续写MessageService</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Autowired</span></span><br><span class="line"><span class="keyword">private</span> SensitiveFilter sensitiveFilter;</span><br><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">addMessage</span><span class="params">(Message message)</span> &#123;</span><br><span class="line">    message.setContent(HtmlUtils.htmlEscape(message.getContent()));</span><br><span class="line">    message.setContent(sensitiveFilter.filter(message.getContent()));</span><br><span class="line">    <span class="keyword">return</span> messageMapper.insertMessage(message);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">readMessage</span><span class="params">(List&lt;Integer&gt; ids)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> messageMapper.updateStatus(ids, <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="续写MessageController"><a href="#续写MessageController" class="headerlink" title="续写MessageController"></a>续写MessageController</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(path = &quot;/letter/send&quot;, method = RequestMethod.POST)</span></span><br><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">sendLetter</span><span class="params">(String toName, String content)</span> &#123;</span><br><span class="line">    <span class="type">User</span> <span class="variable">target</span> <span class="operator">=</span> userService.findUserByName(toName);</span><br><span class="line">    <span class="keyword">if</span> (target == <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> CommunityUtil.getJSONString(<span class="number">1</span>, <span class="string">&quot;目标用户不存在!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="type">Message</span> <span class="variable">message</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Message</span>();</span><br><span class="line">    message.setFromId(hostHolder.getUser().getId());</span><br><span class="line">    message.setToId(target.getId());</span><br><span class="line">    <span class="keyword">if</span> (message.getFromId() &lt; message.getToId()) &#123;</span><br><span class="line">        message.setConversationId(message.getFromId() + <span class="string">&quot;_&quot;</span> + message.getToId());</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        message.setConversationId(message.getToId() + <span class="string">&quot;_&quot;</span> + message.getFromId());</span><br><span class="line">    &#125;</span><br><span class="line">    message.setContent(content);</span><br><span class="line">    message.setCreateTime(<span class="keyword">new</span> <span class="title class_">Date</span>());</span><br><span class="line">    messageService.addMessage(message);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> CommunityUtil.getJSONString(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>userService续写</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> User <span class="title function_">findUserByName</span><span class="params">(String username)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> userMapper.selectByName(username);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="视图层"><a href="#视图层" class="headerlink" title="视图层"></a>视图层</h2><h3 id="改写letter-js"><a href="#改写letter-js" class="headerlink" title="改写letter.js"></a>改写letter.js</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">send_letter</span>(<span class="params"></span>) &#123;</span><br><span class="line">    $(<span class="string">&quot;#sendModal&quot;</span>).<span class="title function_">modal</span>(<span class="string">&quot;hide&quot;</span>);</span><br><span class="line">    <span class="keyword">var</span> toName = $(<span class="string">&quot;#recipient-name&quot;</span>).<span class="title function_">val</span>();</span><br><span class="line">    <span class="keyword">var</span> content = $(<span class="string">&quot;#message-text&quot;</span>).<span class="title function_">val</span>();</span><br><span class="line">    $.<span class="title function_">post</span>(</span><br><span class="line">        <span class="variable constant_">CONTEXT_PATH</span> + <span class="string">&quot;/letter/send&quot;</span>,</span><br><span class="line">        &#123;<span class="string">&quot;toName&quot;</span>: toName, <span class="string">&quot;content&quot;</span>: content&#125;,</span><br><span class="line">        <span class="keyword">function</span> (<span class="params">data</span>) &#123;</span><br><span class="line">            data = $.<span class="title function_">parseJSON</span>(data);</span><br><span class="line">            <span class="keyword">if</span> (data.<span class="property">code</span> == <span class="number">0</span>) &#123;</span><br><span class="line">                $(<span class="string">&quot;#hintBody&quot;</span>).<span class="title function_">text</span>(<span class="string">&quot;发送成功!&quot;</span>);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                $(<span class="string">&quot;#hintBody&quot;</span>).<span class="title function_">text</span>(data.<span class="property">msg</span>);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            $(<span class="string">&quot;#hintModal&quot;</span>).<span class="title function_">modal</span>(<span class="string">&quot;show&quot;</span>);</span><br><span class="line">            <span class="built_in">setTimeout</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">                $(<span class="string">&quot;#hintModal&quot;</span>).<span class="title function_">modal</span>(<span class="string">&quot;hide&quot;</span>);</span><br><span class="line">                location.<span class="title function_">reload</span>();</span><br><span class="line">            &#125;, <span class="number">2000</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="改写letter-detail-html"><a href="#改写letter-detail-html" class="headerlink" title="改写letter-detail.html"></a>改写letter-detail.html</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=<span class="string">&quot;form-group&quot;</span>&gt;</span><br><span class="line">    &lt;label <span class="keyword">for</span>=<span class="string">&quot;recipient-name&quot;</span> class=<span class="string">&quot;col-form-label&quot;</span>&gt;发给：&lt;/label&gt;</span><br><span class="line">    &lt;input type=<span class="string">&quot;text&quot;</span> class=<span class="string">&quot;form-control&quot;</span> id=<span class="string">&quot;recipient-name&quot;</span></span><br><span class="line">           th:value=<span class="string">&quot;$&#123;target.username&#125;&quot;</span>&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="实际效果"><a href="#实际效果" class="headerlink" title="实际效果"></a>实际效果</h2><p><img src="https://gitee.com/hollis7/pictures/raw/master/2024/06/19/82256_image-20240619202846008.png" alt="image-20240619202846008" style="zoom:50%;" /></p>
+<h2 id="消息已读功能"><a href="#消息已读功能" class="headerlink" title="消息已读功能"></a>消息已读功能</h2><h3 id="续写messageController"><a href="#续写messageController" class="headerlink" title="续写messageController"></a>续写messageController</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(path = &quot;/letter/detail/&#123;conversationId&#125;&quot;, method = RequestMethod.GET)</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">getLetterDetail</span><span class="params">(<span class="meta">@PathVariable(&quot;conversationId&quot;)</span> String conversationId, Page page, Model model)</span> &#123;</span><br><span class="line">    ....</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 设置已读</span></span><br><span class="line">    List&lt;Integer&gt; ids = getLetterIds(letterList);</span><br><span class="line">    <span class="keyword">if</span> (!ids.isEmpty()) &#123;</span><br><span class="line">        messageService.readMessage(ids);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;/site/letter-detail&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> List&lt;Integer&gt; <span class="title function_">getLetterIds</span><span class="params">(List&lt;Message&gt; letterList)</span> &#123;</span><br><span class="line">    List&lt;Integer&gt; ids = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (letterList != <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">for</span> (Message message : letterList) &#123;</span><br><span class="line">            <span class="keyword">if</span> (hostHolder.getUser().getId() == message.getToId() &amp;&amp; message.getStatus() == <span class="number">0</span>) &#123;</span><br><span class="line">                ids.add(message.getId());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> ids;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>接收者是当前用户才将对应id的消息状态置为1</p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>hollis7
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://hollis7.github.io/2024/06/19/%E7%89%9B%E5%AE%A2%E8%AE%BA%E5%9D%9B%E7%A4%BE%E5%8C%BA/%E5%BC%80%E5%8F%91%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD/%E7%89%9B%E5%AE%A2%E8%AE%BA%E5%9D%9B%E5%BC%80%E5%8F%913.8-%E5%8F%91%E9%80%81%E7%A7%81%E4%BF%A1/" title="牛客论坛项目-发送私信">https://hollis7.github.io/2024/06/19/牛客论坛社区/开发核心功能/牛客论坛开发3.8-发送私信/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/nowcoder/" rel="tag"><i class="fa fa-tag"></i> nowcoder</a>
+              <a href="/tags/core-function/" rel="tag"><i class="fa fa-tag"></i> core_function</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/06/19/%E7%89%9B%E5%AE%A2%E8%AE%BA%E5%9D%9B%E7%A4%BE%E5%8C%BA/%E5%BC%80%E5%8F%91%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD/%E7%89%9B%E5%AE%A2%E8%AE%BA%E5%9D%9B%E5%BC%80%E5%8F%913.7%E7%A7%81%E4%BF%A1%E5%88%97%E8%A1%A8/" rel="prev" title="牛客论坛项目-私信列表">
+      <i class="fa fa-chevron-left"></i> 牛客论坛项目-私信列表
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%85%E5%AE%B9"><span class="nav-number">1.</span> <span class="nav-text">内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E4%BD%93%E6%AD%A5%E9%AA%A4"><span class="nav-number">2.</span> <span class="nav-text">总体步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E8%AE%BF%E9%97%AE%E5%B1%82"><span class="nav-number">3.</span> <span class="nav-text">数据访问层</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%AD%E5%86%99MessageMapper"><span class="nav-number">3.1.</span> <span class="nav-text">续写MessageMapper</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%AD%E5%86%99message-mapper-xml"><span class="nav-number">3.2.</span> <span class="nav-text">续写message-mapper.xml</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%9A%E5%8A%A1%E5%B1%82"><span class="nav-number">4.</span> <span class="nav-text">业务层</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%AD%E5%86%99MessageService"><span class="nav-number">4.1.</span> <span class="nav-text">续写MessageService</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%AD%E5%86%99MessageController"><span class="nav-number">4.2.</span> <span class="nav-text">续写MessageController</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%86%E5%9B%BE%E5%B1%82"><span class="nav-number">5.</span> <span class="nav-text">视图层</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%94%B9%E5%86%99letter-js"><span class="nav-number">5.1.</span> <span class="nav-text">改写letter.js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%94%B9%E5%86%99letter-detail-html"><span class="nav-number">5.2.</span> <span class="nav-text">改写letter-detail.html</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E9%99%85%E6%95%88%E6%9E%9C"><span class="nav-number">6.</span> <span class="nav-text">实际效果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B6%88%E6%81%AF%E5%B7%B2%E8%AF%BB%E5%8A%9F%E8%83%BD"><span class="nav-number">7.</span> <span class="nav-text">消息已读功能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%AD%E5%86%99messageController"><span class="nav-number">7.1.</span> <span class="nav-text">续写messageController</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="hollis7"
+      src="/images/person.jpg">
+  <p class="site-author-name" itemprop="name">hollis7</p>
+  <div class="site-description" itemprop="description">some learning blogs</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">56</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">46</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hollis7" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hollis7" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://gitee.com/hollis7" title="Gitee → https:&#x2F;&#x2F;gitee.com&#x2F;hollis7" rel="noopener" target="_blank"><i class="fab fa-github-alt fa-fw"></i>Gitee</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">hollis7</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">396k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">6:01</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
