@@ -6026,4 +6026,35 @@ f ( x , y ) = \max _ { 1 \leq j < y } \left\{ f ( x , j ) + f ( x , y - j ) \rig
         <tag>core_function</tag>
       </tags>
   </entry>
+  <entry>
+    <title>牛客论坛项目-统一异常处理</title>
+    <url>/2024/06/19/%E7%89%9B%E5%AE%A2%E8%AE%BA%E5%9D%9B%E7%A4%BE%E5%8C%BA/%E5%BC%80%E5%8F%91%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD/%E7%89%9B%E5%AE%A2%E8%AE%BA%E5%9D%9B%E5%BC%80%E5%8F%913.9-%E7%BB%9F%E4%B8%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/</url>
+    <content><![CDATA[<meta name="referrer" content="no-referrer"/>
+
+<h2 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h2><p><strong>本节包括：</strong></p>
+<ul>
+<li>404、500</li>
+<li>@ControllerAdvice</li>
+<li>@ExceptionHandler</li>
+</ul>
+<span id="more"></span>
+<h2 id="配置404模板"><a href="#配置404模板" class="headerlink" title="配置404模板"></a>配置404模板</h2><p>配置静态资源路径，header复用</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">th:src</span>=<span class="string">&quot;@&#123;/img/404.png&#125;&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="配置500模板"><a href="#配置500模板" class="headerlink" title="配置500模板"></a>配置500模板</h2><p>配置静态资源路径，header复用</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">th:src</span>=<span class="string">&quot;@&#123;/img/error.png&#125;&quot;</span> &gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="ControllerAdvice注解"><a href="#ControllerAdvice注解" class="headerlink" title="@ControllerAdvice注解"></a>@ControllerAdvice注解</h2><p>用于修饰类，表示该类是Controller的全局配置类。<br>在此类中，可以对Controller进行如下三种全局配置：<br>异常处理方案、绑定数据方案、绑定参数方案。</p>
+<h3 id="ExceptionHandler重点"><a href="#ExceptionHandler重点" class="headerlink" title="@ExceptionHandler重点"></a>@ExceptionHandler重点</h3><p>用于修饰方法，该方法会在Controller出现异常后被调用，用于处理捕获到的异常。</p>
+<h3 id="ModelAttribute（了解）"><a href="#ModelAttribute（了解）" class="headerlink" title="@ModelAttribute（了解）"></a>@ModelAttribute（了解）</h3><p>用于修饰方法，该方法会在Controller方法执行前被调用，用于为Model对象绑定参数。</p>
+<h3 id="DataBinder（了解）"><a href="#DataBinder（了解）" class="headerlink" title="@DataBinder（了解）"></a>@DataBinder（了解）</h3><p>用于修饰方法，该方法会在Controller方法执行前被调用，用于绑定参数的转换器。</p>
+<h2 id="续写HomeController"><a href="#续写HomeController" class="headerlink" title="续写HomeController"></a>续写HomeController</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(path = &quot;/error&quot;, method = RequestMethod.GET)</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">getErrorPage</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;/error/500&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="ExceptionAdvice"><a href="#ExceptionAdvice" class="headerlink" title="ExceptionAdvice"></a>ExceptionAdvice</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.hdb.community.controller.advice;</span><br><span class="line"><span class="meta">@ControllerAdvice(annotations = Controller.class)</span><span class="comment">//只扫描带有controller注解的bean</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ExceptionAdvice</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">Logger</span> <span class="variable">logger</span> <span class="operator">=</span> LoggerFactory.getLogger(ExceptionAdvice.class);</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ExceptionHandler(&#123;Exception.class&#125;)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">handleException</span><span class="params">(Exception e, HttpServletRequest request, HttpServletResponse response)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        logger.error(<span class="string">&quot;服务器发生异常: &quot;</span> + e.getMessage());</span><br><span class="line">        <span class="keyword">for</span> (StackTraceElement element : e.getStackTrace()) &#123;</span><br><span class="line">            logger.error(element.toString());</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="type">String</span> <span class="variable">xRequestedWith</span> <span class="operator">=</span> request.getHeader(<span class="string">&quot;x-requested-with&quot;</span>);</span><br><span class="line">        <span class="keyword">if</span> (<span class="string">&quot;XMLHttpRequest&quot;</span>.equals(xRequestedWith)) &#123;<span class="comment">//异步请求，响应字符串</span></span><br><span class="line">            response.setContentType(<span class="string">&quot;application/plain;charset=utf-8&quot;</span>);</span><br><span class="line">            <span class="type">PrintWriter</span> <span class="variable">writer</span> <span class="operator">=</span> response.getWriter();</span><br><span class="line">            writer.write(CommunityUtil.getJSONString(<span class="number">1</span>, <span class="string">&quot;服务器异常!&quot;</span>));</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            response.sendRedirect(request.getContextPath() + <span class="string">&quot;/error&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>nowcoder</category>
+      </categories>
+      <tags>
+        <tag>nowcoder</tag>
+        <tag>core_function</tag>
+      </tags>
+  </entry>
 </search>
