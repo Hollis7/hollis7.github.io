@@ -429,3 +429,247 @@ public class LRUCache extends LinkedHashMap<Integer, Integer> {
 }
 ~~~
 
+## 994.腐烂的橘子
+
+在给定的 `m x n` 网格 `grid` 中，每个单元格可以有以下三个值之一：
+
+- 值 `0` 代表空单元格；
+- 值 `1` 代表新鲜橘子；
+- 值 `2` 代表腐烂的橘子。
+
+每分钟，腐烂的橘子 **周围 4 个方向上相邻** 的新鲜橘子都会腐烂。
+
+返回 *直到单元格中没有新鲜橘子为止所必须经过的最小分钟数。如果不可能，返回 `-1`* 。
+
+ 
+
+**示例 1：**
+
+**![img](https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2019/02/16/oranges.png)**
+
+```
+输入：grid = [[2,1,1],[1,1,0],[0,1,1]]
+输出：4
+```
+
+### 思路
+
+1. 值 4 代表新腐烂的橘子
+2. 先将腐烂橘子的周围进行感染，赋值4，当前2-橘子变为0-橘子，避免反复感染
+3. 遍历一次，找到剩余的新鲜橘子，并将4-橘子变为2-橘子
+4. 当新鲜橘子数量不在改变，停止感染，分情况返回结果
+
+### 代码实现
+
+~~~java
+public class OrangesRotting {
+    int[][] around = {{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
+
+    public int orangesRotting(int[][] grid) {
+        //值 0 代表空单元格；
+        //值 1 代表新鲜橘子；
+        //值 2 代表腐烂的橘子。
+        //值 4 代表新腐烂的橘子。
+
+        int m = grid.length;
+        int n = grid[0].length;
+        int minutes = 1;
+        int goodOrangeOld = getGoodOranges(grid, m, n);
+        int goodOrangeNew = rotting(grid, m, n);
+        while (goodOrangeNew != goodOrangeOld) {
+            goodOrangeOld = goodOrangeNew;
+            goodOrangeNew = rotting(grid, m, n);
+            minutes++;
+        }
+        minutes--;
+        if (goodOrangeNew == 0) return minutes;
+        else return -1;
+
+    }
+
+    public int rotting(int[][] grid, int m, int n) {
+        int goodOrange = 0;
+        int x;
+        int y;
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (grid[i][j] == 2) {
+                    for (int k = 0; k < 4; k++) {
+                        x = around[k][0] + i;
+                        y = around[k][1] + j;
+                        //腐烂橘子感染周围新鲜句子
+                        if (x >= 0 && x < m && y >= 0 && y < n && grid[x][y] == 1) {
+                            grid[x][y] = 4;
+                        }
+                    }
+                    grid[i][j] = 0;
+                }
+            }
+        }
+        goodOrange = getGoodOranges(grid, m, n);
+
+        return goodOrange;
+    }
+
+    public int getGoodOranges(int[][] grid, int m, int n) {
+        int goodOrange = 0;
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (grid[i][j] == 1) {
+                    goodOrange++;
+                }
+                if (grid[i][j] == 4) {//将新腐烂的橘子转化为腐烂橘子
+                    grid[i][j] = 2;
+                }
+            }
+        }
+        return goodOrange;
+    }
+}
+~~~
+
+## 230.二叉搜索树中第K小的元素
+
+给定一个二叉搜索树的根节点 `root` ，和一个整数 `k` ，请你设计一个算法查找其中第 `k` 小的元素（从 1 开始计数）。
+
+**示例 1：**
+
+![img](https://assets.leetcode.com/uploads/2021/01/28/kthtree1.jpg)
+
+```
+输入：root = [3,1,4,null,2], k = 1
+输出：1
+```
+
+### 思路
+
+中序遍历，用list存储值，中序遍历完毕后再次获取第k个值。
+
+### 代码实现
+
+~~~java
+public class KthSmallest {
+    List<Integer> list;
+
+    public int kthSmallest(TreeNode root, int k) {
+        list = new ArrayList<>();
+        midOrder(root);
+        return list.get(k - 1);
+    }
+
+    public void midOrder(TreeNode root) {
+        if (root == null) return;
+        midOrder(root.left);
+        list.add(root.val);
+        midOrder(root.right);
+    }
+}
+~~~
+
+## 114.二叉树展开为链表
+
+给你二叉树的根结点 `root` ，请你将它展开为一个单链表：
+
+- 展开后的单链表应该同样使用 `TreeNode` ，其中 `right` 子指针指向链表中下一个结点，而左子指针始终为 `null` 。
+- 展开后的单链表应该与二叉树 [**先序遍历**](https://baike.baidu.com/item/先序遍历/6442839?fr=aladdin) 顺序相同。
+
+ 
+
+**示例 1：**
+
+![img](https://assets.leetcode.com/uploads/2021/01/14/flaten.jpg)
+
+```
+输入：root = [1,2,5,3,4,null,6]
+输出：[1,null,2,null,3,null,4,null,5,null,6]
+```
+
+### 思路
+
+先序遍历，然后将节点存储到队列中，遍历队列，前一个节点的右指针指向队列的开头位置，左指针指向null，直到队列为空
+
+### 代码实现
+
+~~~java
+public class FlattenTrees {
+    Deque<TreeNode> queue;
+
+    public void flatten(TreeNode root) {
+        if (root == null) return;
+        queue = new LinkedList<>();
+        preOrder(root);
+        TreeNode cur;
+        while (!queue.isEmpty()) {
+            cur = queue.poll();
+            if (!queue.isEmpty()) {
+                cur.right = queue.peek();
+                cur.left = null;
+            }
+        }
+    }
+
+    public void preOrder(TreeNode root) {
+        if (root == null) return;
+        queue.offer(root);
+        preOrder(root.left);
+        preOrder(root.right);
+    }
+}
+~~~
+
+## 207.课程表
+
+你这个学期必须选修 `numCourses` 门课程，记为 `0` 到 `numCourses - 1` 。
+
+在选修某些课程之前需要一些先修课程。 先修课程按数组 `prerequisites` 给出，其中 `prerequisites[i] = [ai, bi]` ，表示如果要学习课程 `ai` 则 **必须** 先学习课程 `bi` 。
+
+- 例如，先修课程对 `[0, 1]` 表示：想要学习课程 `0` ，你需要先完成课程 `1` 。
+
+请你判断是否可能完成所有课程的学习？如果可以，返回 `true` ；否则，返回 `false` 。
+
+**示例 2：**
+
+```
+输入：numCourses = 2, prerequisites = [[1,0],[0,1]]
+输出：false
+解释：总共有 2 门课程。学习课程 1 之前，你需要先完成课程 0 ；并且学习课程 0 之前，你还应先完成课程 1 。这是不可能的。
+```
+
+### 思路
+
+拓朴排序+广度优先算法
+
+找出入度为0的点，作为前置课程，如果当前节点的邻接点入度减去1后变为0，将邻接点作为放入队列中，删除当前节点，课程数量减一。
+
+### 代码实现
+
+~~~java
+public class CanFinishCourses {
+    public boolean canFinish(int numCourses, int[][] prerequisites) {
+        List<List<Integer>> adj = new ArrayList<>();//邻接表
+        int[] inDegrees = new int[numCourses];
+        Deque<Integer> queue = new LinkedList<>();
+        for (int i = 0; i < numCourses; i++) {//邻接表初始化
+            adj.add(new ArrayList<>());
+        }
+        for (int[] pq : prerequisites) {
+            inDegrees[pq[0]]++;
+            adj.get(pq[1]).add(pq[0]);
+        }
+
+        for (int i = 0; i < numCourses; i++) {
+            if (inDegrees[i] == 0) queue.offer(i);//初始入度为零的进入队列中
+        }
+
+        while (!queue.isEmpty()) {
+            int cur = queue.poll();
+            numCourses--;
+            for (int next : adj.get(cur)) {
+                if (--inDegrees[next] == 0) queue.offer(next);
+            }
+        }
+        return numCourses == 0;
+    }
+}
+~~~
+
