@@ -3165,6 +3165,14 @@ m a x ( l , r ) + 1</script><h2 id="111-二叉树的最小深度"><a href="#111-
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">proxy_off</span><br></pre></td></tr></table></figure>
 <h2 id="python函数说明文档"><a href="#python函数说明文档" class="headerlink" title="python函数说明文档"></a>python函数说明文档</h2><p>查询函数库中的函数：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">python3 -m pydoc -p 1234</span><br></pre></td></tr></table></figure>
+<h2 id="ubuntu免密登录坑"><a href="#ubuntu免密登录坑" class="headerlink" title="ubuntu免密登录坑"></a>ubuntu免密登录坑</h2><p>根据服务器日志，出现了以下重要信息，可能导致无法使用公钥进行免密登录：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Authentication refused: bad ownership or modes for directory /home/user/hdb</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这是导致 SSH 公钥认证失败的主要原因，意味着 SSH 服务器拒绝了对目录 <code>/home/user/hdb</code> 的访问，原因是该目录的权限或所有权设置不正确。</p>
+</blockquote>
+<p>服务器系统更新后，重新挂在了以前的用户目录，导致文件夹所属的组不是本人，权限也发生了变化，修改意见：</p>
+<p>重新生成密钥对，然后更改相关权限：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">chmod</span> 700 /home/user/hdb</span><br><span class="line"><span class="built_in">chmod</span> 700 /home/user/hdb/.ssh</span><br><span class="line"><span class="built_in">chmod</span> 600 /home/user/hdb/.ssh/authorized_keys</span><br><span class="line"><span class="built_in">chown</span> -R hdb:hdb /home/user/hdb/.ssh</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>tips</category>
