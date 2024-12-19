@@ -237,3 +237,24 @@ proxy_off
 python3 -m pydoc -p 1234
 ```
 
+## ubuntu免密登录坑
+
+根据服务器日志，出现了以下重要信息，可能导致无法使用公钥进行免密登录：
+
+```
+Authentication refused: bad ownership or modes for directory /home/user/hdb
+```
+
+> 这是导致 SSH 公钥认证失败的主要原因，意味着 SSH 服务器拒绝了对目录 `/home/user/hdb` 的访问，原因是该目录的权限或所有权设置不正确。
+
+服务器系统更新后，重新挂在了以前的用户目录，导致文件夹所属的组不是本人，权限也发生了变化，修改意见：
+
+重新生成密钥对，然后更改相关权限：
+
+~~~bash
+chmod 700 /home/user/hdb
+chmod 700 /home/user/hdb/.ssh
+chmod 600 /home/user/hdb/.ssh/authorized_keys
+chown -R hdb:hdb /home/user/hdb/.ssh
+~~~
+
