@@ -12,11 +12,7 @@ mathjax: true
 
 ## 开启show comand queue(>>>)
 
-`Build, Execution, Deployment`->`Console` ->`Command queue for Python Console`
-
-![image-20240321195659243](https://gitee.com/hollis7/pictures/raw/master/2024/03/21/69433_image-20240321195659243.png)
-
-<img src="https://gitee.com/hollis7/pictures/raw/master/2023/10/23/43666_image-20231023163651677.png" alt="image-20231023163651677" style="zoom: 50%;" />
+![image-20231023163651677](https://gitee.com/hollis7/pictures/raw/master/2023/10/23/43666_image-20231023163651677.png)
 
 ## 查看模型结构
 
@@ -119,3 +115,12 @@ plt.title("golf")
 pylab.show()
 ~~~
 
+## plt.show不显示图片
+
+~~~python
+# 保存图像为文件
+plt.savefig('./imgs/silu_plt.png')
+pylab.show()
+~~~
+
+可以保存到文件夹里然后查看
