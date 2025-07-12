@@ -210,6 +210,8 @@ cmake --build .
 
 #### 简化launch.json
 
+包括运行和调试
+
 ~~~json
 {
     "version": "0.2.0",
@@ -218,7 +220,7 @@ cmake --build .
             "name": "Debug mode",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/build/bin/exercise1_18",
+            "program": "${workspaceFolder}/build/bin/exercise2_4",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
@@ -233,6 +235,27 @@ cmake --build .
                 }
             ],
             "preLaunchTask": "cmake-build"  //可选：关联编译任务（需配置 tasks.json）
+        },
+        {
+            "name": "Run mode",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/bin/exercise2_4",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "cmake-build",  //可选：关联编译任务（需配置 tasks.json）
+            "noDebug": true  // 这是运行模式与调试模式的主要区别
         }
     ]
 }
