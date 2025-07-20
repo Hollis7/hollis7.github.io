@@ -130,7 +130,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档<span class="badge">84</span></a>
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档<span class="badge">85</span></a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -277,6 +277,95 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://hollis7.github.io/2025/07/20/cplusplus%20primer%20study/ch7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/person.jpg">
+      <meta itemprop="name" content="hollis7">
+      <meta itemprop="description" content="some learning blogs">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="hollis7">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/07/20/cplusplus%20primer%20study/ch7/" class="post-title-link" itemprop="url">c++ primer ch7</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2025-07-20 17:11:40 / 修改时间：17:11:30" itemprop="dateCreated datePublished" datetime="2025-07-20T17:11:40+08:00">2025-07-20</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/c/" itemprop="url" rel="index"><span itemprop="name">c++</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>12k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>11 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <meta name="referrer" content="no-referrer"/>
+
+<h3 id="内容导航"><a href="#内容导航" class="headerlink" title="内容导航"></a>内容导航</h3><p>本节主要包括c++的类知识</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2025/07/20/cplusplus%20primer%20study/ch7/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://hollis7.github.io/2025/07/17/cplusplus%20primer%20study/ch6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -300,16 +389,10 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2025-07-17 10:10:22" itemprop="dateCreated datePublished" datetime="2025-07-17T10:10:22+08:00">2025-07-17</time>
+              <time title="创建时间：2025-07-17 10:10:22 / 修改时间：10:14:38" itemprop="dateCreated datePublished" datetime="2025-07-17T10:10:22+08:00">2025-07-17</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-07-16 17:23:23" itemprop="dateModified" datetime="2025-07-16T17:23:23+08:00">2025-07-16</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -346,64 +429,14 @@
           <meta name="referrer" content="no-referrer"/>
 
 <h3 id="内容导航"><a href="#内容导航" class="headerlink" title="内容导航"></a>内容导航</h3><p>本节主要包括c++的函数知识</p>
-<h3 id="局部静态对象"><a href="#局部静态对象" class="headerlink" title="局部静态对象"></a>局部静态对象</h3><p>某些时候，有必要令局部变量的生命周期贯穿函数调用及之后的时间。可以将局部变量定义成static类型从而获得这样的对象。<strong>局部静态对象（local static object）在程序的执行路径第一次经过对象定义语句时初始化，并且直到程序终止才被销毁，在此期间即使对象所在的函数结束执行也不会对它有影响。</strong></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 例子</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">count_add</span><span class="params">(<span class="type">int</span> n)</span> <span class="comment">// n是形参</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">static</span> <span class="type">int</span> ctr = <span class="number">0</span>; <span class="comment">// ctr 是局部静态变量</span></span><br><span class="line">    ctr += n;</span><br><span class="line">    <span class="keyword">return</span> ctr;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i != <span class="number">10</span>; ++i) <span class="comment">// i 是局部变量</span></span><br><span class="line">        cout &lt;&lt; <span class="built_in">count_add</span>(i)&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0</span> <span class="number">1</span> <span class="number">3</span> <span class="number">6</span> <span class="number">10</span> <span class="number">15</span> <span class="number">21</span> <span class="number">28</span> <span class="number">36</span> <span class="number">45</span></span><br></pre></td></tr></table></figure>
-<h3 id="编译和链接多个源文件"><a href="#编译和链接多个源文件" class="headerlink" title="编译和链接多个源文件"></a>编译和链接多个源文件</h3><h4 id="Chapter6-h"><a href="#Chapter6-h" class="headerlink" title="Chapter6.h"></a>Chapter6.h</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">fact</span><span class="params">(<span class="type">int</span> val)</span></span>;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">func</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function">T <span class="title">abs</span><span class="params">(T i)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> i &gt;= <span class="number">0</span> ? i : -i;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="fact-cpp"><a href="#fact-cpp" class="headerlink" title="fact.cpp"></a>fact.cpp</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;Chapter6.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">fact</span><span class="params">(<span class="type">int</span> val)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (val == <span class="number">0</span> || val == <span class="number">1</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">return</span> val * <span class="built_in">fact</span>(val - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">func</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">int</span> n, ret = <span class="number">1</span>;</span><br><span class="line">	std::cout &lt;&lt; <span class="string">&quot;input a number: &quot;</span>;</span><br><span class="line">	std::cin &gt;&gt; n;</span><br><span class="line">	<span class="keyword">while</span> (n &gt; <span class="number">1</span>) ret *= n--;</span><br><span class="line">	<span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="factMain-cpp"><a href="#factMain-cpp" class="headerlink" title="factMain.cpp"></a>factMain.cpp</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;Chapter6.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	std::cout &lt;&lt; <span class="string">&quot;5! is &quot;</span> &lt;&lt; <span class="built_in">fact</span>(<span class="number">5</span>) &lt;&lt; std::endl;</span><br><span class="line">	std::cout &lt;&lt; <span class="built_in">func</span>() &lt;&lt; std::endl;</span><br><span class="line">	std::cout &lt;&lt; <span class="built_in">abs</span>(<span class="number">-9.78</span>) &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="cmaklists-txt"><a href="#cmaklists-txt" class="headerlink" title="cmaklists.txt"></a>cmaklists.txt</h4><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 修改1: 为 factMain 添加额外的源文件，其它保持不变</span></span><br><span class="line"><span class="keyword">add_executable</span>(factMain src/ch6/factMain.cpp src/ch6/fact.cpp)</span><br><span class="line"><span class="keyword">target_include_directories</span>(factMain PRIVATE <span class="variable">$&#123;MYLIB_INCLUDE_DIR&#125;</span>)</span><br><span class="line"><span class="keyword">target_compile_options</span>(factMain PRIVATE -g -O0)</span><br></pre></td></tr></table></figure>
-<h3 id="指针形参"><a href="#指针形参" class="headerlink" title="指针形参"></a>指针形参</h3><p>指针的行为和其他非引用类型一样。当执行指针拷贝操作时，拷贝的是指针的值。拷贝之后，两个指针是不同的指针。因为指针使我们可以间接地访问它所指的对象，所以通过指针可以修改它所指对象的值：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">void swap(int* lhs, int* rhs)</span><br><span class="line">&#123;</span><br><span class="line">	int tmp;</span><br><span class="line">	tmp = *lhs;</span><br><span class="line">	*lhs = *rhs;</span><br><span class="line">	*rhs = tmp;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	for (int lft, rht; std::cout &lt;&lt; &quot;Please Enter:\n&quot;, std::cin &gt;&gt; lft &gt;&gt; rht;)</span><br><span class="line">	&#123;</span><br><span class="line">		swap(&amp;lft, &amp;rht);</span><br><span class="line">		std::cout &lt;&lt; lft &lt;&lt; &quot; &quot; &lt;&lt; rht &lt;&lt; std::endl;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="使用引用避免拷贝"><a href="#使用引用避免拷贝" class="headerlink" title="使用引用避免拷贝"></a>使用引用避免拷贝</h3><p>拷贝大的类类型对象或者容器对象比较低效，甚至有的类类型(包括IO类型在内)根本就不支持拷贝操作。当某种类型不支持拷贝操作时，函数只能通过引用形参访问该类型的对象。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">bool</span> <span class="title">isshorter</span><span class="params">(<span class="type">const</span> string &amp;s1, <span class="type">const</span> string &amp;s2)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> s1.<span class="built_in">size</span>() &lt; s2.<span class="built_in">size</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    string s1 = <span class="string">&quot;hello&quot;</span>;</span><br><span class="line">    string s2 = <span class="string">&quot;world&quot;</span>;</span><br><span class="line">    <span class="keyword">if</span> (!<span class="built_in">isshorter</span>(s1, s2))</span><br><span class="line">    &#123;</span><br><span class="line">        cout &lt;&lt; s1 &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        cout &lt;&lt; s2 &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="常量指针的区别"><a href="#常量指针的区别" class="headerlink" title="常量指针的区别"></a>常量指针的区别</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> i= <span class="number">42</span>;</span><br><span class="line"><span class="type">int</span> * <span class="type">const</span> p1 = &amp;i;</span><br><span class="line">*p1 = <span class="number">3</span>;<span class="comment">//yes</span></span><br></pre></td></tr></table></figure>
-<p>p1这是一个<strong>常量指针</strong>（const pointer），表示指针本身是常量，即指针的指向不可改变，但可以通过指针修改所指向的值。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> j = <span class="number">34</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> *p2 =&amp;j;</span><br><span class="line">*p2 = <span class="number">4</span>;<span class="comment">//no</span></span><br><span class="line">p2 = &amp;i;<span class="comment">//yes</span></span><br></pre></td></tr></table></figure>
-<p>p2这是一个<strong>指向常量的指针</strong>（pointer to const），表示指针指向的值是常量，不能通过该指针修改值，但指针本身可以指向其他变量。</p>
-<h4 id="尽量使用常量引用"><a href="#尽量使用常量引用" class="headerlink" title="尽量使用常量引用"></a>尽量使用常量引用</h4><p>使用引用而非常量引用也会极大地限制函数所能接受的实参类型。就像刚刚看到的，我们不能把const对象、字面值或者需要类型转换的对象传递给普通的引用形参。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">string::size_type find_char(const string &amp;s,char c,string::size_type &amp;occurs);</span><br></pre></td></tr></table></figure>
-<p>调用成功：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">find_char</span>(<span class="string">&quot;hello &quot;</span>, <span class="string">&#x27;h&#x27;</span>, ctr);</span><br></pre></td></tr></table></figure>
-<p>调用失败：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">string::size_type <span class="title">find_char</span><span class="params">(string &amp;s,<span class="type">char</span> c,string::size_type &amp;occurs)</span></span>;</span><br><span class="line"><span class="built_in">find_char</span>(<span class="string">&quot;hello &quot;</span>, <span class="string">&#x27;h&#x27;</span>, ctr);</span><br></pre></td></tr></table></figure>
-<h4 id="再举例"><a href="#再举例" class="headerlink" title="再举例"></a>再举例</h4><blockquote>
-<p>下面的这个函数虽然合法，但是不算特别有用。指出它的局限性并设法改善。</p>
-</blockquote>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">bool</span> <span class="title">is_empty</span><span class="params">(string&amp; s)</span> </span>&#123; <span class="keyword">return</span> s.<span class="built_in">empty</span>(); &#125;</span><br></pre></td></tr></table></figure>
-<p>局限性在于<strong>常量字符串</strong>和<strong>字符串字面值</strong>无法作为该函数的实参，如果下面这样调用是非法的：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> string str;</span><br><span class="line"><span class="type">bool</span> flag = <span class="built_in">is_empty</span>(str); <span class="comment">//非法</span></span><br><span class="line"><span class="type">bool</span> flag = <span class="built_in">is_empty</span>(<span class="string">&quot;hello&quot;</span>); <span class="comment">//非法</span></span><br></pre></td></tr></table></figure>
-<p>所以要将这个函数的形参定义为常量引用：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">bool</span> <span class="title">is_empty</span><span class="params">(<span class="type">const</span> string&amp; s)</span> </span>&#123; <span class="keyword">return</span> s.<span class="built_in">empty</span>(); &#125;</span><br></pre></td></tr></table></figure>
-<h3 id="initializer-list形参"><a href="#initializer-list形参" class="headerlink" title="initializer_ list形参"></a>initializer_ list形参</h3><p>有时我们无法提前预知应该向函数传递几个实参。例如，我们想要编写代码输出程序产生的错误信息，此时最好用同一个函数实现该项功能，以便对所有错误的处理能够整齐划一。然而，错误信息的种类不同，所以调用错误输出函数时传递的实参也各不相同。</p>
-<p><img src="C:\data\mysoftware\Typora\typoraPicture\image-20250714164206724.png" alt="image-20250714164206724" style="zoom:50%;" /></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">sum</span><span class="params">(std::initializer_list&lt;<span class="type">int</span>&gt; <span class="type">const</span>&amp; il)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">int</span> sum = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">auto</span> i : il) </span><br><span class="line">		sum += i;</span><br><span class="line">	<span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">auto</span> il = &#123; <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span> &#125;;</span><br><span class="line">	std::cout &lt;&lt; <span class="built_in">sum</span>(il) &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="重载函数"><a href="#重载函数" class="headerlink" title="重载函数"></a>重载函数</h3><h4 id="定义重载函数"><a href="#定义重载函数" class="headerlink" title="定义重载函数"></a>定义重载函数</h4><p>对于重载的函数来说，它们应该在形参数量或形参类型上有所不同。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//每对声明的是同一个函数</span></span><br><span class="line"><span class="built_in">Recordlookup</span>(<span class="type">const</span> Account &amp;acct);</span><br><span class="line"><span class="built_in">Recordlookup</span>(<span class="type">const</span> Account&amp;);<span class="comment">//省略了形参的名字</span></span><br></pre></td></tr></table></figure>
-<h4 id="const-cast和重载"><a href="#const-cast和重载" class="headerlink" title="const_cast和重载"></a>const_cast和重载</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">const</span> string &amp;<span class="title">shorterString</span><span class="params">(<span class="type">const</span> string &amp;sl, <span class="type">const</span> string &amp;s2)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (sl.<span class="built_in">size</span>() &lt; s2.<span class="built_in">size</span>()) ? sl : s2;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">string &amp;<span class="title">shorterString</span><span class="params">(string &amp;sl, string &amp;s2)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">auto</span> &amp;r = <span class="built_in">shorterString</span>(<span class="built_in">const_cast</span>&lt;<span class="type">const</span> string&amp;&gt;(sl),</span><br><span class="line">                            <span class="built_in">const_cast</span>&lt;<span class="type">const</span> string&amp;&gt;(s2));</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">const_cast</span>&lt;string &amp;&gt;(r);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这个函数的参数和返回类型都是const string的引用。我们可以对两个非常量的string实参调用这个函数，但返回的结果仍然是const string的引用。因此我们需要一种新的shorterstring函数，当它的实参不是常量时，得到的结果是一个普通的引用，使用const_cast可以做到这一点：</p>
-<h3 id="默认实参"><a href="#默认实参" class="headerlink" title="默认实参"></a>默认实参</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> string::size_type sz;</span><br><span class="line"><span class="function">string <span class="title">screen</span><span class="params">(sz ht = <span class="number">24</span>, sz wid = <span class="number">80</span>, <span class="type">char</span> backgrnd =<span class="string">&#x27; &#x27;</span>)</span></span>;</span><br></pre></td></tr></table></figure>
-<p>其中我们为每一个形参都提供了默认实参，默认实参作为形参的初始值出现在形参列表中。我们可以为一个或多个形参定义默认值，<strong>不过需要注意的是，一旦某个形参被赋予了默认值，它后面的所有形参都必须有默认值。</strong></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">string window;</span><br><span class="line">window = <span class="built_in">screen</span>();</span><br><span class="line">window = <span class="built_in">screen</span>(<span class="number">66</span>);</span><br><span class="line">window = <span class="built_in">screen</span>(<span class="number">24</span>, <span class="number">80</span>);</span><br><span class="line">window = <span class="built_in">screen</span>(<span class="number">24</span>, <span class="number">80</span>, <span class="string">&#x27;*&#x27;</span>);</span><br></pre></td></tr></table></figure>
-<p>函数调用时实参按其位置解析，默认实参负责填补函数调用缺少的尾部实参（靠右侧位置）。例如，要想覆盖backgrnd的默认值，必须为ht和wid提供实参</p>
-<p>当设计含有默认实参的函数时，其中一项任务是合理设置形参的顺序<strong>，尽量让不怎么使用默认值的形参出现在前面，而让那些经常使用默认值的形参出现在后面</strong>。</p>
-<h3 id="内联函数"><a href="#内联函数" class="headerlink" title="内联函数"></a>内联函数</h3><h4 id="内联函数可避免函数调用的开销"><a href="#内联函数可避免函数调用的开销" class="headerlink" title="内联函数可避免函数调用的开销"></a>内联函数可避免函数调用的开销</h4><p>将函数指定为内联函数(inline)，通常就是将它在每个调用点上“内联地”展开。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">const</span> string &amp;<span class="title">shorterString</span><span class="params">(<span class="type">const</span> string &amp;sl, <span class="type">const</span> string &amp;s2)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (sl.<span class="built_in">size</span>() &lt; s2.<span class="built_in">size</span>()) ? sl : s2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>内联说明只是向编译器发出的一个请求，编译器可以选择忽略这个请求。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cout &lt;&lt; <span class="built_in">shorterstring</span>(sl, s2) &lt;&lt; endl;</span><br><span class="line">cout &lt;&lt;(sl.size（）&lt; s2.size（） ? sl : s2)&lt;&lt; endl;</span><br></pre></td></tr></table></figure>
-<h3 id="constexpr函数"><a href="#constexpr函数" class="headerlink" title="constexpr函数"></a>constexpr函数</h3><p>constexpr函数(constexpr function)是指能用于常量表达式的函数。定义constexpr函数的方法与其他函数类似，不过要遵循几项约定：<strong>函数的返回类型及所有形参的类型都得是字面值类型，而且函数体中必须有且只有一条return语句</strong>：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">constexpr</span> <span class="type">int</span> <span class="title">max</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (a &gt; b) ? a : b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">constexpr</span> <span class="type">int</span> <span class="title">new_sz</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">42</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="NDEBUG"><a href="#NDEBUG" class="headerlink" title="NDEBUG"></a>NDEBUG</h3><p>除了用于<code>assert</code>外，也可以使用NDEBUG编写自已的条件调试代码。如果NDEBUG未定义，将执行#ifndef和#endif之间的代码；如果定义了NDEBUG，这些代码将被忽略掉：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">print</span><span class="params">(<span class="type">const</span> <span class="type">int</span> ia[],<span class="type">size_t</span> size)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="meta">#<span class="keyword">ifndef</span> NDEBUG</span></span><br><span class="line">    cerr&lt;&lt;__func__&lt;&lt;<span class="string">&quot;:array size = &quot;</span> &lt;&lt; size &lt;&lt; endl;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">__FILE__存放文件名的字符串字面值。</span><br><span class="line">__LINE__存放当前行号的整型字面值。</span><br><span class="line">__TIME__存放文件编译时间的字符串字面值。</span><br><span class="line">__DATE__存放文件编译日期的字符串字面值。</span><br></pre></td></tr></table></figure>
-<h3 id="函数指针"><a href="#函数指针" class="headerlink" title="函数指针"></a>函数指针</h3><p>函数指针指向的是函数而非对象。</p>
-<p>我们还能直接使用指向函数的指针调用该函数<strong>，无须提前解引用指针</strong>：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">bool</span> <span class="title">lengthCompare</span><span class="params">(<span class="type">const</span> string &amp;s1, <span class="type">const</span> string &amp;s2)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (s1.<span class="built_in">size</span>() &lt; s2.<span class="built_in">size</span>())? <span class="literal">true</span> : <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">bool</span> (*pf)(<span class="type">const</span> string &amp;, <span class="type">const</span> string &amp;) = lengthCompare;</span><br><span class="line">    <span class="type">bool</span> b1= <span class="built_in">pf</span>(<span class="string">&quot;hello&quot;</span>, <span class="string">&quot;world&quot;</span>);</span><br><span class="line">    <span class="type">bool</span> b2 = (*pf)(<span class="string">&quot;hello&quot;</span>, <span class="string">&quot;world&quot;</span>);</span><br><span class="line">    <span class="type">bool</span> b3 =<span class="built_in">lengthCompare</span>(<span class="string">&quot;hello&quot;</span>, <span class="string">&quot;world&quot;</span>);</span><br><span class="line">    cout &lt;&lt; boolalpha &lt;&lt; b1 &lt;&lt; <span class="string">&quot; &quot;</span> &lt;&lt; b2 &lt;&lt; <span class="string">&quot; &quot;</span> &lt;&lt; b3 &lt;&lt; endl;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="函数指针形参"><a href="#函数指针形参" class="headerlink" title="函数指针形参"></a>函数指针形参</h3><p>和数组类似，虽然不能定义函数类型的形参，但是形参可以是指向函数的指针。此时，形参看起来是函数类型，实际上却是当成指针使用：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//第三个形参是函数类型，它会自动地转换成指向函数的指针</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">useBigger</span><span class="params">(<span class="type">const</span> string &amp;sl, <span class="type">const</span> string &amp;s2,</span></span></span><br><span class="line"><span class="params"><span class="function">    <span class="type">bool</span> pf(<span class="type">const</span> string&amp;,<span class="type">const</span> string &amp;))</span></span>;</span><br><span class="line"><span class="comment">//等价的声明：显式地将形参定义成指向函数的指针  5c1111g&amp;17</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">useBigger</span><span class="params">(<span class="type">const</span> string &amp;sl, <span class="type">const</span> string &amp;s2,</span></span></span><br><span class="line"><span class="params"><span class="function"><span class="type">bool</span> (*pf)(<span class="type">const</span> string&amp;,<span class="type">const</span> string&amp;))</span></span>;</span><br></pre></td></tr></table></figure>
-<p>我们可以直接把函数作为实参使用，此时它会自动转换成指针：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">useBigger</span>(<span class="string">&quot;hello&quot;</span>, <span class="string">&quot;world&quot;</span>, lengthCompare);</span><br></pre></td></tr></table></figure>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2025/07/17/cplusplus%20primer%20study/ch6/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1053,98 +1086,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://hollis7.github.io/2024/09/25/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E9%9D%A2%E8%AF%95%E7%BB%8F%E5%85%B8150/%E9%9D%A2%E8%AF%95%E7%BB%8F%E5%85%B8150_1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/person.jpg">
-      <meta itemprop="name" content="hollis7">
-      <meta itemprop="description" content="some learning blogs">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="hollis7">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2024/09/25/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E9%9D%A2%E8%AF%95%E7%BB%8F%E5%85%B8150/%E9%9D%A2%E8%AF%95%E7%BB%8F%E5%85%B8150_1/" class="post-title-link" itemprop="url">面试经典150_1</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2024-09-25 20:56:12 / 修改时间：20:55:13" itemprop="dateCreated datePublished" datetime="2024-09-25T20:56:12+08:00">2024-09-25</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/code-Musing/" itemprop="url" rel="index"><span itemprop="name">code_Musing</span></a>
-                </span>
-            </span>
-
-          
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-              <span>6.6k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-              <span>6 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <meta name="referrer" content="no-referrer"/>
-
-<h1 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h1><p><strong>本节包括：</strong></p>
-<ul>
-<li>常见面试题</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2024/09/25/%E4%BB%A3%E7%A0%81%E9%9A%8F%E6%83%B3%E5%BD%95/%E9%9D%A2%E8%AF%95%E7%BB%8F%E5%85%B8150/%E9%9D%A2%E8%AF%95%E7%BB%8F%E5%85%B8150_1/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1216,7 +1157,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">84</span>
+          <span class="site-state-item-count">85</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1276,12 +1217,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">561k</span>
+    <span title="站点总字数">573k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">8:30</span>
+    <span title="站点阅读时长">8:41</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
