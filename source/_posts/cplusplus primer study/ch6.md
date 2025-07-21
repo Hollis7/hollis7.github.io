@@ -219,7 +219,7 @@ bool is_empty(const string& s) { return s.empty(); }
 
 有时我们无法提前预知应该向函数传递几个实参。例如，我们想要编写代码输出程序产生的错误信息，此时最好用同一个函数实现该项功能，以便对所有错误的处理能够整齐划一。然而，错误信息的种类不同，所以调用错误输出函数时传递的实参也各不相同。
 
-<img src="C:\data\mysoftware\Typora\typoraPicture\image-20250714164206724.png" alt="image-20250714164206724" style="zoom:50%;" />
+<img src="https://gitee.com/hollis7/pictures/raw/master/2025/07/21/59237_image-20250714164206724.png" alt="image-20250714164206724" style="zoom:50%;" />
 
 ~~~c++
 int sum(std::initializer_list<int> const& il)

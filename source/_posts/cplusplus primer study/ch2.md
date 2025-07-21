@@ -17,7 +17,7 @@ tags:
 
 ### 基本内置类型
 
-<img src="C:\data\mysoftware\Typora\typoraPicture\image-20250710170042239.png" alt="image-20250710170042239" style="zoom:45%;" />
+<img src="https://gitee.com/hollis7/pictures/raw/master/2025/07/21/83984_image-20250710170042239.png" alt="image-20250710170042239" style="zoom:45%;" />
 
 > 类型int、short、long和long long都是带符号的，通过在这些类型名前添加unsigned就可以得到无符号类型，例如unsigned long。类型unsigned int可以缩写为unsigned。
 

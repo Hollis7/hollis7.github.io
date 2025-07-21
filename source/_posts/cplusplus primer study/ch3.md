@@ -77,7 +77,7 @@ string类及其他大多数标准库类型都定义了几种配套的类型。�
 
 ### cctype头文件
 
-<img src="C:\data\mysoftware\Typora\typoraPicture\image-20250712112437457.png" alt="image-20250712112437457" style="zoom:50%;" />
+<img src="https://gitee.com/hollis7/pictures/raw/master/2025/07/21/25820_image-20250712112437457.png" alt="image-20250712112437457" style="zoom:50%;" />
 
 ~~~c++
 string line = "hello,WOrld!";
