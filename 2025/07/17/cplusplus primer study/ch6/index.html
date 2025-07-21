@@ -27,15 +27,15 @@
 <meta property="og:site_name" content="hollis7">
 <meta property="og:description" content="内容导航本节主要包括c++的函数知识">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="c:\data\mysoftware\Typora\typoraPicture\image-20250714164206724.png">
+<meta property="og:image" content="https://gitee.com/hollis7/pictures/raw/master/2025/07/21/59237_image-20250714164206724.png">
 <meta property="article:published_time" content="2025-07-17T02:10:22.324Z">
-<meta property="article:modified_time" content="2025-07-17T02:14:38.534Z">
+<meta property="article:modified_time" content="2025-07-21T13:04:34.500Z">
 <meta property="article:author" content="hollis7">
 <meta property="article:tag" content="c++">
 <meta property="article:tag" content="vscode">
 <meta property="article:tag" content="cmake">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="c:\data\mysoftware\Typora\typoraPicture\image-20250714164206724.png">
+<meta name="twitter:image" content="https://gitee.com/hollis7/pictures/raw/master/2025/07/21/59237_image-20250714164206724.png">
 
 <link rel="canonical" href="https://hollis7.github.io/2025/07/17/cplusplus%20primer%20study/ch6/">
 
@@ -136,7 +136,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档<span class="badge">85</span></a>
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档<span class="badge">86</span></a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -217,10 +217,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2025-07-17 10:10:22 / 修改时间：10:14:38" itemprop="dateCreated datePublished" datetime="2025-07-17T10:10:22+08:00">2025-07-17</time>
+              <time title="创建时间：2025-07-17 10:10:22" itemprop="dateCreated datePublished" datetime="2025-07-17T10:10:22+08:00">2025-07-17</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-07-21 21:04:34" itemprop="dateModified" datetime="2025-07-21T21:04:34+08:00">2025-07-21</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -288,7 +294,7 @@
 <p>所以要将这个函数的形参定义为常量引用：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">bool</span> <span class="title">is_empty</span><span class="params">(<span class="type">const</span> string&amp; s)</span> </span>&#123; <span class="keyword">return</span> s.<span class="built_in">empty</span>(); &#125;</span><br></pre></td></tr></table></figure>
 <h3 id="initializer-list形参"><a href="#initializer-list形参" class="headerlink" title="initializer_ list形参"></a>initializer_ list形参</h3><p>有时我们无法提前预知应该向函数传递几个实参。例如，我们想要编写代码输出程序产生的错误信息，此时最好用同一个函数实现该项功能，以便对所有错误的处理能够整齐划一。然而，错误信息的种类不同，所以调用错误输出函数时传递的实参也各不相同。</p>
-<p><img src="C:\data\mysoftware\Typora\typoraPicture\image-20250714164206724.png" alt="image-20250714164206724" style="zoom:50%;" /></p>
+<p><img src="https://gitee.com/hollis7/pictures/raw/master/2025/07/21/59237_image-20250714164206724.png" alt="image-20250714164206724" style="zoom:50%;" /></p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">sum</span><span class="params">(std::initializer_list&lt;<span class="type">int</span>&gt; <span class="type">const</span>&amp; il)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">int</span> sum = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">auto</span> i : il) </span><br><span class="line">		sum += i;</span><br><span class="line">	<span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">auto</span> il = &#123; <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span> &#125;;</span><br><span class="line">	std::cout &lt;&lt; <span class="built_in">sum</span>(il) &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="重载函数"><a href="#重载函数" class="headerlink" title="重载函数"></a>重载函数</h3><h4 id="定义重载函数"><a href="#定义重载函数" class="headerlink" title="定义重载函数"></a>定义重载函数</h4><p>对于重载的函数来说，它们应该在形参数量或形参类型上有所不同。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//每对声明的是同一个函数</span></span><br><span class="line"><span class="built_in">Recordlookup</span>(<span class="type">const</span> Account &amp;acct);</span><br><span class="line"><span class="built_in">Recordlookup</span>(<span class="type">const</span> Account&amp;);<span class="comment">//省略了形参的名字</span></span><br></pre></td></tr></table></figure>
@@ -433,7 +439,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">85</span>
+          <span class="site-state-item-count">86</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
