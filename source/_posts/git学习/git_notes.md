@@ -433,7 +433,7 @@ git remote -v
 - Origin 默认远程仓库
 - HEAD 指向当前分⽀的指针
 - HEAD^ 上⼀个版本
-- HEAD~ 上四个版本
+- HEAD~4 上四个版本
 
 ## vscode中使用git
 
